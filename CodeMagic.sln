@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 14 for Windows Desktop
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMagic", "CodeMagic\CodeMagic.csproj", "{5CDC90BD-D50F-4676-8007-94DAD61872F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMagic.DAL", "CodeMagic.DAL\CodeMagic.DAL.csproj", "{1D71C440-BCBF-4AB2-8C48-C00A630E42E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5CDC90BD-D50F-4676-8007-94DAD61872F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CDC90BD-D50F-4676-8007-94DAD61872F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CDC90BD-D50F-4676-8007-94DAD61872F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CDC90BD-D50F-4676-8007-94DAD61872F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D71C440-BCBF-4AB2-8C48-C00A630E42E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D71C440-BCBF-4AB2-8C48-C00A630E42E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D71C440-BCBF-4AB2-8C48-C00A630E42E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D71C440-BCBF-4AB2-8C48-C00A630E42E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

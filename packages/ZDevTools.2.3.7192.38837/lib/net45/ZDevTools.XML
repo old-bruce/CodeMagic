@@ -1,0 +1,2008 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ZDevTools</name>
+    </assembly>
+    <members>
+        <member name="T:ZDevTools.Collections.Tree`2">
+            <summary>
+            树类型（相当于节点树管理器）
+            </summary>
+            <typeparam name="TTreeNode"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <remarks>非线程安全，请自行做好线程同步操作</remarks>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            初始化一颗树
+            </summary>
+            <param name="nodes">一组节点</param>
+        </member>
+        <member name="P:ZDevTools.Collections.Tree`2.Root">
+            <summary>
+            根节点
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.Contains(`1)">
+            <summary>
+            在树中是否存在 Id 为 id 的节点
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.Contains(System.Func{`0,System.Boolean})">
+            <summary>
+            在树中是否存在满足predicate的节点
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.Find(`1)">
+            <summary>
+            查找 Id 为 id 的节点
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.Find(System.Func{`0,System.Boolean})">
+            <summary>
+            查找一个满足 <paramref name="predicate"/> 的节点
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.FindAll(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            该方法返回的数量可能与ids数量不一致，因为其会抛弃没有对应node的id。
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.FindAll(System.Func{`0,System.Boolean})">
+            <summary>
+            返回一组满足 <paramref name="predicate"/> 的节点
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.AttachNode(`0)">
+            <summary>
+            向树中附加一个节点
+            </summary>
+            <param name="node"></param>
+            <remarks>该方法会确定是否可以完成操作再进行操作，不会破坏节点与树的状态</remarks>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.AttachNode(`0,System.Int32)">
+            <summary>
+            在指定 <paramref name="index"/> 附加一个节点
+            </summary>
+            <param name="node"></param>
+            <param name="index"></param>
+            <remarks>该方法会确定是否可以完成操作再进行操作，不会破坏节点与树的状态</remarks>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.DetachNode(`0)">
+            <summary>
+            从树中分离一个节点（无法分离根节点）
+            </summary>
+            <param name="node"></param>
+            <remarks>该方法会确定是否可以完成操作再进行操作，不会破坏节点与树的状态</remarks>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.MoveNode(`0,`0)">
+            <summary>
+            将节点移动到指定的父节点之下
+            </summary>
+            <param name="node"></param>
+            <param name="toParentNode"></param>
+            <remarks>该方法会确定是否可以完成操作再进行操作，不会破坏节点与树的状态</remarks>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.MoveNode(`0,`0,System.Int32)">
+            <summary>
+            将节点移动到指定的父节点之下的指定索引位置
+            </summary>
+            <param name="node"></param>
+            <param name="toParentNode"></param>
+            <param name="index">如果指定的索引不存在，将把节点安放在尾部</param>
+            <remarks>该方法会确定是否可以完成操作再进行操作，不会破坏节点与树的状态</remarks>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.StableSort(System.Comparison{`0})">
+            <summary>
+            使用稳定排序，排序树中所有节点
+            </summary>
+            <param name="comparison"></param>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.AllAsEnumerable">
+            <summary>
+            所有节点线性化
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.Tree`2.SubAsEnumerable">
+            <summary>
+            所有子节点线性化
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ZDevTools.Collections.TreeNodeException`2">
+            <summary>
+            TreeNode结构异常类，用于结构算法出现无法处理情况时抛出
+            </summary>
+            <typeparam name="TTreeNode">TreeNode类型</typeparam>
+            <typeparam name="TKey">键类型</typeparam>
+        </member>
+        <member name="P:ZDevTools.Collections.TreeNodeException`2.Node">
+            <summary>
+            树节点
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNodeException`2.#ctor">
+            <summary>
+            初始化一个异常类
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNodeException`2.#ctor(System.String)">
+            <summary>
+            初始化一个异常类
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNodeException`2.#ctor(System.String,`0)">
+            <summary>
+            初始化一个异常类
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNodeException`2.#ctor(System.String,System.Exception)">
+            <summary>
+            初始化一个异常类
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNodeException`2.#ctor(System.String,System.Exception,`0)">
+            <summary>
+            初始化一个异常类
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNodeException`2.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            初始化一个异常类
+            </summary>
+        </member>
+        <member name="T:ZDevTools.Collections.TreeNodeWrapper`2">
+            <summary>
+            将一组节点临时组合为一个团体，支持在这个团体中查找指定节点
+            </summary>
+            <typeparam name="TTreeNode"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNodeWrapper`2.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            根据提供的节点创建节点临时包装
+            </summary>
+            <param name="nodes"></param>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNodeWrapper`2.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            根据提供的节点创建节点包装
+            </summary>
+            <param name="nodes"></param>
+            <param name="longterm">是否长期包装，如果是长期包装则会采取以空间换时间的算法</param>
+        </member>
+        <member name="P:ZDevTools.Collections.TreeNodeWrapper`2.Nodes">
+            <summary>
+            被包装的节点
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNodeWrapper`2.AsEnumerable">
+            <summary>
+            枚举包装中的所有节点（包括子节点）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNodeWrapper`2.Contains(`1)">
+            <summary>
+            包装中是否包含指定Id的节点
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNodeWrapper`2.Contains(System.Func{`0,System.Boolean})">
+            <summary>
+            包装中是否包含能够通过断言的节点
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNodeWrapper`2.Find(`1)">
+            <summary>
+            查找包装中具有指定Id的节点
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNodeWrapper`2.Find(System.Func{`0,System.Boolean})">
+            <summary>
+            查找包装中符合断言的第一个节点
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNodeWrapper`2.FindAll(System.Func{`0,System.Boolean})">
+            <summary>
+            查找包装中符合断言的所有节点
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZDevTools.Collections.TreeNode`1">
+            <summary>
+            最基本的节点结构
+            </summary>
+            <typeparam name="T">节点类型</typeparam>
+        </member>
+        <member name="P:ZDevTools.Collections.TreeNode`1.Children">
+            <summary>
+            孩子节点
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Collections.TreeNode`1.Parent">
+            <summary>
+            父节点
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Collections.TreeNode`1.Index">
+            <summary>
+            获取当前节点在父节点中的位置，-1代表没有父节点
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNode`1.SubToList">
+            <summary>
+            将所有子节点线性化为列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNode`1.AllToList">
+            <summary>
+            将当前节点及子节点线性化为列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNode`1.FindAll(System.Func{`0,System.Boolean})">
+            <summary>
+            在当前节点及其所有子节点中查找所有符合断言的节点
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNode`1.Find(System.Func{`0,System.Boolean})">
+            <summary>
+            查找第一个发现的可以通过断言的节点
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNode`1.Contains(System.Func{`0,System.Boolean})">
+            <summary>
+            当前节点及其子节点是否包含能够通过断言的节点
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNode`1.StableSort(System.Comparison{`0})">
+            <summary>
+            使用稳定排序算法，排序本节点的<see cref="P:ZDevTools.Collections.TreeNode`1.Children"/>，及所有子节点的<see cref="P:ZDevTools.Collections.TreeNode`1.Children"/>
+            </summary>
+            <param name="comparison"></param>
+        </member>
+        <member name="T:ZDevTools.Collections.TreeNode`2">
+            <summary>
+            可用于查找与操作的节点结构
+            </summary>
+            <typeparam name="TTreeNode">节点泛型参数</typeparam>
+            <typeparam name="TKey">节点Id泛型参数</typeparam>
+        </member>
+        <member name="P:ZDevTools.Collections.TreeNode`2.Id">
+            <summary>
+            节点 Id
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Collections.TreeNode`2.ParentId">
+            <summary>
+            父节点 Id
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Collections.TreeNode`2.Tree">
+            <summary>
+            该节点所属树引用
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNode`2.Parse(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            该方法用于解析节点列表，解析后组织为节点树结构，并获得唯一根节点（忽略返回的平化节点字典）
+            </summary>
+            <param name="nodes">treeNode可枚举对象</param>
+            <remarks>您必须保证nodes中有且仅有一个根节点，否则会报错。节点排序：后入先出，因此，nodes中排序靠后的节点会最先出现在节点树中</remarks>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNode`2.Parse(ZDevTools.Collections.Tree{`0,`1},System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.Dictionary{`1,`0}@)">
+            <summary>
+            该方法用于解析节点列表，解析后组织为节点树结构，并获得唯一根节点
+            </summary>
+            <param name="nodes">treeNode可枚举对象</param>
+            <param name="flattenNodes">平化的节点字典</param>
+            <param name="tree">所属Tree</param>
+            <remarks>您必须保证nodes中有且仅有一个根节点，否则会报错。
+            如果整理出错，请不要再次使用这些节点，因为节点状态已更改并且无法保证处于未附加状态中。
+            </remarks>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNode`2.Contains(`1)">
+            <summary>
+            当前节点及子节点中是否包含具有指定Id的节点
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Collections.TreeNode`2.Find(`1)">
+            <summary>
+            在当前节点及子节点中查找具有指定Id的节点
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZDevTools.IO.SymbolicLink">
+            <summary>
+            符号链接操作实用类
+            引用自：http://troyparsons.com/blog/2012/03/symbolic-links-in-c-sharp/
+            </summary>
+        </member>
+        <member name="F:ZDevTools.IO.SymbolicLink.IO_REPARSE_TAG_MOUNT_POINT">
+            <summary>
+            Reparse point tag used to identify mount points and junction points.
+            </summary>
+        </member>
+        <member name="M:ZDevTools.IO.SymbolicLink.GetRealPath(System.String)">
+            <summary>
+            获取目标符号链接（同时支持软链接与Junction）路径的真实路径
+            </summary>
+            <param name="targetPath"></param>
+            <returns>如果目标路径不是符号链接，那么将返回 null，否则返回目标路径的真实路径</returns>
+        </member>
+        <member name="T:ZDevTools.IO.SymbolicLinkReparseData">
+            <remarks>
+            Refer to http://msdn.microsoft.com/en-us/library/windows/hardware/ff552012%28v=vs.85%29.aspx
+            </remarks>
+        </member>
+        <member name="T:ZDevTools.Net.SocketListener`1">
+            <summary>
+            一问一答式高性能Socket监听器
+            </summary>
+        </member>
+        <member name="F:ZDevTools.Net.SocketListener`1._socket">
+            <summary>
+            The socket used to listen for incoming connection requests.
+            </summary>
+        </member>
+        <member name="F:ZDevTools.Net.SocketListener`1._isStopping">
+            <summary>
+            正在停止中
+            </summary>
+        </member>
+        <member name="F:ZDevTools.Net.SocketListener`1.BufferSize">
+            <summary>
+            Buffer size to use for each socket I/O operation.
+            </summary>
+        </member>
+        <member name="F:ZDevTools.Net.SocketListener`1.MaxConnectionCount">
+            <summary>
+            the maximum number of connections the sample is designed to handle simultaneously.
+            </summary>
+        </member>
+        <member name="F:ZDevTools.Net.SocketListener`1.EPool">
+            <summary>
+            Pool of reusable SocketAsyncEventArgs objects for write, read and accept socket operations.
+            </summary>
+        </member>
+        <member name="F:ZDevTools.Net.SocketListener`1.Semaphore">
+            <summary>
+            控制连接到本服务器的客户端数量
+            </summary>
+        </member>
+        <member name="F:ZDevTools.Net.SocketListener`1.ManualResetEvent">
+            <summary>
+            同步构造
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Net.SocketListener`1.Clients">
+            <summary>
+            所有正在与本监听器通讯的Sockets
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Net.SocketListener`1.IsStopping">
+            <summary>
+            是否正在停止中
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Net.SocketListener`1.MessageHandler">
+            <summary>
+            消息处理函数（返回回应数据）
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Net.SocketListener`1.SendTimeout">
+            <summary>
+            发送超时设置，默认30000毫秒，该值仅在<see cref="M:ZDevTools.Net.SocketListener`1.Start(System.Int32)"/>时起作用
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Net.SocketListener`1.ReceiveTimeout">
+            <summary>
+            接收超时设置，默认30000毫秒，该值仅在<see cref="M:ZDevTools.Net.SocketListener`1.Start(System.Int32)"/>时起作用
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Net.SocketListener`1.StopTimeout">
+            <summary>
+            停止客户端连接关闭等待时间，默认30000毫秒，该值仅在<see cref="!:Stop()"/>时起作用
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Net.SocketListener`1.Socket">
+            <summary>
+            监听器基础套接字
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Net.SocketListener`1.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Create an uninitialized server instance.  
+            To start the server listening for connection requests
+            call the Init method followed by Start method.
+            </summary>
+            <param name="maxConnections">Maximum number of connections to be handled simultaneously.</param>
+            <param name="bufferSize">Buffer size to use for each socket I/O operation.一次最多只能发送/接收这么多数据</param>
+        </member>
+        <member name="M:ZDevTools.Net.SocketListener`1.Start(System.Int32)">
+            <summary>
+            Starts the server listening for incoming connection requests.
+            </summary>
+            <param name="port">Port where the server will listen for connection requests.</param>
+        </member>
+        <member name="P:ZDevTools.Net.SocketListener`1.CriticalErrorHandler">
+            <summary>
+            关键性错误处理
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Net.SocketListener`1.onCompleted(System.Object,System.Net.Sockets.SocketAsyncEventArgs)">
+            <summary>
+            Callback called whenever a receive or send operation is completed on a socket.
+            </summary>
+            <param name="sender">Object who raised the event.</param>
+            <param name="e">SocketAsyncEventArg associated with the completed send/receive operation.</param>
+        </member>
+        <member name="M:ZDevTools.Net.SocketListener`1.startAccept(System.Net.Sockets.SocketAsyncEventArgs)">
+            <summary>
+            Begins an operation to accept a connection request from the client.
+            </summary>
+            <param name="e">The context object to use when issuing 
+            the accept operation on the server's listening socket.</param>
+        </member>
+        <member name="P:ZDevTools.Net.SocketListener`1.AcceptedHandler">
+            <summary>
+            已成功建立连接处理器，返回值可以确定是否接受该客户端的连接，不接受返回false，监听器会自动关闭该连接
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Net.SocketListener`1.processAccept(System.Net.Sockets.SocketAsyncEventArgs)">
+            <summary>
+            Process the accept for the socket listener.
+            </summary>
+            <param name="e">SocketAsyncEventArg associated with the completed accept operation.</param>
+        </member>
+        <member name="M:ZDevTools.Net.SocketListener`1.processReceive(System.Net.Sockets.SocketAsyncEventArgs)">
+            <summary>
+            This method is invoked when an asynchronous receive operation completes. 
+            If the remote host closed the connection, then the socket is closed.  
+            If data was received then the data is echoed back to the client.
+            </summary>
+            <param name="e">SocketAsyncEventArg associated with the completed receive operation.</param>
+        </member>
+        <member name="M:ZDevTools.Net.SocketListener`1.processSend(System.Net.Sockets.SocketAsyncEventArgs)">
+            <summary>
+            This method is invoked when an asynchronous send operation completes.  
+            The method issues another receive on the socket to read any additional 
+            data sent from the client.
+            </summary>
+            <param name="e">SocketAsyncEventArg associated with the completed send operation.</param>
+        </member>
+        <member name="M:ZDevTools.Net.SocketListener`1.Stop(System.Boolean)">
+            <summary>
+            Stop the server.
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Net.SocketListener`1.closeClientSocket(System.Net.Sockets.SocketAsyncEventArgs)">
+            <summary>
+            Close the socket associated with the client.
+            </summary>
+            <param name="e">SocketAsyncEventArg associated with the completed send/receive operation.</param>
+        </member>
+        <member name="P:ZDevTools.Net.SocketListener`1.ClientClosedHandler">
+            <summary>
+            客户端已关闭处理器
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Net.SocketListener`1.GeneralErrorHandler">
+            <summary>
+            一般错误处理
+            </summary>
+        </member>
+        <member name="T:ZDevTools.Net.UserToken">
+            <summary>
+            与连接关联的上下文（可继承扩展这个上下文）
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Net.UserToken.Socket">
+            <summary>
+            代表客户端与服务器通讯的套接字
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Net.UserToken.Stream">
+            <summary>
+            数据流
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Net.UserToken.IsClosingSocket">
+            <summary>
+            是否需要关闭与客户通讯的套接字
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Net.UserToken.Dispose(System.Boolean)">
+            <summary>
+            重写该方法以释放你自己的资源
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:ZDevTools.Net.UserToken.Dispose">
+            <summary>
+            Release instance.
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Net.UserToken.Finalize">
+            <summary>
+            析构函数
+            </summary>
+        </member>
+        <member name="T:ZDevTools.Security.RSAHelper">
+            <summary>
+            非对称RSA加密类 参考
+            http://www.cnblogs.com/hhh/archive/2011/06/03/2070692.html
+            http://blog.csdn.net/zhilunchen/article/details/2943158
+            http://www.cnblogs.com/yyl8781697/archive/2013/04/28/RSA.html
+            在此基础上修改而来，并非标准的RSA算法，可能与其他实现无法相容，也就是说，加密与解密你都要使用本Helper
+            本类使用了<see cref="T:System.Numerics.BigInteger"/> 结构作为大数计算的工具和表示类型
+            </summary>
+        </member>
+        <member name="T:ZDevTools.Security.RSAHelper.RSAKey">
+            <summary>
+            RSA加密的密匙结构 公钥和私匙
+            </summary>
+        </member>
+        <member name="F:ZDevTools.Security.RSAHelper.RSAKey.PublicKey">
+            <summary>
+            公钥
+            </summary>
+        </member>
+        <member name="F:ZDevTools.Security.RSAHelper.RSAKey.PrivateKey">
+            <summary>
+            私钥
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Security.RSAHelper.GenerateRASKey(System.Int32)">
+            <summary>
+            得到RSA的解谜的密匙对
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Security.RSAHelper.ReadKeyFromXml(System.Boolean,System.String)">
+            <summary>
+            读取公钥或私钥
+            </summary>
+            <param name="includePrivateparameters">为True则包含私钥</param>
+            <param name="path">Xml格式保存的完整公/私钥路径</param>
+            <returns>公钥或私钥参数形式 </returns>
+        </member>
+        <member name="M:ZDevTools.Security.RSAHelper.ReadKeyFromCertificate(System.Security.Cryptography.X509Certificates.X509Certificate2,System.Boolean)">
+            <summary>
+            从X.509证书中读取密钥
+            </summary>
+            <param name="certificate2">X.509证书</param>
+            <param name="exportPrivateKey">是否导出私钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Security.RSAHelper.componentKey(System.Byte[],System.Byte[])">
+            <summary>
+            组合成密匙字符串
+            </summary>
+            <param name="eOrD">接受正序字节序，自动转为倒序字节序并自动加一位0，能够被<see cref="T:System.Numerics.BigInteger"/>正确识别</param>
+            <param name="n">接受正序字节序，自动转为倒序字节序并自动加一位0，能够被<see cref="T:System.Numerics.BigInteger"/>正确识别</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Security.RSAHelper.resolveKey(System.String,System.Byte[]@,System.Byte[]@)">
+            <summary>
+            解析密匙
+            </summary>
+            <param name="key">密匙</param>
+            <param name="eOrD">RSA的Exponent or D</param>
+            <param name="n">RSA的Modulus</param>
+        </member>
+        <member name="M:ZDevTools.Security.RSAHelper.Encrypt(System.Collections.Generic.IList{System.Byte},System.String)">
+            <summary>
+            使用密钥加密字符串（非标准方法）
+            </summary>
+            <param name="clearBytes">源字符串 明文</param>
+            <param name="key">密钥：公钥 或 私钥</param>
+            <returns>密钥处理过的字符串</returns>
+            <remarks>注意，加密字符串解密时，取决于你所使用的密钥，如果用公钥加密字符串，你应该用私钥解密，反之就要用公钥解密</remarks>
+        </member>
+        <member name="M:ZDevTools.Security.RSAHelper.Decrypt(System.Collections.Generic.IList{System.Byte},System.String)">
+            <summary>
+            使用密钥解密字符串（非标准方法，与<see cref="M:ZDevTools.Security.RSAHelper.Encrypt(System.Collections.Generic.IList{System.Byte},System.String)"/>成对使用）
+            </summary>
+            <param name="cipherBytes">密文</param>
+            <param name="key">密钥：公钥 或 私钥</param>
+            <returns>注意，字符串解密时，取决于你加密所使用的密钥，如果用公钥加密字符串，你应该用私钥解密，反之就要用公钥解密</returns>
+        </member>
+        <member name="M:ZDevTools.Security.RSAHelper.Encrypt(System.Collections.Generic.IList{System.Byte},System.Numerics.BigInteger,System.Numerics.BigInteger)">
+            <summary>
+            用指定的密匙加密（非标准方法）
+            </summary>
+            <param name="clearBytes">明文字节List</param>
+            <param name="eOrD">可以是RSACryptoServiceProvider生成的Exponent 或 D</param>
+            <param name="n">可以是RSACryptoServiceProvider生成的Modulus</param>
+            <returns>返回密文</returns>
+        </member>
+        <member name="M:ZDevTools.Security.RSAHelper.Decrypt(System.Collections.Generic.IList{System.Byte},System.Numerics.BigInteger,System.Numerics.BigInteger)">
+            <summary>
+            用指定的密匙解密（非标准方法）
+            </summary>
+            <param name="cipherBytes">密文字节List</param>
+            <param name="eOrD">可以是RSACryptoServiceProvider生成的Exponent 或者 D</param>
+            <param name="n">可以是RSACryptoServiceProvider生成的Modulus</param>
+            <returns>返回明文</returns>
+        </member>
+        <member name="M:ZDevTools.Security.RSAHelper.GetLocalMac">
+            <summary>
+            获取本机的MAC地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Security.RSAHelper.GetCpuID">
+            <summary>
+            得到CPU序列号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Security.RSAHelper.GetHardID">
+            <summary>
+            获取硬盘ID
+            </summary>
+            <returns>硬盘ID</returns>
+        </member>
+        <member name="T:ZDevTools.UI.WinForm.CustomCompleteTextBox">
+            <summary>
+            带下拉列表的自定义搜索文本框
+            </summary>
+        </member>
+        <member name="F:ZDevTools.UI.WinForm.CustomCompleteTextBox.mouseWheel">
+            <summary>
+            监视鼠标滚轮事件
+            </summary>
+        </member>
+        <member name="F:ZDevTools.UI.WinForm.CustomCompleteTextBox.appClick">
+            <summary>
+            监视鼠标左,中,右键点击事件
+            </summary>
+        </member>
+        <member name="F:ZDevTools.UI.WinForm.CustomCompleteTextBox.innerListBox">
+            <summary>
+            内部使用,用于存储listBox数据
+            </summary>
+        </member>
+        <member name="F:ZDevTools.UI.WinForm.CustomCompleteTextBox.box">
+            <summary>
+            显示候选列表
+            </summary>
+        </member>
+        <member name="F:ZDevTools.UI.WinForm.CustomCompleteTextBox.host">
+            <summary>
+            下拉内容宿主窗体
+            </summary>
+        </member>
+        <member name="F:ZDevTools.UI.WinForm.CustomCompleteTextBox.drop">
+            <summary>
+            下拉控件
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.CustomCompleteTextBox.Multiline">
+            <summary>
+            禁止多行模式
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.CustomCompleteTextBox.DropDownOnEnter">
+            <summary>
+            获取或设置当文本框获得焦点时是否显示下拉列表
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.CustomCompleteTextBox.DropDownMinCharLength">
+            <summary>
+            获取或设置显示下拉列表所需最短字符数, 默认为 1.
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.CustomCompleteTextBox.AutoDropWidth">
+            <summary>
+            获取或设置是否自适应下拉列表的宽度, 默认为 true.
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.CustomCompleteTextBox.DropHeight">
+            <summary>
+            获取或设置下拉列表高度, 默认100.
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.CustomCompleteTextBox.ItemFont">
+            <summary>
+            获取或设置下拉项目的字体
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.CustomCompleteTextBox.ItemForeColor">
+            <summary>
+            获取或设置下拉项目的前景颜色
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.CustomCompleteTextBox.Items">
+            <summary>
+            获取或设置下拉列表的数据集合
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.CustomCompleteTextBox.SelectedItem">
+            <summary>
+            获取或设置选择的项目
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.CustomCompleteTextBox.SelectedValue">
+            <summary>
+            获取或设置选择的值
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.CustomCompleteTextBox.DisplayMember">
+            <summary>
+            获取或设置显示的属性
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.CustomCompleteTextBox.ValueMember">
+            <summary>
+            获取或设置值的属性
+            </summary>
+        </member>
+        <member name="E:ZDevTools.UI.WinForm.CustomCompleteTextBox.Match">
+            <summary>
+            当项目进行搜索匹配时引发此事件, 可在此定义匹配规则.
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.DropList">
+            <summary>
+            显示下拉列表
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.CloseList">
+            <summary>
+            关闭下拉列表
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.InitLayout">
+            <summary>
+            初始化布局
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.OnClick(System.EventArgs)">
+            <summary>
+            单击文本框时
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.OnEnter(System.EventArgs)">
+            <summary>
+            文本框获得焦点时
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.OnLeave(System.EventArgs)">
+            <summary>
+            文本框失去焦点时
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.OnTextChanged(System.EventArgs)">
+            <summary>
+            文本框内容改变时
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.OnKeyPress(System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            在文本框按下并释放按键时
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.OnKeyDown(System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            在文本框按下按键时
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            处理针对文本框的系统消息
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.OnMatch(ZDevTools.UI.WinForm.MatchEventArgs)">
+            <summary>
+            项目匹配事件
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.InitControl">
+            <summary>
+            初始化各参数
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.SetText">
+            <summary>
+            设置文本框文本
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.MatchAndSetListItems">
+            <summary>
+            根据匹配规则,绑定下拉列表, 返回完全匹配项
+            </summary>
+            <returns>完全匹配项</returns>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.FilterItemOnProperty(System.Object,System.String)">
+            <summary>
+            返回指定绑定的属性的值
+            </summary>
+            <param name="item">绑定项目</param>
+            <param name="field">指定属性</param>
+            <returns>属性的值</returns>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.Drop_Closed(System.Object,System.Windows.Forms.ToolStripDropDownClosedEventArgs)">
+            <summary>
+            关闭下拉列表时
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.Drop_ActiveChange(System.Object,ZDevTools.UI.WinForm.ActiveChangeEventArgs)">
+            <summary>
+            下拉列表激活或失去激活状态时引发的事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.Box_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            在 listbox 上按下按键时
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.Box_Click(System.Object,System.EventArgs)">
+            <summary>
+            单击下拉选项
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.CustomCompleteTextBox.Box_MouseMove(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            鼠标在选项间移动时
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:ZDevTools.UI.WinForm.MatchEventArgs">
+            <summary>
+            匹配事件数据
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.MatchEventArgs.Item">
+            <summary>
+            获取当前需判断的数据项
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.MatchEventArgs.MatchText">
+            <summary>
+            获取判断的文本
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.MatchEventArgs.MatchResult">
+            <summary>
+            获取或设置 MatchText 与 Item 中的属性是否部分匹配
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.MatchEventArgs.EqualResult">
+            <summary>
+            获取或设置 MatchText 与 Item 中的属性是否完全相等 
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.MatchEventArgs.#ctor">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="T:ZDevTools.UI.WinForm.ToolStripDropDownExt">
+            <summary>
+            继承自 ToolStripDropDown 的类
+            </summary>
+        </member>
+        <member name="E:ZDevTools.UI.WinForm.ToolStripDropDownExt.ActiveChange">
+            <summary>
+            当控件激活或失去激活状态时发生, 发生于所有事件之前.
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.ToolStripDropDownExt.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            处理 windows 消息
+            </summary>
+            <param name="m">windows 消息</param>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.ToolStripDropDownExt.OnActiveChange(ZDevTools.UI.WinForm.ActiveChangeEventArgs)">
+            <summary>
+            引发 ActiveChange 事件
+            </summary>
+            <param name="e">包含激活状态的 ActiveChangeEventArgs 参数</param>
+        </member>
+        <member name="T:ZDevTools.UI.WinForm.ActiveChangeEventArgs">
+            <summary>
+            为 ActiveChange 事件提供数据
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.ActiveChangeEventArgs.Active">
+            <summary>
+            获取激活状态
+            </summary>
+        </member>
+        <member name="T:ZDevTools.UI.WinForm.UITaskManager">
+            <summary>
+            UI任务管理器
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.UITaskManager.AddTask(System.Action)">
+            <summary>
+            向任务管理器添加任务，
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.UITaskManager.Token">
+            <summary>
+            获取取消UI任务的Token令牌，外部代码调用Token的ThrowIfCancellationRequested()方法抛出异常立即终止其余代码执行，或者获取IsCancellationRequested来确定是否继续执行剩余代码。
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.UITaskManager.SingalAllStopAndWait">
+            <summary>
+            发出终止所有线程执行的信号，并等待所有线程完成其任务，一般在窗体的Closing事件中间接调用，以等待其他线程完成其任务后再关闭窗体。
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.UITaskManager.SingalAllStopAndWaitForClose">
+            <summary>
+            发送终止信号并等待所有任务完成后向窗体发送关闭信号，返回值为窗体的Closing事件参数的Cancel应该发送的值，以确保在所有UI线程完成后再关闭本窗体。
+            </summary>
+            <returns>窗体的Closing事件参数的Cancel应该发送的值</returns>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.UITaskManager.UITarget">
+            <summary>
+            UI操作的目标窗体。
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.UITaskManager.DoSafeUIWork(System.Action)">
+            <summary>
+            在当前操作线程需要Invoke时，调用Invoke执行控件操作。
+            </summary>
+            <param name="uiAction">UI操作委托</param>
+        </member>
+        <member name="T:ZDevTools.UI.WinForm.AnimationStyle">
+            <summary>
+            动画样式
+            </summary>
+        </member>
+        <member name="F:ZDevTools.UI.WinForm.AnimationStyle.None">
+            <summary>
+            无动画效果
+            </summary>
+        </member>
+        <member name="F:ZDevTools.UI.WinForm.AnimationStyle.ZoomOut">
+            <summary>
+            缩小显示
+            </summary>
+        </member>
+        <member name="F:ZDevTools.UI.WinForm.AnimationStyle.ClockwiseRotation">
+            <summary>
+            顺时针旋转
+            </summary>
+        </member>
+        <member name="F:ZDevTools.UI.WinForm.AnimationStyle.AnticlockwiseRotation">
+            <summary>
+            逆时针旋转
+            </summary>
+        </member>
+        <member name="F:ZDevTools.UI.WinForm.AnimationStyle.CustomImage">
+            <summary>
+            自定义图像
+            </summary>
+        </member>
+        <member name="F:ZDevTools.UI.WinForm.AnimationStyle.Offset">
+            <summary>
+            向右下角偏移
+            </summary>
+        </member>
+        <member name="T:ZDevTools.UI.WinForm.ImageButton">
+            <summary>
+            <para>自定义图像按钮类，用来创建拥有释放、悬浮、按下动作的按钮。</para>
+            <para>设置ImageList、MouseHoverImageIndex、MouseDownImageIndex，分别用来提供用于各种动作的图像、鼠标悬浮于按钮上时图像在ImageList中的索引、鼠标按下时的索引。</para>
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.ImageButton.ImageList">
+            <summary>
+            按钮的图像列表对象，用来为按钮的各种状态提供图像
+            </summary>
+        </member>
+        <member name="T:ZDevTools.UI.WinForm.ImageButtonBase">
+            <summary>
+            <para>自定义图像按钮类，用来创建拥有释放、悬浮、按下动作的按钮。</para>
+            <para>设置ImageList、MouseHoverImageIndex、MouseDownImageIndex，分别用来提供用于各种动作的图像、鼠标悬浮于按钮上时图像在ImageList中的索引、鼠标按下时的索引。</para>
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.ImageButtonBase.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.ImageButtonBase.AnimationStyle">
+            <summary>
+            选择按钮的动画风格，默认是无动画样式
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.ImageButtonBase.MouseHoverImageIndex">
+            <summary>
+            鼠标停留时使用的ImageList索引
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.ImageButtonBase.MouseDownImageIndex">
+            <summary>
+            鼠标按下时使用的ImageList索引
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.ImageButtonBase.OriginalImageIndex">
+            <summary>
+            获取或设置原始图像在ImageList中的索引
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.ImageButtonBase.OriginalImage">
+            <summary>
+            设置按钮原始背景图像
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.ImageButtonBase.Text">
+            <summary>
+            获取/设置按钮文本
+            </summary>
+        </member>
+        <member name="P:ZDevTools.UI.WinForm.ImageButtonBase.TextAlign">
+            <summary>
+            获取/设置文字对齐方案
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.ImageButtonBase.PerformClick">
+            <summary>
+            引发ImageButton的Click事件
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.ImageButtonBase.UpdateOriginalImage">
+            <summary>
+            更新原始图像
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.ImageButtonBase.GetImage(System.Int32)">
+            <summary>
+            获取图像
+            </summary>
+            <param name="index">图像索引号</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.ImageButtonBase.GetImageCount">
+            <summary>
+            获取图像总数量
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.ImageButtonBase.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            当绘制背景时发生
+            </summary>
+            <param name="e">绘制事件参数</param>
+        </member>
+        <member name="F:ZDevTools.UI.WinForm.ImageButtonBase.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.ImageButtonBase.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ZDevTools.UI.WinForm.ImageButtonBase.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ZDevTools.Data.DbHelper`7">
+            <summary>
+            <para>数据库通用访问辅助类</para>
+            <para>开发者：穿越中的逍遥</para>
+            <para>版本：4.2</para>
+            <para>日期：2016年10月31日</para>
+            <para>简介：</para>
+            <para>虽然是个辅助类，但是支持事务管理（仅单事务管理）。您可以通过继承或填充泛型参数直接操作其他类型的数据库，如Oracle、MySql等。</para>
+            <para>本辅助类支持占位符，使用方法如下： //v3.1 增加占位符功能的描述</para>
+            <para>{update}占位符，替换该占位符为 参数名1=@参数名1[...[,参数名n=@参数名n]] 形式</para>
+            <para>{where}占位符，替换该占位符为 参数名1=@参数名1[...[ and 参数名n=@参数名n]] 形式</para>
+            <para>{insf}占位符，替换该占位符为 参数名1[...[,参数名n]] 形式</para>        
+            <para>{insv}占位符，替换该占位符为 @参数名1[...[,@参数名n]] 形式</para>
+            <para> {q\d+}占位符，当\d+代表的数字(num)大于0时用于开启查询(query)模式。在query模式下，{where}将仅使用前num个参数替换{where}占位符，用除前num个参数外的参数来替换剩余其他占位符。{q\d+}占位符可以放置于Sql语句的任何位置，该占位符最终被删除。</para>        
+            <para>{in:变量名}占位符，替换该占位符为 @变量名_0,@变量名_1,... </para>
+            <para>使用提醒：本辅助类本身没有多线程同步机制，不保证线程安全！如若在多线程环境下使用，请君自己做好线程同步维护工作！</para>
+            <para>历史记录</para>
+            <para>
+            2014年8月22日 v1.0
+            1.在原有SqlHelper类的基础上，创建了该原始版本。
+            
+            2014年8月24日 v1.1
+            更新内容已遗失
+            
+            2014年8月26日 v1.2
+            1.不允许连续两次打开连接，连续打开将导致连接失去控制，从而加速资源流失
+            2.修改ConfigAndOpen方法以使sqlhelper总是使用同一连接对象，减少资源消耗
+            
+            2014年8月28日 v2.0
+            1.添加paramNames支持输出参数名称数组，以供进行其他处理
+            2.重大升级，支持sql语句中包含{update}、{where}等类似的占位符，自动填充参数
+            
+            2014年10月23日 v2.1
+            1.使用region关键字整理代码大纲
+            2.helper增加一个CreateParameter辅助方法用来快速创建字段参数
+            3.为buildFromPattern方法添加一个TrimStart处理，以兼容用户输入"@parametername"这样的参数名
+            
+            2015年8月19日 v2.2
+            1.修正bug：现在可以嵌套调用查询方法
+            
+            2015年9月7日 v2.3
+            1.修正Adapter没有被及时释放的问题
+            2.修正parameter绑定到cmd后不能用到其他cmd的问题
+            3.添加一个重载方法
+            
+            2015年9月8日 v2.4
+            1.解决一个兼容问题：当为CreateParameter函数的value参数赋null值时导致提示"未提供该参数"错误
+            
+            2015年9月12日 v3.0
+            1.重大版本升级，通过引入泛型、抛弃接口、牺牲些许通用性，增强了本通用类的执行性能和类型特化能力，同时提高了本通用类的可维护性，SqlHelper彻底并入本类型。
+            
+            2015年9月18日 v3.1
+            1.修改正则表达式，使匹配速度更优
+            2.增加占位符功能的描述
+            
+            2015年9月26日 v3.2
+            1.內部代码结构重构，代码更加简约、紧凑。对功能，性能无任何影响。
+            
+            2015年9月29日 v3.3
+            1.修正可能的重复回滚问题
+            2.原Open方法重命名为BeginTransaction方法
+            2.新的Open方法，不再开启事务
+            
+            2015年10月10日 v3.4
+            1.为Open方法添加返回值
+            2.修改事务提交与回滚逻辑
+            
+            2016年1月20日 v3.5
+            1.连接字符串参数不变时不再重复赋值，优化性能
+            
+            2016年3月4日 v3.6
+            1.新增保护方法Execute(Action&lt;TConnection> job)，用于继承类实现特殊功能
+            
+            2016年4月14日 v3.7
+            1.新增支持设定隔离级别的BeginTransaction方法
+            
+            2016年4月28日 v3.8
+            1.修正一个2.4版本就该解决的问题，value参数赋null值时导致提示"未提供该参数"错误
+            
+            2016年6月27日 v4.0
+            1.事务处理新增RollBack方法，允许用户在一个数据库DBHelper中途开启/提交/回滚事务，您不应当在各个方法的委托中调用BeginTransaction方法，因为事务由DBHelper隐式管理，可能造成DBCommand引发未绑定事务异常。
+            
+            2016年9月14日 v4.1
+            1.修改object[] parameters参数的处理方式为自动命名参数名称方式，参数自动名称示例：@p0,@p1,@p2,@p3...
+            
+            2016年10月31日 v4.2
+            1.增加对Sql语句的In语句的支持，现在新增{in:变量名}这一特殊占位符的支持
+            
+            </para>
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Data.DbHelper`7.Transaction">
+            <summary>
+            代表一个事务
+            </summary>
+        </member>
+        <member name="F:ZDevTools.Data.DbHelper`7.InStatementAutoVariablePrefix">
+            <summary>
+            In语句自动变量前缀
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.#ctor(System.String)">
+            <summary>
+            实例化一个DbHelper对象
+            </summary>
+            <param name="connectionString">连接字符串</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.ConvertParameter(`4[],System.String[]@)">
+            <summary>
+            转换公共参数为sqlserver支持的参数类型
+            </summary>
+            <param name="parameters">参数列表</param>
+            <param name="paramNames">输出的参数名数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.ConvertParameter(`4[],ZDevTools.Data.DbHelper{`0,`1,`2,`3,`4,`5,`6}.InParameters,System.String[]@)">
+            <summary>
+            转换公共参数为sqlserver支持的参数类型
+            </summary>
+            <param name="parameters">参数列表</param>
+            <param name="inParameters">In语句参数</param>
+            <param name="paramNames">输出的参数名数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.buildSql(System.String,System.String[],ZDevTools.Data.DbHelper{`0,`1,`2,`3,`4,`5,`6}.InParameters)">
+            <summary>
+            创建sql代码片段
+            </summary>
+            <param name="sql">sql语句，语句中支持{update}|{where}|{insf}|{insv}|{q\d+}这样的占位符</param>
+            <param name="paramNames">作为填充为占位符的基础数据</param>
+            <param name="inParameters">In语句参数，可以为null</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.buildFromPattern(System.String,System.String[],System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            通过指定的模式生成sql片段来替还sql语句中的占位符，这些片段是由一个patternHead与多个patternBody组成的
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.configAndOpen">
+            <summary>
+            配置并打开一个连接
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Data.DbHelper`7.ConnectionString">
+            <summary>
+            获取/设置Data辅助器的连接字符串
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Open">
+            <summary>
+            手动打开连接并一直保持开启状态
+            </summary>
+            <returns>返回DBHelper对象本身，使用<see cref="T:System.IDisposable"/>接口</returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.BeginTransaction">
+            <summary>
+            开启一个事务，提交事务请显式调用<see cref="M:ZDevTools.Data.DbHelper`7.Commit"/>，否则事务无法提交。
+            </summary>
+            <returns>返回DBHelper对象本身，使用<see cref="T:System.IDisposable"/>接口</returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.BeginTransaction(System.Data.IsolationLevel)">
+            <summary>
+            开启一个事务，提交事务请显式调用<see cref="M:ZDevTools.Data.DbHelper`7.Commit"/>，否则事务无法提交。
+            </summary>
+            <param name="isolationLevel">显式指定一个隔离级别</param>
+            <returns>返回DBHelper对象本身，使用<see cref="T:System.IDisposable"/>接口</returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Commit">
+            <summary>
+            提交事务，事务彻底关闭
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.RollBack">
+            <summary>
+            回滚事务，事务彻底关闭
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Close">
+            <summary>
+            如果您调用了<see cref="M:ZDevTools.Data.DbHelper`7.Open"/>或<see cref="M:ZDevTools.Data.DbHelper`7.BeginTransaction"/>方法，则必须调用此方法以释放连接
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Dispose">
+            <summary>
+            本方法的內部直接调用Close方法。
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetScalar``1(System.String,System.Data.CommandType,ZDevTools.Data.DbHelper{`0,`1,`2,`3,`4,`5,`6}.InParameters,`4[])">
+            <summary>
+            获取标量值
+            </summary>
+            <typeparam name="T">类型参数</typeparam>
+            <param name="sql">sql语句</param>
+            <param name="commandType">命令类型</param>
+            <param name="parameters">参数</param>
+            <param name="inParameters">In语句参数</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetScalar``1(System.String,System.Data.CommandType,`4[])">
+            <summary>
+            获取标量值
+            </summary>
+            <typeparam name="T">类型参数</typeparam>
+            <param name="sql">sql语句</param>
+            <param name="commandType">命令类型</param>
+            <param name="parameters">参数</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetScalar``1(System.String,`4[])">
+            <summary>
+            获取标量值
+            </summary>
+            <typeparam name="T">类型参数</typeparam>
+            <param name="sql">sql语句</param>
+            <param name="parameters">参数</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetScalar``1(System.String,ZDevTools.Data.DbHelper{`0,`1,`2,`3,`4,`5,`6}.InParameters,`4[])">
+            <summary>
+            获取标量值
+            </summary>
+            <typeparam name="T">类型参数</typeparam>
+            <param name="sql">sql语句</param>
+            <param name="parameters">参数</param>
+            <param name="inParameters">In语句参数</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetScalar``1(System.String,System.Object[])">
+            <summary>
+            获取标量值
+            </summary>
+            <typeparam name="T">类型参数</typeparam>
+            <param name="sql">sql语句</param>
+            <param name="parameters">参数，sql语句对应索引位置名称为@p0,@p1,@p2...</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetScalar``1(System.String)">
+            <summary>
+            获取标量值
+            </summary>
+            <typeparam name="T">泛型参数</typeparam>
+            <param name="sql">查询字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Execute(System.String,System.Data.CommandType,`4[])">
+            <summary>
+            执行查询
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="commandType">命令类型</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Execute(System.String,System.Data.CommandType,ZDevTools.Data.DbHelper{`0,`1,`2,`3,`4,`5,`6}.InParameters,`4[])">
+            <summary>
+            执行查询
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="commandType">命令类型</param>
+            <param name="parameters">参数</param>
+            <param name="inParameters">In语句参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Execute(System.String,`4[])">
+            <summary>
+            执行查询
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Execute(System.String,ZDevTools.Data.DbHelper{`0,`1,`2,`3,`4,`5,`6}.InParameters,`4[])">
+            <summary>
+            执行查询
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="parameters">参数</param>
+            <param name="inParameters">In语句参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Execute(System.String,System.Object[])">
+            <summary>
+            执行查询
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="parameters">参数，sql语句对应索引位置名称为@p0,@p1,@p2...</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Execute(System.String)">
+            <summary>
+            执行查询
+            </summary>
+            <param name="sql">查询字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Execute(System.String,System.Data.CommandType,System.Action{`3},`4[])">
+            <summary>
+            执行一个数据库操作，允许访问DataReader对象，reader对象自动销毁，不需要手动释放资源
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="job">对Reader操作的委托</param>
+            <param name="commandType">命令类型</param>
+            <param name="parameters">参数</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Execute(System.String,System.Data.CommandType,System.Action{`3},ZDevTools.Data.DbHelper{`0,`1,`2,`3,`4,`5,`6}.InParameters,`4[])">
+            <summary>
+            执行一个数据库操作，允许访问DataReader对象，reader对象自动销毁，不需要手动释放资源
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="job">对Reader操作的委托</param>
+            <param name="commandType">命令类型</param>
+            <param name="parameters">参数</param>
+            <param name="inParameters">In语句参数</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Execute(System.String,System.Action{`3},`4[])">
+            <summary>
+            执行一个数据库操作，允许访问DataReader对象，reader对象自动销毁，不需要手动释放资源
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="job">对Reader操作的委托</param>
+            <param name="parameters">参数</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Execute(System.String,System.Action{`3},ZDevTools.Data.DbHelper{`0,`1,`2,`3,`4,`5,`6}.InParameters,`4[])">
+            <summary>
+            执行一个数据库操作，允许访问DataReader对象，reader对象自动销毁，不需要手动释放资源
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="job">对Reader操作的委托</param>
+            <param name="parameters">参数</param>
+            <param name="inParameters">In语句参数</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Execute(System.String,System.Action{`3},System.Object[])">
+            <summary>
+            执行一个数据库操作，允许访问DataReader对象，reader对象自动销毁，不需要手动释放资源
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="job">对Reader操作的委托</param>
+            <param name="parameters">参数，sql语句对应索引位置名称为@p0,@p1,@p2...</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Execute(System.String,System.Action{`3})">
+            <summary>
+            执行一个数据库操作，允许访问DataReader对象，reader对象自动销毁，不需要手动释放资源
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="job">对Reader操作的委托</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Execute(System.Action{`2})">
+            <summary>
+            执行一个数据库操作，允许访问Command对象，cmd对象自动销毁，不需要手动释放资源
+            </summary>
+            <param name="job">对Command操作的委托</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.Execute(System.Action{`0})">
+            <summary>
+            执行一个数据库操作，允许访问Connection对象，Connection对象维持上一次操作状态，不需要手动关闭连接
+            </summary>
+            <param name="job">对Connection操作的委托</param>
+            <remarks>此方法主要用于继承类实现自己的特殊功能所用</remarks>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetDataSet(System.String,System.Data.CommandType,`4[])">
+            <summary>
+            获取数据集
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="commandType">命令类型</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetDataSet(System.String,System.Data.CommandType,ZDevTools.Data.DbHelper{`0,`1,`2,`3,`4,`5,`6}.InParameters,`4[])">
+            <summary>
+            获取数据集
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="commandType">命令类型</param>
+            <param name="parameters">参数</param>
+            <param name="inParameters">In语句参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetDataSet(System.String,`4[])">
+            <summary>
+            获取数据集
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetDataSet(System.String,ZDevTools.Data.DbHelper{`0,`1,`2,`3,`4,`5,`6}.InParameters,`4[])">
+            <summary>
+            获取数据集
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="parameters">参数</param>
+            <param name="inParameters">In语句参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetDataSet(System.String,System.Object[])">
+            <summary>
+            获取数据集
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="parameters">参数，sql语句对应索引位置名称为@p0,@p1,@p2...</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetDataSet(System.String)">
+            <summary>
+            获取数据集
+            </summary>
+            <param name="sql">查询字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.UpdateDataSet(System.String,System.Data.DataSet)">
+            <summary>
+            更新数据集
+            </summary>
+            <param name="sql">查询字符串，用来获取表结构【主要是指出要更新的字段】，不会读取数据的，无需担心性能问题</param>
+            <param name="dataSet">要更新的数据集</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetDataTable(System.String,System.Data.CommandType,`4[])">
+            <summary>
+            获取数据表
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="commandType">命令类型</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetDataTable(System.String,System.Data.CommandType,ZDevTools.Data.DbHelper{`0,`1,`2,`3,`4,`5,`6}.InParameters,`4[])">
+            <summary>
+            获取数据表
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="commandType">命令类型</param>
+            <param name="parameters">参数</param>
+            <param name="inParameters">In语句参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetDataTable(System.String,`4[])">
+            <summary>
+            获取数据表
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetDataTable(System.String,ZDevTools.Data.DbHelper{`0,`1,`2,`3,`4,`5,`6}.InParameters,`4[])">
+            <summary>
+            获取数据表
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="parameters">参数</param>
+            <param name="inParameters">In语句参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetDataTable(System.String,System.Object[])">
+            <summary>
+            获取数据表
+            </summary>
+            <param name="sql">查询字符串</param>
+            <param name="parameters">参数，sql语句对应索引位置名称为@p0,@p1,@p2...</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.GetDataTable(System.String)">
+            <summary>
+            获取数据表
+            </summary>
+            <param name="sql">查询字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.UpdateDataTable(System.String,System.Data.DataTable)">
+            <summary>
+            更新数据表
+            </summary>
+            <param name="sql">查询字符串，用来获取表结构【主要是指出要更新的字段】，不会读取数据的，无需担心性能问题</param>
+            <param name="dataTable">要更新的数据表</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.CreateParameter(System.String)">
+            <summary>
+            创建一个字段参数
+            </summary>
+            <param name="name">字段名</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.CreateParameter(System.String,System.Object)">
+            <summary>
+            创建一个字段参数
+            </summary>
+            <param name="name">字段名</param>
+            <param name="value">参数值</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.CreateParameter(System.String,System.Data.DbType,System.Object)">
+            <summary>
+            创建一个字段参数
+            </summary>
+            <param name="name">字段名</param>
+            <param name="dbType">字段类型</param>
+            <param name="value">参数值</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.CreateParameter(System.String,System.Data.DbType,System.Int32,System.Object)">
+            <summary>
+            创建一个字段参数
+            </summary>
+            <param name="name">字段名</param>
+            <param name="dbType">字段类型</param>
+            <param name="size">字段大小</param>
+            <param name="value">参数值</param>
+            <returns></returns>
+        </member>
+        <member name="T:ZDevTools.Data.DbHelper`7.InParameters">
+            <summary>
+            In语句参数
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.InParameters.#ctor(ZDevTools.Data.DbHelper{`0,`1,`2,`3,`4,`5,`6}.InParameter[])">
+            <summary>
+            初始化一个In语句参数
+            </summary>
+            <param name="inParameters">要操作的In语句参数们</param>
+        </member>
+        <member name="P:ZDevTools.Data.DbHelper`7.InParameters.InParameterDictionary">
+            <summary>
+            In语句参数字典(参数名，参数个数)
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Data.DbHelper`7.InParameters.Parameters">
+            <summary>
+            定义的参数们
+            </summary>
+        </member>
+        <member name="T:ZDevTools.Data.DbHelper`7.InParameter">
+            <summary>
+            单个In语句参数
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.InParameter.#ctor(System.String,`4[])">
+            <summary>
+            初始化一个In语句参数
+            </summary>
+            <param name="name">参数名</param>
+            <param name="parameters">参数对象</param>
+        </member>
+        <member name="P:ZDevTools.Data.DbHelper`7.InParameter.Name">
+            <summary>
+            参数名
+            </summary>
+        </member>
+        <member name="P:ZDevTools.Data.DbHelper`7.InParameter.Parameters">
+            <summary>
+            参数对象
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.CreateInParameter(System.String,System.Object[])">
+            <summary>
+            创建为In语句赋值的可枚举参数
+            </summary>
+            <param name="name">参数名称</param>
+            <param name="values">参数值</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.CreateInParameter(System.String,System.Data.DbType,System.Object[])">
+            <summary>
+            创建为In语句赋值的可枚举参数
+            </summary>
+            <param name="name">参数名称</param>
+            <param name="values">参数值</param>
+            <param name="dbType">参数类型</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.CreateInParameter(System.String,System.Data.DbType,System.Int32,System.Object[])">
+            <summary>
+            创建为In语句赋值的可枚举参数
+            </summary>
+            <param name="name">参数名</param>
+            <param name="values">参数值</param>
+            <param name="dbType">参数类型</param>
+            <param name="size">参数大小</param>
+        </member>
+        <member name="M:ZDevTools.Data.DbHelper`7.CreateInParameters(ZDevTools.Data.DbHelper{`0,`1,`2,`3,`4,`5,`6}.InParameter[])">
+            <summary>
+            创建一个In语句参数数组对象
+            </summary>
+            <param name="inParameters">In语句参数数组</param>
+            <returns></returns>
+        </member>
+        <member name="T:ZDevTools.Data.SqlHelper">
+            <summary>
+            针对SqlServer数据库使用的优化版本的DBHelper
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Data.SqlHelper.#ctor(System.String)">
+            <summary>
+            初始化一个SqlHelper对象
+            </summary>
+            <param name="connectionString">Sql Server链接字符串</param>
+        </member>
+        <member name="M:ZDevTools.Data.SqlHelper.CreateParameter(System.String,System.Data.SqlDbType,System.Object)">
+            <summary>
+            创建一个字段参数
+            </summary>
+            <param name="name">字段名</param>
+            <param name="sqlDbType">字段类型</param>
+            <param name="value">参数值</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.SqlHelper.CreateParameter(System.String,System.Data.SqlDbType,System.Int32,System.Object)">
+            <summary>
+            创建一个字段参数
+            </summary>
+            <param name="name">字段名</param>
+            <param name="sqlDbType">字段类型</param>
+            <param name="size">字段大小</param>
+            <param name="value">参数值</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.Data.SqlHelper.CreateInParameter(System.String,System.Data.SqlDbType,System.Object[])">
+            <summary>
+            创建为In语句赋值的可枚举参数
+            </summary>
+            <param name="name">参数名称</param>
+            <param name="values">参数值</param>
+            <param name="sqlDbType">参数类型</param>
+        </member>
+        <member name="M:ZDevTools.Data.SqlHelper.CreateInParameter(System.String,System.Data.SqlDbType,System.Int32,System.Object[])">
+            <summary>
+            创建为In语句赋值的可枚举参数
+            </summary>
+            <param name="name">参数名</param>
+            <param name="values">参数值</param>
+            <param name="sqlDbType">参数类型</param>
+            <param name="size">参数大小</param>
+        </member>
+        <member name="M:ZDevTools.Data.SqlHelper.RollBackTransactionPoint(System.String)">
+            <summary>
+            还原到保存的事务点
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Data.SqlHelper.SaveTransactionPoint(System.String)">
+            <summary>
+            保存一个事务还原点
+            </summary>
+        </member>
+        <member name="M:ZDevTools.Data.SqlHelper.BulkCopy(System.Data.DataTable,System.String,System.Boolean)">
+            <summary>
+            SqlBulkCopy方式复制dataTable到数据库中
+            </summary>
+            <param name="dataTable">要复制的数据表，请保证数据表名称与数据库中表名一致</param>
+            <param name="destinationTableName">目标表名，如果为null或<see cref="F:System.String.Empty"/>则使用<see cref="P:System.Data.DataTable.TableName"/></param>
+            <param name="mappingColumnName">是否使用<see cref="T:System.Data.DataTable"/>中每列的列名【<see cref="P:System.Data.DataTable.TableName"/>与数据库表字段匹配是大小写敏感的】进行映射，默认为true；如果<see cref="T:System.Data.DataTable"/>中每列的位置均与目的数据表一致，那么此处可以为false，稍微提高一些性能</param>
+        </member>
+        <member name="M:ZDevTools.Data.SqlHelper.BulkCopy(System.Action{System.Data.SqlClient.SqlBulkCopy})">
+            <summary>
+            使用SqlBulkCopy在默认参数下复制数据到数据库
+            </summary>
+            <param name="job">以SqlBulkCopy对象为参数的委托</param>
+        </member>
+        <member name="M:ZDevTools.Data.SqlHelper.BulkCopy(System.Data.SqlClient.SqlBulkCopyOptions,System.Action{System.Data.SqlClient.SqlBulkCopy})">
+            <summary>
+            使用SqlBulkCopy在用户给定参数下复制数据到数据库
+            </summary>
+            <param name="job">以SqlBulkCopy对象为参数的委托</param>
+            <param name="copyOptions">创建SqlBulkCopy所用的复制选项【注意：在<see cref="T:ZDevTools.Data.SqlHelper"/>开启事务时，不能使用<see cref="F:System.Data.SqlClient.SqlBulkCopyOptions.UseInternalTransaction"/>选项】</param>
+        </member>
+        <member name="T:ZDevTools.ExtLibrary.AppClickFilter">
+            <summary>
+            在当前程序界面内点击鼠标左,中,右键时过滤
+            </summary>
+        </member>
+        <member name="F:ZDevTools.ExtLibrary.AppClickFilter.ExcludeControls">
+            <summary>
+            在这些控件上不执行 ProcessFun 方法
+            </summary>
+        </member>
+        <member name="F:ZDevTools.ExtLibrary.AppClickFilter.ProcessFun">
+            <summary>
+            符合过滤条件时执行的方法
+            </summary>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.AppClickFilter.#ctor(System.Action)">
+            <summary>
+            默认构造函数
+            </summary>
+            <param name="processFun">符合条件时执行的方法</param>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.AppClickFilter.#ctor(System.Action,System.Windows.Forms.Control[])">
+            <summary>
+            使用参数初始化过滤器
+            </summary>
+            <param name="processFun">符合条件时执行的方法</param>
+            <param name="controlAndChildControls">在这些控件及其子控件上不执行 processFun 方法</param>
+        </member>
+        <member name="T:ZDevTools.ExtLibrary.MessageFilterEventArgs">
+            <summary>
+            消息过滤事件数据
+            </summary>
+        </member>
+        <member name="P:ZDevTools.ExtLibrary.MessageFilterEventArgs.StopMessage">
+            <summary>
+            获取或设置是否停止处理当前消息
+            </summary>
+        </member>
+        <member name="P:ZDevTools.ExtLibrary.MessageFilterEventArgs.CurrentMessage">
+            <summary>
+            获取当前消息
+            </summary>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.MessageFilterEventArgs.#ctor">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="T:ZDevTools.ExtLibrary.MessageFilter">
+            <summary>
+            Windows 消息过滤类, 可过滤指定控件和消息.
+            </summary>
+        </member>
+        <member name="P:ZDevTools.ExtLibrary.MessageFilter.Enable">
+            <summary>
+            获取或设置过滤器的启用状态, 默认为 true.
+            </summary>
+        </member>
+        <member name="P:ZDevTools.ExtLibrary.MessageFilter.FilterMessages">
+            <summary>
+            获取或设置需要过滤的消息集合, 如果不指定, 将过滤所有消息.
+            </summary>
+        </member>
+        <member name="P:ZDevTools.ExtLibrary.MessageFilter.TargetHandles">
+            <summary>
+            获取或设置过滤句柄的集合, 如果不指定, 将过滤所有句柄.
+            </summary>
+        </member>
+        <member name="E:ZDevTools.ExtLibrary.MessageFilter.FilterMessageEvent">
+            <summary>
+            当匹配到 FilterMessages 中的任意一条消息时引发此事件
+            </summary>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.MessageFilter.#ctor(System.Windows.Forms.Control,System.Int32[])">
+            <summary>
+            使用目标控件与需要过滤的消息初始化过滤器
+            </summary>
+            <param name="controlWithChildren">只过滤发给此控件与其所有子控件的消息</param>
+            <param name="filterMessages">只过滤给定的消息</param>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.MessageFilter.#ctor(System.Int32[])">
+            <summary>
+            使用给定的消息初始化过滤器
+            </summary>
+            <param name="filterMessages">只过滤给定的消息</param>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.MessageFilter.#ctor">
+            <summary>
+            默认构造函数, 过滤所有消息
+            </summary>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.MessageFilter.PreFilterMessage(System.Windows.Forms.Message@)">
+            <summary>
+            实现 IMessageFilter 接口, 当匹配到消息时引发 FilterMessageEvent 事件.
+            </summary>
+            <param name="m"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.MessageFilter.AddFilterMessage(System.Int32[])">
+            <summary>
+            添加需要过滤的消息
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.MessageFilter.RemoveFilterMessage(System.Int32[])">
+            <summary>
+            移除不需要过滤的消息
+            </summary>
+            <param name="msg">消息集合</param>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.MessageFilter.AddTargetHandle(System.IntPtr[])">
+            <summary>
+            添加需要过滤的句柄
+            </summary>
+            <param name="handle">句柄集合</param>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.MessageFilter.AddTargetHandle(System.Windows.Forms.Control[])">
+            <summary>
+            添加需要过滤的句柄
+            </summary>
+            <param name="controlWithChildren">添加控件及其所有子控件的句柄</param>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.MessageFilter.RemoveTargetHandle(System.IntPtr[])">
+            <summary>
+            移除不需要过滤的句柄
+            </summary>
+            <param name="handle">句柄集合</param>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.MessageFilter.RemoveTargetHandle(System.Windows.Forms.Control[])">
+            <summary>
+            移除不需要过滤的句柄
+            </summary>
+            <param name="controlWithChildren">移除控件及其所有子控件的句柄</param>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.MessageFilter.OnFilterMessage(ZDevTools.ExtLibrary.MessageFilterEventArgs)">
+            <summary>
+            引发 FilterMessageEvent 事件
+            </summary>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="T:ZDevTools.ExtLibrary.MouseWheelFilter">
+            <summary>
+            过滤鼠标滚轮消息
+            </summary>
+        </member>
+        <member name="F:ZDevTools.ExtLibrary.MouseWheelFilter.SendToControls">
+            <summary>
+            获取或设置将滚轮消息发送到这些控件上
+            </summary>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.MouseWheelFilter.#ctor(System.Windows.Forms.Control[])">
+            <summary>
+            默认构造函数
+            </summary>
+            <param name="control">将鼠标滚轮消息发送到指定的控件</param>
+        </member>
+        <member name="T:ZDevTools.ExtLibrary.WindowsAPI.EnumWindownCallback">
+            <summary>
+            枚举指定窗口的子窗口时的数据
+            </summary>
+            <param name="hwnd">子窗口句柄</param>
+            <param name="lParam">自定义参数</param>
+            <returns>返回true,继续枚举;返回false,停止枚举.</returns>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.WindowsAPI.GetChildrenWindowns(System.IntPtr)">
+            <summary>
+            返回指定句柄的所有子句柄
+            </summary>
+            <param name="windown">父窗口句柄</param>
+            <returns>所有子窗口</returns>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.WindowsAPI.GetWindows(System.Windows.Forms.Control[])">
+            <summary>
+            返回指定控件的所有句柄
+            </summary>
+            <param name="control">控件集合</param>
+            <returns>所有句柄,包括自身的.</returns>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.WindowsAPI.SendMessage(System.IntPtr,System.Int32,System.IntPtr,System.IntPtr)">
+            <summary>
+            调用 windows api 发送消息到指定的窗口句柄
+            </summary>
+            <param name="hWnd">目标窗口句柄</param>
+            <param name="msg">windows消息</param>
+            <param name="wParam">通常是一个与消息有关的常量值，也可能是窗口或控件的句柄</param>
+            <param name="lParam">通常是一个指向内存中数据的指针</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.WindowsAPI.EnumWindows(ZDevTools.ExtLibrary.WindowsAPI.EnumWindownCallback,System.IntPtr)">
+            <summary>
+            枚举所有顶级窗口
+            </summary>
+            <param name="lpEnumFunc">找到顶级窗口后调用的函数</param>
+            <param name="lParam">自定义参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZDevTools.ExtLibrary.WindowsAPI.EnumChildWindows(System.IntPtr,ZDevTools.ExtLibrary.WindowsAPI.EnumWindownCallback,System.IntPtr)">
+            <summary>
+            从给定的父窗口枚举所有子窗口
+            </summary>
+            <param name="hwndParent">父窗口句柄</param>
+            <param name="lpEnumFunc">找到子窗口后调用的函数</param>
+            <param name="lParam">自定义参数</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5CDC90BD-D50F-4676-8007-94DAD61872F8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CodeMagic</RootNamespace>
+    <AssemblyName>CodeMagic</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>magic_hat_64px_1217410_easyicon.net.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.TextEditorEx">
+      <HintPath>..\packages\ICSharpCode.TextEditorEx.1.0.0.6\lib\net40\ICSharpCode.TextEditorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=3.0.6.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>..\packages\DockPanelSuite.3.0.6\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\BaseCreateBLL.cs" />
+    <Compile Include="BLL\BLLCreateBLL.cs" />
+    <Compile Include="BLL\DALCreateBLL.cs" />
+    <Compile Include="BLL\ModelCreateBLL.cs" />
+    <Compile Include="Common\JsonConfig.cs" />
+    <Compile Include="Config\CommonConfig.cs" />
+    <Compile Include="Dialogs\DBInfoDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DBInfoDialogForm.Designer.cs">
+      <DependentUpon>DBInfoDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CodeGenerateConfigDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CodeGenerateConfigDialogForm.Designer.cs">
+      <DependentUpon>CodeGenerateConfigDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Docks\HomeDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docks\HomeDockForm.Designer.cs">
+      <DependentUpon>HomeDockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Docks\SidebarDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docks\SidebarDockForm.Designer.cs">
+      <DependentUpon>SidebarDockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Docks\SqlQueryDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docks\SqlQueryDockForm.Designer.cs">
+      <DependentUpon>SqlQueryDockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Docks\TableDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docks\TableDockForm.Designer.cs">
+      <DependentUpon>TableDockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Docks\TemplateEditDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docks\TemplateEditDockForm.Designer.cs">
+      <DependentUpon>TemplateEditDockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Docks\TemplateSibebarDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docks\TemplateSibebarDockForm.Designer.cs">
+      <DependentUpon>TemplateSibebarDockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Docks\WebDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docks\WebDockForm.Designer.cs">
+      <DependentUpon>WebDockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InitForm.Designer.cs">
+      <DependentUpon>InitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CodeGenerateConfigModel.cs" />
+    <Compile Include="Model\DBInfoModel.cs" />
+    <Compile Include="MsgBox.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CodeGenerateConfigDialogForm.resx">
+      <DependentUpon>CodeGenerateConfigDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DBInfoDialogForm.resx">
+      <DependentUpon>DBInfoDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docks\HomeDockForm.resx">
+      <DependentUpon>HomeDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docks\SidebarDockForm.resx">
+      <DependentUpon>SidebarDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docks\SqlQueryDockForm.resx">
+      <DependentUpon>SqlQueryDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docks\TableDockForm.resx">
+      <DependentUpon>TableDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docks\TemplateEditDockForm.resx">
+      <DependentUpon>TemplateEditDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docks\TemplateSibebarDockForm.resx">
+      <DependentUpon>TemplateSibebarDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docks\WebDockForm.resx">
+      <DependentUpon>WebDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InitForm.resx">
+      <DependentUpon>InitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SQL server.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\show-hat-magician-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SQL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database set-fill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database set-fill1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\show-hat-magician-11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_database1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeMagic.DAL\CodeMagic.DAL.csproj">
+      <Project>{1d71c440-bcbf-4ab2-8c48-c00a630e42e7}</Project>
+      <Name>CodeMagic.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="magic_hat_64px_1217410_easyicon.net.ico" />
+    <None Include="Resources\query.png" />
+    <None Include="Resources\run-c.png" />
+    <None Include="Resources\brand_brands_chrome_logo_16px_1212918_easyicon.net1.png" />
+    <None Include="Resources\brand_brands_chrome_logo_16px_1212918_easyicon.net.png" />
+    <None Include="Resources\notepad.png" />
+    <None Include="Resources\计算器.png" />
+    <None Include="Resources\chrome.png" />
+    <None Include="Resources\ie.png" />
+    <None Include="Resources\web.png" />
+    <None Include="Resources\iconfont.png" />
+    <None Include="Resources\panda.png" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\google.png" />
+    <None Include="Resources\baidu.png" />
+    <None Include="Resources\github.png" />
+    <None Include="Resources\go.png" />
+    <None Include="Resources\next.png" />
+    <None Include="Resources\Refresh.png" />
+    <None Include="Resources\return-solid.png" />
+    <None Include="Resources\home.png" />
+    <None Include="Resources\国庆70.PNG" />
+    <None Include="Resources\code %281%29.png" />
+    <None Include="Resources\setting.png" />
+    <None Include="Resources\code.png" />
+    <None Include="Templates\BLL.cs.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\Model.cs.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\DAL.cs.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\refresh_19.680751173709px_1205840_easyicon.net.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
