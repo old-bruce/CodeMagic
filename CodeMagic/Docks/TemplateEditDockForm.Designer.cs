@@ -70,12 +70,10 @@
             // tecCode
             // 
             this.tecCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tecCode.FoldingStrategy = null;
             this.tecCode.Font = new System.Drawing.Font("Courier New", 10F);
             this.tecCode.Location = new System.Drawing.Point(0, 27);
             this.tecCode.Name = "tecCode";
             this.tecCode.Size = new System.Drawing.Size(284, 234);
-            this.tecCode.SyntaxHighlighting = null;
             this.tecCode.TabIndex = 1;
             // 
             // TemplateEditDockForm
