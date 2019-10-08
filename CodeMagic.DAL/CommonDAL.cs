@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodeMagic.Utility;
 
 namespace CodeMagic.DAL
 {
@@ -27,25 +28,29 @@ namespace CodeMagic.DAL
 
         public DataTable Query(string sql)
         {
-            return SqlHelper.ExecuteDataTable(sql);
+            DataSet ds = DbHelperSQL.Query(sql);
+            return ds.Tables.Count > 0 ? ds.Tables[0] : null;
         }
 
         public DataTable GetSchemas()
         {
             string sql = "select * from sys.schemas";
-            return SqlHelper.ExecuteDataTable(sql);
+            DataSet ds = DbHelperSQL.Query(sql);
+            return ds.Tables.Count > 0 ? ds.Tables[0] : null;
         }
 
         public DataTable GetTables()
         {
             string sql = "select * from sys.tables order by [name] asc";
-            return SqlHelper.ExecuteDataTable(sql);
+            DataSet ds = DbHelperSQL.Query(sql);
+            return ds.Tables.Count > 0 ? ds.Tables[0] : null;
         }
 
         public DataTable GetViewTables()
         {
             string sql = "select * from sys.views order by [name] asc";
-            return SqlHelper.ExecuteDataTable(sql);
+            DataSet ds = DbHelperSQL.Query(sql);
+            return ds.Tables.Count > 0 ? ds.Tables[0] : null;
         }
 
         public DataTable GetColumns(int tableObjectID)
@@ -60,7 +65,8 @@ namespace CodeMagic.DAL
                 new SqlParameter("@object_id", SqlDbType.Int)
             };
             parameters[0].Value = tableObjectID;
-            return SqlHelper.ExecuteDataTable(sql, parameters);
+            DataSet ds = DbHelperSQL.Query(sql, parameters);
+            return ds.Tables.Count > 0 ? ds.Tables[0] : null;
         }
     }
 }

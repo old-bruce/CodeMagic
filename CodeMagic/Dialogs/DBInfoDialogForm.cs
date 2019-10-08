@@ -1,6 +1,7 @@
 ﻿using CodeMagic.Config;
 using CodeMagic.DAL;
 using CodeMagic.Model;
+using CodeMagic.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -84,7 +85,7 @@ namespace CodeMagic.Dialogs
                 return;
             }
 
-            SqlHelper.SetSqlConnectionString(this.DBInfo.ToSqlConnectString());
+            DbHelperSQL.connectionString = this.DBInfo.ToSqlConnectString();
 
             btnConnect.Enabled = false;
             this.Text = "正在连接数据库...";

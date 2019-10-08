@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1D71C440-BCBF-4AB2-8C48-C00A630E42E7}</ProjectGuid>
+    <ProjectGuid>{23ED2EA5-62DB-483A-AD80-F425627CC0F7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeMagic.DAL</RootNamespace>
-    <AssemblyName>CodeMagic.DAL</AssemblyName>
+    <RootNamespace>CodeMagic.Utility</RootNamespace>
+    <AssemblyName>CodeMagic.Utility</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,40 +30,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.SqlServer.Types.11.0.2\lib\net20\Microsoft.SqlServer.Types.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="ZDevTools, Version=2.3.7192.38837, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ZDevTools.2.3.7192.38837\lib\net45\ZDevTools.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonDAL.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CommandInfo.cs" />
+    <Compile Include="DbHelperSQL.cs" />
+    <Compile Include="DbHelperSQLP.cs" />
+    <Compile Include="DESEncrypt.cs" />
+    <Compile Include="OracleHelper.cs" />
+    <Compile Include="PubConstant.cs" />
     <Compile Include="SqlHelper.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CodeMagic.Utility\CodeMagic.Utility.csproj">
-      <Project>{23ed2ea5-62db-483a-ad80-f425627cc0f7}</Project>
-      <Name>CodeMagic.Utility</Name>
-    </ProjectReference>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

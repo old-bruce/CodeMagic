@@ -243,6 +243,10 @@
       <Project>{1d71c440-bcbf-4ab2-8c48-c00a630e42e7}</Project>
       <Name>CodeMagic.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CodeMagic.Utility\CodeMagic.Utility.csproj">
+      <Project>{23ed2ea5-62db-483a-ad80-f425627cc0f7}</Project>
+      <Name>CodeMagic.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="magic_hat_64px_1217410_easyicon.net.ico" />
@@ -271,6 +275,9 @@
     <None Include="Resources\setting.png" />
     <None Include="Resources\code.png" />
     <None Include="Templates\BLL.cs.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\AdminLTE.List.cshtml.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\Model.cs.tpl">
