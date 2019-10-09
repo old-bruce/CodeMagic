@@ -5,15 +5,12 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using System.Data;
-using {NameSpace}.Model
-using {NameSpace}.DAL
+using {NameSpace}.Model;
+using {NameSpace}.DAL;
 
 namespace {NameSpace}.BLL
 {
-    public class {TableName}{BLLSuffix}
+    public partial class {TableName}{BLLSuffix}
     {
 		#region Auto Create By Code Magic
 

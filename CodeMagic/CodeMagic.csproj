@@ -65,12 +65,19 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="BLL\AdminLTEListCreateBLL.cs" />
     <Compile Include="BLL\BaseCreateBLL.cs" />
     <Compile Include="BLL\BLLCreateBLL.cs" />
     <Compile Include="BLL\DALCreateBLL.cs" />
     <Compile Include="BLL\ModelCreateBLL.cs" />
     <Compile Include="Common\JsonConfig.cs" />
     <Compile Include="Config\CommonConfig.cs" />
+    <Compile Include="Dialogs\CodeDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CodeDialogForm.Designer.cs">
+      <DependentUpon>CodeDialogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\DBInfoDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +151,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CodeDialogForm.resx">
+      <DependentUpon>CodeDialogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CodeGenerateConfigDialogForm.resx">
       <DependentUpon>CodeGenerateConfigDialogForm.cs</DependentUpon>
@@ -274,6 +284,15 @@
     <None Include="Resources\code %281%29.png" />
     <None Include="Resources\setting.png" />
     <None Include="Resources\code.png" />
+    <None Include="Templates\AdminLTE.Modify.cshtml.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\AdminLTE.Info.cshtml.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\AdminLTE.Add.cshtml.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Templates\BLL.cs.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

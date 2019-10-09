@@ -39,9 +39,7 @@ namespace CodeMagic.BLL
             result = result.Replace("{DAL}", dalClassName);
             result = result.Replace("{Model}", modelClassName);
             result = result.Replace("{Keys}", GetKeysCode(table));
-
             result = result.Replace("{KeysParam}", GetKeysParam(table));
-
             return result;
         }
 

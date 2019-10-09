@@ -73,6 +73,8 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "template.png");
             this.imageList1.Images.SetKeyName(1, "page.png");
+            this.imageList1.Images.SetKeyName(2, "code.png");
+            this.imageList1.Images.SetKeyName(3, "language-csharp.png");
             // 
             // TemplateSibebarDockForm
             // 

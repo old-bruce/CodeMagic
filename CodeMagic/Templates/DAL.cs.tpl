@@ -5,25 +5,25 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 using System.Data;
-using {NameSpace}.Model
+using System.Data.SqlClient;
+using CodeMagic.Utility;
+using {NameSpace}.Model;
 
 namespace {NameSpace}.DAL
 {
-    public class {TableName}{DALSuffix}
+    public partial class {TableName}{DALSuffix}
     {
 		#region Auto Create By Code Magic
 
 		public List<{Model}> GetAll()
 		{
 			string sql = "SELECT * FROM [{TableName}]";
-            DataTable dt = SqlHelper.ExecuteDataTable(sql);
-			if (dt == null) return null;
+			DataSet ds = DbHelperSQL.Query(sql);
+			if (ds.Tables.Count == 0) return null;
 
 			List<{Model}> result = new List<{Model}>();
-			foreach (DataRow row in dt.Rows)
+			foreach (DataRow row in ds.Tables[0].Rows)
 			{
 				result.Add(DataRowToModel(row));
 			}
@@ -34,30 +34,30 @@ namespace {NameSpace}.DAL
 		{
 			string sql = "SELECT * FROM [{TableName}] WHERE{WhereKeys}";
 			{GetModelSqlParameter}
-			DataTable dt = SqlHelper.ExecuteDataTable(sql, parameters);
-			if (dt == null || dt.Rows.Count == 0) return null;
-			return DataRowToModel(dt.Rows[0]);
+			DataSet ds = DbHelperSQL.Query(sql, parameters);
+			if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0) return null;
+			return DataRowToModel(ds.Tables[0].Rows[0]);
 		}
 
 		public int Insert({Model} model)
 		{
 			string sql = "INSERT INTO [{TableName}]({InsertFields}) VALUES({InsertValues})";
 			{InsertSqlParameter}
-			return SqlHelper.ExecuteNonQuery(sql, parameters);
+			return DbHelperSQL.ExecuteSql(sql, parameters);
 		}
 
 		public int Update({Model} model)
 		{
 			string sql = "UPDATE [{TableName}] SET {UpdateSets} WHERE{WhereKeys}";
 			{UpdateSqlParameter}
-			return SqlHelper.ExecuteNonQuery(sql, parameters);
+			return DbHelperSQL.ExecuteSql(sql, parameters);
 		}
 
 		public int Delete({Keys})
 		{
 			string sql = "DELETE FROM [{TableName}] WHERE {WhereKeys}";
 			{GetModelSqlParameter}
-            return SqlHelper.ExecuteNonQuery(sql, parameters);
+            return DbHelperSQL.ExecuteSql(sql, parameters);
 		}
 
 		public {Model} DataRowToModel(DataRow row)

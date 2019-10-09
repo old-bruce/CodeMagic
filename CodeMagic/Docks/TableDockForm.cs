@@ -20,6 +20,8 @@ namespace CodeMagic.Docks
 
         private CommonDAL _dal = new CommonDAL();
 
+        private DataTable dtColumns;
+
         public TableDockForm(int tableObjectID, string tableName)
         {
             _tableObjectID = tableObjectID;
@@ -30,7 +32,6 @@ namespace CodeMagic.Docks
             tecModel.SetHighlighting("C#");
             tecDAL.SetHighlighting("C#");
             tecBLL.SetHighlighting("C#");
-            tecAdminLTE.SetHighlighting("HTML");
         }
 
         private void TableDockForm_Load(object sender, EventArgs e)
@@ -46,7 +47,7 @@ namespace CodeMagic.Docks
                 {
                     this.Text += "正在加载列...";
                 }));
-                DataTable dtColumns = _dal.GetColumns(_tableObjectID);
+                dtColumns = _dal.GetColumns(_tableObjectID);
                 this.Invoke(new Action(()=> 
                 {
                     dgvColumn.DataSource = null;
@@ -96,9 +97,57 @@ namespace CodeMagic.Docks
                 table);
         }
 
+        private string CreateAdminLTEListCode(DataTable table)
+        {
+            string file = Application.StartupPath + "\\Templates\\AdminLTE.List.cshtml.tpl";
+            return new AdminLTEListCreateBLL().GetCode(
+                file,
+                Program.CurrentDBInfo.CodeGenerate.NameSpaceName,
+                _tableName,
+                new ModelCreateBLL().GetModelClassName(_tableName,
+                Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
+                dtColumns);
+        }
+
         private void 刷新RToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadColumnsAsync();
+        }
+
+        private void btnAdminLTEList_Click(object sender, EventArgs e)
+        {
+            string file = Application.StartupPath + "\\Templates\\AdminLTE.List.cshtml.tpl";
+            string codeText = CreateAdminLTEListCode(dtColumns);
+            var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
+            dialog.Text = "AdminLTE List Code";
+            dialog.ShowDialog();
+        }
+
+        private void btnAdminLTEAdd_Click(object sender, EventArgs e)
+        {
+            string file = Application.StartupPath + "\\Templates\\AdminLTE.Add.cshtml.tpl";
+            string codeText = File.Exists(file) ? File.ReadAllText(file) : string.Empty;
+            var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
+            dialog.Text = "AdminLTE Add Code";
+            dialog.ShowDialog();
+        }
+
+        private void btnAdminLTEModify_Click(object sender, EventArgs e)
+        {
+            string file = Application.StartupPath + "\\Templates\\AdminLTE.Modify.cshtml.tpl";
+            string codeText = File.Exists(file) ? File.ReadAllText(file) : string.Empty;
+            var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
+            dialog.Text = "AdminLTE Modify Code";
+            dialog.ShowDialog();
+        }
+
+        private void btnAdminLTEInfo_Click(object sender, EventArgs e)
+        {
+            string file = Application.StartupPath + "\\Templates\\AdminLTE.Info.cshtml.tpl";
+            string codeText = File.Exists(file) ? File.ReadAllText(file) : string.Empty;
+            var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
+            dialog.Text = "AdminLTE Info Code";
+            dialog.ShowDialog();
         }
     }
 }

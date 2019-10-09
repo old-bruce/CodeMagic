@@ -1,16 +1,16 @@
 ﻿@{
     ViewBag.Title = "{Table}";
-	List<{Model}> models = (List<{Model}>)ViewBag.Models;
+	List<{NameSpace}.Model.{Model}> models = (List<{NameSpace}.Model.{Model}>)ViewBag.Models;
 }
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <i class="fa fa-cloud"></i> {Table}
+        <!--<i class="fa fa-list"></i> -->{Table}
         <small></small>
     </h1>
     <ol class="breadcrumb">
-        <li><a><i class="fa fa-dashboard"></i> {App}</a></li>
+        <li><a><i class="fa fa-dashboard"></i> {Table}</a></li>
         <li class="active">{Table}</li>
     </ol>
 </section>

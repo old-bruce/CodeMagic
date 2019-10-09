@@ -46,7 +46,6 @@ namespace CodeMagic.BLL
             result = result.Replace("{InsertSqlParameter}", GetInsertSqlParameterCode(table));
             result = result.Replace("{UpdateSets}", GetUpdateSetsCode(table));
             result = result.Replace("{UpdateSqlParameter}", GetUpdateSqlParameterCode(table));
-
             return result;
         }
 
@@ -165,7 +164,7 @@ namespace CodeMagic.BLL
                 DataRow row = table.Rows[i];
                 if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
                     continue;
-                result.Append("\t\t\t" + "parameters[" + index.ToString() + "].Value = " + table.Rows[i]["columnName"].ToString() + ";");
+                result.Append("\t\t\t" + "parameters[" + index.ToString() + "].Value = model." + table.Rows[i]["columnName"].ToString() + ";");
                 if (i < table.Rows.Count - 1)
                 {
                     result.Append("\n");
@@ -191,7 +190,7 @@ namespace CodeMagic.BLL
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 DataRow row = table.Rows[i];
-                result.Append("\t\t\t" + "parameters[" + index.ToString() + "].Value = " + table.Rows[i]["columnName"].ToString() + ";");
+                result.Append("\t\t\t" + "parameters[" + index.ToString() + "].Value = model." + table.Rows[i]["columnName"].ToString() + ";");
                 if (i < table.Rows.Count - 1)
                 {
                     result.Append("\n");

@@ -36,13 +36,16 @@
             this.刷新RToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpModel = new System.Windows.Forms.TabPage();
-            this.tpDAL = new System.Windows.Forms.TabPage();
-            this.tpBLL = new System.Windows.Forms.TabPage();
-            this.tpAdminLTE = new System.Windows.Forms.TabPage();
-            this.tecAdminLTE = new ICSharpCode.TextEditor.TextEditorControlEx();
-            this.tecBLL = new ICSharpCode.TextEditor.TextEditorControlEx();
-            this.tecDAL = new ICSharpCode.TextEditor.TextEditorControlEx();
             this.tecModel = new ICSharpCode.TextEditor.TextEditorControlEx();
+            this.tpDAL = new System.Windows.Forms.TabPage();
+            this.tecDAL = new ICSharpCode.TextEditor.TextEditorControlEx();
+            this.tpBLL = new System.Windows.Forms.TabPage();
+            this.tecBLL = new ICSharpCode.TextEditor.TextEditorControlEx();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnAdminLTEList = new System.Windows.Forms.Button();
+            this.btnAdminLTEAdd = new System.Windows.Forms.Button();
+            this.btnAdminLTEModify = new System.Windows.Forms.Button();
+            this.btnAdminLTEInfo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -53,7 +56,7 @@
             this.tpModel.SuspendLayout();
             this.tpDAL.SuspendLayout();
             this.tpBLL.SuspendLayout();
-            this.tpAdminLTE.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -111,7 +114,7 @@
             this.tabControl1.Controls.Add(this.tpModel);
             this.tabControl1.Controls.Add(this.tpDAL);
             this.tabControl1.Controls.Add(this.tpBLL);
-            this.tabControl1.Controls.Add(this.tpAdminLTE);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(5, 5);
             this.tabControl1.Name = "tabControl1";
@@ -131,6 +134,15 @@
             this.tpModel.Text = "Model";
             this.tpModel.UseVisualStyleBackColor = true;
             // 
+            // tecModel
+            // 
+            this.tecModel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tecModel.Font = new System.Drawing.Font("Courier New", 10F);
+            this.tecModel.Location = new System.Drawing.Point(3, 3);
+            this.tecModel.Name = "tecModel";
+            this.tecModel.Size = new System.Drawing.Size(560, 335);
+            this.tecModel.TabIndex = 1;
+            // 
             // tpDAL
             // 
             this.tpDAL.Controls.Add(this.tecDAL);
@@ -141,6 +153,15 @@
             this.tpDAL.TabIndex = 0;
             this.tpDAL.Text = "DAL";
             this.tpDAL.UseVisualStyleBackColor = true;
+            // 
+            // tecDAL
+            // 
+            this.tecDAL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tecDAL.Font = new System.Drawing.Font("Courier New", 10F);
+            this.tecDAL.Location = new System.Drawing.Point(3, 3);
+            this.tecDAL.Name = "tecDAL";
+            this.tecDAL.Size = new System.Drawing.Size(560, 335);
+            this.tecDAL.TabIndex = 1;
             // 
             // tpBLL
             // 
@@ -153,26 +174,6 @@
             this.tpBLL.Text = "BLL";
             this.tpBLL.UseVisualStyleBackColor = true;
             // 
-            // tpAdminLTE
-            // 
-            this.tpAdminLTE.Controls.Add(this.tecAdminLTE);
-            this.tpAdminLTE.Location = new System.Drawing.Point(4, 22);
-            this.tpAdminLTE.Name = "tpAdminLTE";
-            this.tpAdminLTE.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAdminLTE.Size = new System.Drawing.Size(566, 341);
-            this.tpAdminLTE.TabIndex = 2;
-            this.tpAdminLTE.Text = "AdminLTE";
-            this.tpAdminLTE.UseVisualStyleBackColor = true;
-            // 
-            // tecAdminLTE
-            // 
-            this.tecAdminLTE.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tecAdminLTE.Font = new System.Drawing.Font("Courier New", 10F);
-            this.tecAdminLTE.Location = new System.Drawing.Point(3, 3);
-            this.tecAdminLTE.Name = "tecAdminLTE";
-            this.tecAdminLTE.Size = new System.Drawing.Size(560, 335);
-            this.tecAdminLTE.TabIndex = 0;
-            // 
             // tecBLL
             // 
             this.tecBLL.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -182,23 +183,59 @@
             this.tecBLL.Size = new System.Drawing.Size(560, 335);
             this.tecBLL.TabIndex = 1;
             // 
-            // tecDAL
+            // tabPage4
             // 
-            this.tecDAL.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tecDAL.Font = new System.Drawing.Font("Courier New", 10F);
-            this.tecDAL.Location = new System.Drawing.Point(3, 3);
-            this.tecDAL.Name = "tecDAL";
-            this.tecDAL.Size = new System.Drawing.Size(560, 335);
-            this.tecDAL.TabIndex = 1;
+            this.tabPage4.Controls.Add(this.btnAdminLTEInfo);
+            this.tabPage4.Controls.Add(this.btnAdminLTEModify);
+            this.tabPage4.Controls.Add(this.btnAdminLTEAdd);
+            this.tabPage4.Controls.Add(this.btnAdminLTEList);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(566, 341);
+            this.tabPage4.TabIndex = 7;
+            this.tabPage4.Text = "UI";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // tecModel
+            // btnAdminLTEList
             // 
-            this.tecModel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tecModel.Font = new System.Drawing.Font("Courier New", 10F);
-            this.tecModel.Location = new System.Drawing.Point(3, 3);
-            this.tecModel.Name = "tecModel";
-            this.tecModel.Size = new System.Drawing.Size(560, 335);
-            this.tecModel.TabIndex = 1;
+            this.btnAdminLTEList.Location = new System.Drawing.Point(20, 20);
+            this.btnAdminLTEList.Name = "btnAdminLTEList";
+            this.btnAdminLTEList.Size = new System.Drawing.Size(120, 23);
+            this.btnAdminLTEList.TabIndex = 0;
+            this.btnAdminLTEList.Text = "AdminLTE List";
+            this.btnAdminLTEList.UseVisualStyleBackColor = true;
+            this.btnAdminLTEList.Click += new System.EventHandler(this.btnAdminLTEList_Click);
+            // 
+            // btnAdminLTEAdd
+            // 
+            this.btnAdminLTEAdd.Location = new System.Drawing.Point(20, 49);
+            this.btnAdminLTEAdd.Name = "btnAdminLTEAdd";
+            this.btnAdminLTEAdd.Size = new System.Drawing.Size(120, 23);
+            this.btnAdminLTEAdd.TabIndex = 1;
+            this.btnAdminLTEAdd.Text = "AdminLTE Add";
+            this.btnAdminLTEAdd.UseVisualStyleBackColor = true;
+            this.btnAdminLTEAdd.Click += new System.EventHandler(this.btnAdminLTEAdd_Click);
+            // 
+            // btnAdminLTEModify
+            // 
+            this.btnAdminLTEModify.Location = new System.Drawing.Point(20, 78);
+            this.btnAdminLTEModify.Name = "btnAdminLTEModify";
+            this.btnAdminLTEModify.Size = new System.Drawing.Size(120, 23);
+            this.btnAdminLTEModify.TabIndex = 2;
+            this.btnAdminLTEModify.Text = "AdminLTE Modify";
+            this.btnAdminLTEModify.UseVisualStyleBackColor = true;
+            this.btnAdminLTEModify.Click += new System.EventHandler(this.btnAdminLTEModify_Click);
+            // 
+            // btnAdminLTEInfo
+            // 
+            this.btnAdminLTEInfo.Location = new System.Drawing.Point(20, 107);
+            this.btnAdminLTEInfo.Name = "btnAdminLTEInfo";
+            this.btnAdminLTEInfo.Size = new System.Drawing.Size(120, 23);
+            this.btnAdminLTEInfo.TabIndex = 3;
+            this.btnAdminLTEInfo.Text = "AdminLTE Info";
+            this.btnAdminLTEInfo.UseVisualStyleBackColor = true;
+            this.btnAdminLTEInfo.Click += new System.EventHandler(this.btnAdminLTEInfo_Click);
             // 
             // TableDockForm
             // 
@@ -220,7 +257,7 @@
             this.tpModel.ResumeLayout(false);
             this.tpDAL.ResumeLayout(false);
             this.tpBLL.ResumeLayout(false);
-            this.tpAdminLTE.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -234,11 +271,14 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tpDAL;
         private System.Windows.Forms.TabPage tpBLL;
-        private System.Windows.Forms.TabPage tpAdminLTE;
         private System.Windows.Forms.TabPage tpModel;
         private ICSharpCode.TextEditor.TextEditorControlEx tecModel;
         private ICSharpCode.TextEditor.TextEditorControlEx tecDAL;
         private ICSharpCode.TextEditor.TextEditorControlEx tecBLL;
-        private ICSharpCode.TextEditor.TextEditorControlEx tecAdminLTE;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button btnAdminLTEInfo;
+        private System.Windows.Forms.Button btnAdminLTEModify;
+        private System.Windows.Forms.Button btnAdminLTEAdd;
+        private System.Windows.Forms.Button btnAdminLTEList;
     }
 }

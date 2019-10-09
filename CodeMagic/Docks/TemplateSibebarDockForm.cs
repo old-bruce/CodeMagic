@@ -37,8 +37,21 @@ namespace CodeMagic.Docks
                 FileInfo fileInfo = new FileInfo(file);
                 TreeNode newNode = new TreeNode(fileInfo.Name);
                 newNode.Tag = fileInfo;
-                newNode.ImageIndex = 1;
-                newNode.SelectedImageIndex = 1;
+                if (file.EndsWith(".cs.tpl"))
+                {
+                    newNode.ImageIndex = 3;
+                    newNode.SelectedImageIndex = 3;
+                }
+                else if (file.EndsWith(".cshtml.tpl"))
+                {
+                    newNode.ImageIndex = 2;
+                    newNode.SelectedImageIndex = 2;
+                }
+                else
+                {
+                    newNode.ImageIndex = 1;
+                    newNode.SelectedImageIndex = 1;
+                }
                 rootNode.Nodes.Add(newNode);
             }
             tvTemplates.ExpandAll();
