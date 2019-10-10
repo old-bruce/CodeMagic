@@ -20,7 +20,7 @@ namespace CodeMagic.Docks
 
         private CommonDAL _dal = new CommonDAL();
 
-        private DataTable dtColumns;
+        private DataTable _dtColumns;
 
         public TableDockForm(int tableObjectID, string tableName)
         {
@@ -47,21 +47,21 @@ namespace CodeMagic.Docks
                 {
                     this.Text += "正在加载列...";
                 }));
-                dtColumns = _dal.GetColumns(_tableObjectID);
+                _dtColumns = _dal.GetColumns(_tableObjectID);
                 this.Invoke(new Action(()=> 
                 {
                     dgvColumn.DataSource = null;
-                    dgvColumn.DataSource = dtColumns;
+                    dgvColumn.DataSource = _dtColumns;
                     this.Text = _tableName;
 
-                    CreateModelCode(dtColumns);
-                    CreateDALCode(dtColumns);
-                    CreateBLLCode(dtColumns);
+                    CreateModelCode(_dtColumns);
+                    CreateDALCode(_dtColumns);
+                    CreateBLLCode(_dtColumns);
                 }));
             }));
         }
 
-        private void CreateModelCode(DataTable table)
+        private void CreateModelCode(DataTable dtColumns)
         {
             string file = Application.StartupPath + "\\Templates\\Model.cs.tpl";
             tecModel.Text = new ModelCreateBLL().GetCode(
@@ -69,10 +69,10 @@ namespace CodeMagic.Docks
                 Program.CurrentDBInfo.CodeGenerate.NameSpaceName,
                 _tableName,
                 Program.CurrentDBInfo.CodeGenerate.ModelSuffix,
-                table);
+                dtColumns);
         }
 
-        private void CreateDALCode(DataTable table)
+        private void CreateDALCode(DataTable dtColumns)
         {
             string file = Application.StartupPath + "\\Templates\\DAL.cs.tpl";
             tecDAL.Text = new DALCreateBLL().GetCode(
@@ -81,10 +81,10 @@ namespace CodeMagic.Docks
                 _tableName,
                 Program.CurrentDBInfo.CodeGenerate.DALSuffix,
                 new ModelCreateBLL().GetModelClassName(_tableName, Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
-                table);
+                dtColumns);
         }
 
-        private void CreateBLLCode(DataTable table)
+        private void CreateBLLCode(DataTable dtColumns)
         {
             string file = Application.StartupPath + "\\Templates\\BLL.cs.tpl";
             tecBLL.Text = new BLLCreateBLL().GetCode(
@@ -94,7 +94,7 @@ namespace CodeMagic.Docks
                 Program.CurrentDBInfo.CodeGenerate.DALSuffix,
                 new DALCreateBLL().GetDALClassName(_tableName, Program.CurrentDBInfo.CodeGenerate.DALSuffix),
                 new ModelCreateBLL().GetModelClassName(_tableName, Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
-                table);
+                dtColumns);
         }
 
         private string CreateAdminLTEListCode(DataTable table)
@@ -106,7 +106,7 @@ namespace CodeMagic.Docks
                 _tableName,
                 new ModelCreateBLL().GetModelClassName(_tableName,
                 Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
-                dtColumns);
+                _dtColumns);
         }
 
         private void 刷新RToolStripMenuItem_Click(object sender, EventArgs e)
@@ -117,7 +117,7 @@ namespace CodeMagic.Docks
         private void btnAdminLTEList_Click(object sender, EventArgs e)
         {
             string file = Application.StartupPath + "\\Templates\\AdminLTE.List.cshtml.tpl";
-            string codeText = CreateAdminLTEListCode(dtColumns);
+            string codeText = CreateAdminLTEListCode(_dtColumns);
             var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
             dialog.Text = "AdminLTE List Code";
             dialog.ShowDialog();

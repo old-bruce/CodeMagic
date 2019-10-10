@@ -36,26 +36,13 @@
                     {trhead}
                 </thead>
                 <tbody>
-                    @for(int i=0; i<@models.Count; i++) {
+				@foreach ({NameSpace}.Model.{Model} m in models)
+                {
 					{trbody}
-                    <tr>
-                        <td>@models[i].</td>
-                        <td>Jabil WuXi Office @i</td>
-                        <td>0</td>
-                        <th>0</th>
-                        <td>1878</td>
-                        <th>900</th>
-                        <td><span class="label label-success">enable</span></td>
-                        <th><span class="label label-success"><i class="fa fa-check"></i></span></th>
-                        <th>
-                            <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger"><i class="fa fa-remove"></i></button>
-                        </th>
-                    </tr>
-                    }
+                }	
                 </tbody>
                 <tfoot>
-                    {trlist}
+                    {trhead}
                 </tfoot>
             </table>
         </div>
@@ -64,14 +51,35 @@
 </section>
 <!-- /.content -->
 
-
 <!-- DataTables -->
 <script src="~/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="~/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script>
-  $(function () {
-    $('#table1').DataTable()
-  })
+    $(document).ready(function () {
+        $('#example1').DataTable();
+    });
 </script>
-
-
+<script>
+    function Delete(id)
+    {
+        rc.msg.confirm("Are you sure you want to delete it?", "confirm", function (result) {
+            if (result) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/{Table}/Delete/' + id,
+                    data: '',
+                    success: function (data) {
+                        if (data.code == 200) {
+                            rc.msg.alert("Delete Success", "Delete", function () {
+                                location.reload();
+                            });
+                        } else {
+                            rc.msg.alert(data.msg);
+                        }
+                    },
+                    dataType: 'json'
+                });
+            }
+        });
+    }
+</script>
