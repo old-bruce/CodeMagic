@@ -5,6 +5,7 @@ CodeMagic 是使用C#(WinFORM)编写的代码生成器，特性如下：
 - Model类代码生成
 - DAL 类代码生成
 - BLL 类代码生成
+- AdminLTE UI 代码生成
 
 ![](https://www.showdoc.cc/server/api/common/visitfile/sign/d199ab14713e9e1c391f1562ee700999?showdoc=.jpg)
 
@@ -12,8 +13,8 @@ CodeMagic 是使用C#(WinFORM)编写的代码生成器，特性如下：
 
 ## 开发计划
 
-- 一键生成Web CRUD代码（AdminLTE）
-- 支持基于RBAC的权限业务代码生成
-- 支持基于RBAC的权限UI界面生成
+- 生成MVC Controller 代码
+- 一键生成整站Web CRUD代码（UI基于AdminLTE）
+- 自定义代码段生成
 - 支持流程业务代码生成
 
