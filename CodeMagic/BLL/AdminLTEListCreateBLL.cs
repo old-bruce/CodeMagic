@@ -41,6 +41,7 @@ namespace CodeMagic.BLL
                     result.AppendFormat("\t\t\t\t\t\t<th>{0}</th>{1}", row["columnName"].ToString(), Environment.NewLine);
                 }
             }
+            result.AppendLine("\t\t\t\t\t\t<th>...</th>");
             result.Append("\t\t\t\t\t</tr>");
             return result.ToString();
         }
@@ -51,7 +52,44 @@ namespace CodeMagic.BLL
             result.AppendLine("<tr>");
             foreach (DataRow row in table.Rows)
             {
-                result.AppendFormat("\t\t\t\t\t\t<td>@m.{0}</td>{1}", row["columnName"].ToString(), Environment.NewLine);
+                string columnName = row["columnName"].ToString();
+                string columnTypeName = row["typeName"].ToString();
+                bool allowDBNull = bool.Parse(row["is_nullable"].ToString());
+                if (columnName.ToLower().Contains("image") && GetCSharpTypeString(columnTypeName, false) == "string")
+                {
+                    result.AppendFormat("\t\t\t\t\t\t<td><img src=\"@m.{0}\" width=\"200\" /></td>{1}", row["columnName"].ToString(), Environment.NewLine);
+                }
+                else if (GetCSharpTypeString(columnTypeName, false) == "bool")
+                {
+                    //@if (m.ColumnName) || @if (m.ColumnName.Value)
+                    //{
+                    //  <td><span class="label label-success"><i class="fa fa-check"></i></span></td>
+                    //}
+                    //else
+                    //{
+                    //  <td><span class="label label-default"><i class="fa fa-minus"></i></span></td>
+                    //}
+                    //<span class="label label-success"><i class="fa fa-check"></i></span>
+                    if (allowDBNull)
+                    {
+                        result.AppendFormat("\t\t\t\t\t\t@if (m.{0}.Value){1}", columnName, Environment.NewLine);
+                    }
+                    else
+                    {
+                        result.AppendFormat("\t\t\t\t\t\t@if (m.{0}){1}", columnName, Environment.NewLine);
+                    }
+                    result.AppendLine("\t\t\t\t\t\t{");
+                    result.AppendFormat("\t\t\t\t\t\t\t<td><span class=\"label label-success\"><i class=\"fa fa-check\"></i></span></td>" + Environment.NewLine);
+                    result.AppendLine("\t\t\t\t\t\t}");
+                    result.AppendLine("\t\t\t\t\t\telse");
+                    result.AppendLine("\t\t\t\t\t\t{");
+                    result.AppendFormat("\t\t\t\t\t\t\t<td><span class=\"label label-default\"><i class=\"fa fa-minus\"></i></span></td>" + Environment.NewLine);
+                    result.AppendLine("\t\t\t\t\t\t}");
+                }
+                else
+                {
+                    result.AppendFormat("\t\t\t\t\t\t<td>@m.{0}</td>{1}", row["columnName"].ToString(), Environment.NewLine);
+                }
             }
             result.AppendLine("\t\t\t\t\t\t<td>");
             result.AppendFormat("\t\t\t\t\t\t\t<a class=\"btn btn-sm btn-default\" href=\"~/{0}/Info/@m.ID\" title=\"View\"><i class=\"fa fa-eye\"></i></a>{1}", tableName, Environment.NewLine);

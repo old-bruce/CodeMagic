@@ -46,6 +46,8 @@ namespace CodeMagic.BLL
             result = result.Replace("{InsertSqlParameter}", GetInsertSqlParameterCode(table));
             result = result.Replace("{UpdateSets}", GetUpdateSetsCode(table));
             result = result.Replace("{UpdateSqlParameter}", GetUpdateSqlParameterCode(table));
+            result = result.Replace("{GetListByInt}", GetGetListByIntCode(table, tableName, modelClassName));
+            result = result.Replace("{GetModelByAll}", GetGetModelByAllCode(table, tableName, modelClassName));
             return result;
         }
 
@@ -90,17 +92,17 @@ namespace CodeMagic.BLL
         private string GetGetModelSqlParameterCode(DataTable table)
         {
             StringBuilder result = new StringBuilder();
-            result.Append("SqlParameter[] parameters = {\n");
+            result.Append("SqlParameter[] parameters = {" + Environment.NewLine);
             foreach (DataRow row in table.Rows)
             {
                 if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
                 {
                     string columnName = row["columnName"].ToString();
                     string columnTypeName = row["typeName"].ToString();
-                    result.Append("\t\t\t\t" + "new SqlParameter(\"@" + columnName + "\", SqlDbType."+ GetSqlServerDBTypeString(columnTypeName) + "),\n");
+                    result.Append("\t\t\t\t" + "new SqlParameter(\"@" + columnName + "\", SqlDbType."+ GetSqlServerDBTypeString(columnTypeName) + ")," + Environment.NewLine);
                 }
             }
-            result.Append("\t\t\t};\n");
+            result.Append("\t\t\t};" + Environment.NewLine);
             int index = 0;
             for (int i = 0; i < table.Rows.Count; i++)
             {
@@ -110,12 +112,104 @@ namespace CodeMagic.BLL
                     result.Append("\t\t\t" + "parameters[" + index.ToString() +"].Value = " + table.Rows[i]["columnName"].ToString() + ";");
                     if (i < table.Rows.Count - 1)
                     {
-                        result.Append("\n");
+                        result.Append(Environment.NewLine);
                     }
                     index++;
                 }
             }
 
+            return result.ToString();
+        }
+
+        private string GetGetListByIntCode(DataTable table, string tableName, string modelClassName)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach (DataRow row in table.Rows)
+            {
+                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                    continue;
+
+                string columnName = row["columnName"].ToString();
+                string columnTypeName = row["typeName"].ToString();
+                if (!columnTypeName.ToLower().Contains("int")) continue;
+
+                result.AppendFormat("\t\tpublic List<{0}> GetListBy{1}({2} {3}){4}",
+                    modelClassName,
+                    columnName,
+                    GetCSharpTypeString(columnTypeName, false),
+                    columnName.Substring(0, 1).ToLower() + columnName.Substring(1, columnName.Length - 1),
+                    Environment.NewLine);
+                result.AppendLine("\t\t{");
+                result.AppendFormat("\t\t\tstring sql = \"SELECT * FROM [{0}] WHERE {1}=@{2}\";{3}",
+                    tableName,
+                    columnName,
+                    columnName,
+                    Environment.NewLine);
+                result.AppendLine("\t\t\tSqlParameter[] parameters = {");
+                result.AppendFormat("\t\t\t\tnew SqlParameter(\"@{0}\", SqlDbType.{1}),{2}",
+                    columnName,
+                    GetSqlServerDBTypeString(columnTypeName),
+                    Environment.NewLine);
+                // end of parameters
+                result.AppendLine("\t\t\t};");
+                result.AppendFormat("\t\t\tparameters[0].Value = {0};{1}",
+                    columnName.Substring(0, 1).ToLower() + columnName.Substring(1, columnName.Length - 1),
+                    Environment.NewLine);
+                result.AppendLine("\t\t\tDataSet ds = DbHelperSQL.Query(sql, parameters);");
+                result.AppendLine("\t\t\tif (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0) return null;");
+                result.AppendFormat("\t\t\tList<{0}> result = new List<{1}>();{2}",
+                    modelClassName,
+                    modelClassName,
+                    Environment.NewLine);
+                result.AppendLine("\t\t\tforeach(DataRow row in ds.Tables[0].Rows)");
+                result.AppendLine("\t\t\t{");
+                result.AppendLine("\t\t\t\tresult.Add(DataRowToModel(row));");
+                result.AppendLine("\t\t\t}");
+                result.AppendLine("\t\t\treturn result;");
+                // end of function
+                result.AppendLine("\t\t}" + Environment.NewLine);
+            }
+            return result.ToString();
+        }
+
+        private string GetGetModelByAllCode(DataTable table, string tableName, string modelClassName)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach (DataRow row in table.Rows)
+            {
+                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                    continue;
+
+                string columnName = row["columnName"].ToString();
+                string columnTypeName = row["typeName"].ToString();
+                result.AppendFormat("\t\tpublic {0} GetModelBy{1}({2} {3}){4}",
+                    modelClassName,
+                    columnName,
+                    GetCSharpTypeString(columnTypeName, false),
+                    columnName.Substring(0, 1).ToLower() + columnName.Substring(1, columnName.Length - 1),
+                    Environment.NewLine);
+                result.AppendLine("\t\t{");
+                result.AppendFormat("\t\t\tstring sql = \"SELECT * FROM [{0}] WHERE {1}=@{2}\";{3}",
+                    tableName,
+                    columnName,
+                    columnName,
+                    Environment.NewLine);
+                result.AppendLine("\t\t\tSqlParameter[] parameters = {");
+                result.AppendFormat("\t\t\t\tnew SqlParameter(\"@{0}\", SqlDbType.{1}),{2}",
+                    columnName,
+                    GetSqlServerDBTypeString(columnTypeName),
+                    Environment.NewLine);
+                // end of parameters
+                result.AppendLine("\t\t\t};");
+                result.AppendFormat("\t\t\tparameters[0].Value = {0};{1}",
+                    columnName.Substring(0, 1).ToLower() + columnName.Substring(1, columnName.Length - 1),
+                    Environment.NewLine);
+                result.AppendLine("\t\t\tDataSet ds = DbHelperSQL.Query(sql, parameters);");
+                result.AppendLine("\t\t\tif (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0) return null;");
+                result.AppendLine("\t\t\treturn DataRowToModel(ds.Tables[0].Rows[0]);");
+                // end of function
+                result.AppendLine("\t\t}" + Environment.NewLine);
+            }  
             return result.ToString();
         }
 
@@ -222,7 +316,7 @@ namespace CodeMagic.BLL
                 DataRow row = table.Rows[i];
                 string columnName = row["columnName"].ToString();
                 string columnTypeName = row["typeName"].ToString();
-                bool allowDBNull = bool.Parse(row["allownulls"].ToString());
+                bool allowDBNull = bool.Parse(row["is_nullable"].ToString());
                 if (i == 0)
                 {
                     result.AppendLine(GetDataRowToModelByColumn(columnName, columnTypeName));
@@ -247,7 +341,7 @@ namespace CodeMagic.BLL
             {
                 code = "if (row[\"" + columnName + "\"] != null && row[\"" + columnName + "\"].ToString() != \"\")\n";
                 code += "\t\t\t{\n";
-                code += "\t\t\t\t" + "model.name = bool.Parse(row[\"" + columnName + "\"].ToString());\n";
+                code += "\t\t\t\t" + "model." + columnName + " = bool.Parse(row[\"" + columnName + "\"].ToString());\n";
                 code += "\t\t\t}";
             }
             else if (dbtype.Contains("int"))

@@ -65,6 +65,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="BLL\AdminLTEAddCreateBLL.cs" />
     <Compile Include="BLL\AdminLTEListCreateBLL.cs" />
     <Compile Include="BLL\BaseCreateBLL.cs" />
     <Compile Include="BLL\BLLCreateBLL.cs" />

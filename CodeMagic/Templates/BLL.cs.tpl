@@ -21,10 +21,14 @@ namespace {NameSpace}.BLL
 			return dal.GetAll();
 		}
 
+{GetListByInt}
+
 		public {Model} GetModel({Keys})
 		{
 			return dal.GetModel({KeysParam});
 		}
+
+{GetModelByAll}
 
 		public int Insert({Model} model)
 		{

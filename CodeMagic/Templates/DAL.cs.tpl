@@ -30,6 +30,8 @@ namespace {NameSpace}.DAL
 			return result;
 		}
 
+{GetListByInt}
+
 		public {Model} GetModel({Keys})
 		{
 			string sql = "SELECT * FROM [{TableName}] WHERE{WhereKeys}";
@@ -38,6 +40,8 @@ namespace {NameSpace}.DAL
 			if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0) return null;
 			return DataRowToModel(ds.Tables[0].Rows[0]);
 		}
+
+{GetModelByAll}
 
 		public int Insert({Model} model)
 		{

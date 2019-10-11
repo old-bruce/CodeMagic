@@ -109,6 +109,18 @@ namespace CodeMagic.Docks
                 _dtColumns);
         }
 
+        private string CreateAdminLTEAddCode(DataTable table)
+        {
+            string file = Application.StartupPath + "\\Templates\\AdminLTE.Add.cshtml.tpl";
+            return new AdminLTEAddCreateBLL().GetCode(
+                file,
+                Program.CurrentDBInfo.CodeGenerate.NameSpaceName,
+                _tableName,
+                new ModelCreateBLL().GetModelClassName(_tableName,
+                Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
+                _dtColumns);
+        }
+
         private void 刷新RToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadColumnsAsync();
@@ -116,7 +128,6 @@ namespace CodeMagic.Docks
 
         private void btnAdminLTEList_Click(object sender, EventArgs e)
         {
-            string file = Application.StartupPath + "\\Templates\\AdminLTE.List.cshtml.tpl";
             string codeText = CreateAdminLTEListCode(_dtColumns);
             var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
             dialog.Text = "AdminLTE List Code";
@@ -125,8 +136,7 @@ namespace CodeMagic.Docks
 
         private void btnAdminLTEAdd_Click(object sender, EventArgs e)
         {
-            string file = Application.StartupPath + "\\Templates\\AdminLTE.Add.cshtml.tpl";
-            string codeText = File.Exists(file) ? File.ReadAllText(file) : string.Empty;
+            string codeText = CreateAdminLTEAddCode(_dtColumns);
             var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
             dialog.Text = "AdminLTE Add Code";
             dialog.ShowDialog();
