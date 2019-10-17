@@ -69,7 +69,7 @@
             // 
             this.新建数据库连接ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.add_database1;
             this.新建数据库连接ToolStripMenuItem.Name = "新建数据库连接ToolStripMenuItem";
-            this.新建数据库连接ToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.新建数据库连接ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.新建数据库连接ToolStripMenuItem.Text = "新建数据库连接";
             this.新建数据库连接ToolStripMenuItem.Click += new System.EventHandler(this.新建数据库连接ToolStripMenuItem_Click);
             // 
@@ -135,7 +135,8 @@
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "101-database.png");
-            this.imageList1.Images.SetKeyName(1, "table.png");
+            this.imageList1.Images.SetKeyName(1, "文件夹.png");
+            this.imageList1.Images.SetKeyName(2, "table.png");
             // 
             // SidebarDockForm
             // 

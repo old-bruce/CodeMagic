@@ -71,8 +71,8 @@ namespace CodeMagic.Docks
                     foreach (DataRow row in dtTables.Rows)
                     {
                         TreeNode tableNode = new TreeNode(row["name"].ToString());
-                        tableNode.ImageIndex = 1;
-                        tableNode.SelectedImageIndex = 1;
+                        tableNode.ImageIndex = 2;
+                        tableNode.SelectedImageIndex = 2;
                         tableNode.Tag = row;
                         tablesNode.Nodes.Add(tableNode);
                     }
@@ -80,8 +80,8 @@ namespace CodeMagic.Docks
                     foreach (DataRow row in dtViews.Rows)
                     {
                         TreeNode tableNode = new TreeNode(row["name"].ToString());
-                        tableNode.ImageIndex = 1;
-                        tableNode.SelectedImageIndex = 1;
+                        tableNode.ImageIndex = 2;
+                        tableNode.SelectedImageIndex = 2;
                         tableNode.Tag = row;
                         viewsNode.Nodes.Add(tableNode);
                     }
