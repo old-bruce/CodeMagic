@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeMagic.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,18 +26,18 @@ namespace CodeMagic.Docks
 
         private void LoadCodes()
         {
-            tvTemplates.Nodes.Clear();
+            tvCodes.Nodes.Clear();
             string templateDir = Application.StartupPath + "\\Codes";
 
             TreeNode rootNode = new TreeNode(new DirectoryInfo(templateDir).Name);
             rootNode.ToolTipText = new DirectoryInfo(templateDir).FullName;
             rootNode.ImageIndex = 0;
             rootNode.SelectedImageIndex = 0;
-            tvTemplates.Nodes.Add(rootNode);
+            tvCodes.Nodes.Add(rootNode);
 
             LoadChildNodes(rootNode, templateDir);
 
-            tvTemplates.ExpandAll();
+            tvCodes.ExpandAll();
         }
 
         private void LoadChildNodes(TreeNode rootNode, string directoryPath)
@@ -97,30 +98,41 @@ namespace CodeMagic.Docks
 
         private void cCS文件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            CreateCodeDialogForm dialog = new CreateCodeDialogForm("C#");
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                LoadCodes();
+            }
         }
 
         private void htmlhtml文件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            CreateCodeDialogForm dialog = new CreateCodeDialogForm("HTML");
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                LoadCodes();
+            }
         }
 
         private void cSScss文件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            CreateCodeDialogForm dialog = new CreateCodeDialogForm("HTML");
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                LoadCodes();
+            }
         }
 
         private void jSjs文件ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            CreateCodeDialogForm dialog = new CreateCodeDialogForm("HTML");
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                LoadCodes();
+            }
         }
 
-        private void 其它文件ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tvTemplates_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void tvCodes_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Node.Tag is DirectoryInfo)
             {
@@ -131,6 +143,44 @@ namespace CodeMagic.Docks
                 FileInfo fileInfo = e.Node.Tag as FileInfo;
                 Program.MainForm.OpenCodeEditForm(fileInfo);
             }
+        }
+
+        private void 其它文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateCodeDialogForm dialog = new CreateCodeDialogForm("");
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                LoadCodes();
+            }
+        }
+
+        private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tvCodes.SelectedNode == null) return;
+
+            if (tvCodes.SelectedNode.Tag is DirectoryInfo)
+            {
+                if (MsgBox.Confirm(string.Format("您确定删除 {0} 文件夹吗?\n\n此操作会删除文件夹下的所有子文件夹和文件！", tvCodes.SelectedNode.Text)) == DialogResult.Yes)
+                {
+                    Directory.Delete(((DirectoryInfo)tvCodes.SelectedNode.Tag).FullName, true);
+                    LoadCodes();
+                }
+            }
+            else if (tvCodes.SelectedNode.Tag is FileInfo)
+            {
+                if (MsgBox.Confirm(string.Format("您确定删除 {0} 文件吗?", tvCodes.SelectedNode.Text)) == DialogResult.Yes)
+                {
+                    File.Delete(((FileInfo)tvCodes.SelectedNode.Tag).FullName);
+                    LoadCodes();
+                }
+            }
+        }
+
+        private void tvCodes_MouseClick(object sender, MouseEventArgs e)
+        {
+            TreeNode node = tvCodes.GetNodeAt(e.Location);
+            if (node == null) return;
+            tvCodes.SelectedNode = node;
         }
     }
 }

@@ -79,6 +79,12 @@
     <Compile Include="Dialogs\CodeDialogForm.Designer.cs">
       <DependentUpon>CodeDialogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\CreateCodeDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CreateCodeDialogForm.Designer.cs">
+      <DependentUpon>CreateCodeDialogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\DBInfoDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CodeGenerateConfigDialogForm.resx">
       <DependentUpon>CodeGenerateConfigDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CreateCodeDialogForm.resx">
+      <DependentUpon>CreateCodeDialogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DBInfoDialogForm.resx">
       <DependentUpon>DBInfoDialogForm.cs</DependentUpon>
@@ -288,6 +297,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="magic_hat_64px_1217410_easyicon.net.ico" />
+    <None Include="Resources\del.png" />
     <None Include="Resources\page.png" />
     <None Include="Resources\html.png" />
     <None Include="Resources\符号-JSX.png" />

@@ -24,6 +24,11 @@ namespace CodeMagic
             MessageBox.Show(text, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        /// <summary>
+        /// YesNO
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public static DialogResult Confirm(string text)
         {
             return MessageBox.Show(text, "确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

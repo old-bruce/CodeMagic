@@ -30,52 +30,52 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CodeDockForm));
-            this.tvTemplates = new System.Windows.Forms.TreeView();
+            this.tvCodes = new System.Windows.Forms.TreeView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.新增ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.刷新FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.新增ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cCS文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.htmlhtml文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cSScss文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jSjs文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.其它文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tvTemplates
+            // tvCodes
             // 
-            this.tvTemplates.ContextMenuStrip = this.contextMenuStrip1;
-            this.tvTemplates.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvTemplates.ImageIndex = 0;
-            this.tvTemplates.ImageList = this.imageList1;
-            this.tvTemplates.Indent = 21;
-            this.tvTemplates.ItemHeight = 19;
-            this.tvTemplates.Location = new System.Drawing.Point(0, 0);
-            this.tvTemplates.Name = "tvTemplates";
-            this.tvTemplates.SelectedImageIndex = 0;
-            this.tvTemplates.Size = new System.Drawing.Size(284, 261);
-            this.tvTemplates.TabIndex = 3;
-            this.tvTemplates.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvTemplates_NodeMouseDoubleClick);
+            this.tvCodes.ContextMenuStrip = this.contextMenuStrip1;
+            this.tvCodes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvCodes.ImageIndex = 0;
+            this.tvCodes.ImageList = this.imageList1;
+            this.tvCodes.Indent = 21;
+            this.tvCodes.ItemHeight = 19;
+            this.tvCodes.Location = new System.Drawing.Point(0, 0);
+            this.tvCodes.Name = "tvCodes";
+            this.tvCodes.SelectedImageIndex = 0;
+            this.tvCodes.Size = new System.Drawing.Size(284, 261);
+            this.tvCodes.TabIndex = 3;
+            this.tvCodes.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvCodes_NodeMouseDoubleClick);
+            this.tvCodes.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tvCodes_MouseClick);
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.刷新FToolStripMenuItem,
-            this.新增ToolStripMenuItem});
+            this.新增ToolStripMenuItem,
+            this.删除ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(116, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(116, 70);
             // 
-            // imageList1
+            // 刷新FToolStripMenuItem
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "文件夹.png");
-            this.imageList1.Images.SetKeyName(1, "language-csharp.png");
-            this.imageList1.Images.SetKeyName(2, "html.png");
-            this.imageList1.Images.SetKeyName(3, "css.png");
-            this.imageList1.Images.SetKeyName(4, "符号-JSX.png");
-            this.imageList1.Images.SetKeyName(5, "page.png");
+            this.刷新FToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.Refresh;
+            this.刷新FToolStripMenuItem.Name = "刷新FToolStripMenuItem";
+            this.刷新FToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.刷新FToolStripMenuItem.Text = "刷新(&R)";
+            this.刷新FToolStripMenuItem.Click += new System.EventHandler(this.刷新FToolStripMenuItem_Click);
             // 
             // 新增ToolStripMenuItem
             // 
@@ -88,14 +88,6 @@
             this.新增ToolStripMenuItem.Name = "新增ToolStripMenuItem";
             this.新增ToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.新增ToolStripMenuItem.Text = "新增";
-            // 
-            // 刷新FToolStripMenuItem
-            // 
-            this.刷新FToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.Refresh;
-            this.刷新FToolStripMenuItem.Name = "刷新FToolStripMenuItem";
-            this.刷新FToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
-            this.刷新FToolStripMenuItem.Text = "刷新(&R)";
-            this.刷新FToolStripMenuItem.Click += new System.EventHandler(this.刷新FToolStripMenuItem_Click);
             // 
             // cCS文件ToolStripMenuItem
             // 
@@ -137,12 +129,31 @@
             this.其它文件ToolStripMenuItem.Text = "(*.*)其它文件";
             this.其它文件ToolStripMenuItem.Click += new System.EventHandler(this.其它文件ToolStripMenuItem_Click);
             // 
+            // 删除ToolStripMenuItem
+            // 
+            this.删除ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.del;
+            this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.删除ToolStripMenuItem.Text = "删除";
+            this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "文件夹.png");
+            this.imageList1.Images.SetKeyName(1, "language-csharp.png");
+            this.imageList1.Images.SetKeyName(2, "html.png");
+            this.imageList1.Images.SetKeyName(3, "css.png");
+            this.imageList1.Images.SetKeyName(4, "符号-JSX.png");
+            this.imageList1.Images.SetKeyName(5, "page.png");
+            // 
             // CodeDockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.tvTemplates);
+            this.Controls.Add(this.tvCodes);
             this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) 
             | WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) 
             | WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom) 
@@ -158,7 +169,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView tvTemplates;
+        private System.Windows.Forms.TreeView tvCodes;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 刷新FToolStripMenuItem;
@@ -168,5 +179,6 @@
         private System.Windows.Forms.ToolStripMenuItem cSScss文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jSjs文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 其它文件ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 删除ToolStripMenuItem;
     }
 }
