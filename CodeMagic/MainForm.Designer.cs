@@ -32,6 +32,10 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.视图VToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.数据库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.模板ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.代码段ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.工具TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.浏览器BToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,11 +47,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.视图VToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.代码段ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.数据库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.模板ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -77,9 +76,49 @@
             // 
             this.退出XToolStripMenuItem.Name = "退出XToolStripMenuItem";
             this.退出XToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.退出XToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.退出XToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.退出XToolStripMenuItem.Text = "退出(&X)";
             this.退出XToolStripMenuItem.Click += new System.EventHandler(this.退出XToolStripMenuItem_Click);
+            // 
+            // 视图VToolStripMenuItem
+            // 
+            this.视图VToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.数据库ToolStripMenuItem,
+            this.模板ToolStripMenuItem,
+            this.代码段ToolStripMenuItem});
+            this.视图VToolStripMenuItem.Name = "视图VToolStripMenuItem";
+            this.视图VToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.视图VToolStripMenuItem.Text = "视图(&V)";
+            // 
+            // 数据库ToolStripMenuItem
+            // 
+            this.数据库ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.database2;
+            this.数据库ToolStripMenuItem.Name = "数据库ToolStripMenuItem";
+            this.数据库ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.D)));
+            this.数据库ToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.数据库ToolStripMenuItem.Text = "数据库(&D)";
+            this.数据库ToolStripMenuItem.Click += new System.EventHandler(this.数据库ToolStripMenuItem_Click);
+            // 
+            // 模板ToolStripMenuItem
+            // 
+            this.模板ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.notepad;
+            this.模板ToolStripMenuItem.Name = "模板ToolStripMenuItem";
+            this.模板ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.V)));
+            this.模板ToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.模板ToolStripMenuItem.Text = "模板(&T)";
+            this.模板ToolStripMenuItem.Click += new System.EventHandler(this.模板ToolStripMenuItem_Click);
+            // 
+            // 代码段ToolStripMenuItem
+            // 
+            this.代码段ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.code;
+            this.代码段ToolStripMenuItem.Name = "代码段ToolStripMenuItem";
+            this.代码段ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.I)));
+            this.代码段ToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.代码段ToolStripMenuItem.Text = "代码段(&C)";
+            this.代码段ToolStripMenuItem.Click += new System.EventHandler(this.代码段ToolStripMenuItem_Click);
             // 
             // 工具TToolStripMenuItem
             // 
@@ -97,7 +136,7 @@
             // 
             this.浏览器BToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.web;
             this.浏览器BToolStripMenuItem.Name = "浏览器BToolStripMenuItem";
-            this.浏览器BToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.浏览器BToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.浏览器BToolStripMenuItem.Text = "浏览器(&B)";
             this.浏览器BToolStripMenuItem.Click += new System.EventHandler(this.浏览器BToolStripMenuItem_Click);
             // 
@@ -105,7 +144,7 @@
             // 
             this.iEToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.ie;
             this.iEToolStripMenuItem.Name = "iEToolStripMenuItem";
-            this.iEToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.iEToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.iEToolStripMenuItem.Text = "IE";
             this.iEToolStripMenuItem.Click += new System.EventHandler(this.iEToolStripMenuItem_Click);
             // 
@@ -113,7 +152,7 @@
             // 
             this.chromeToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.brand_brands_chrome_logo_16px_1212918_easyicon1;
             this.chromeToolStripMenuItem.Name = "chromeToolStripMenuItem";
-            this.chromeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chromeToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.chromeToolStripMenuItem.Text = "Chrome";
             this.chromeToolStripMenuItem.Click += new System.EventHandler(this.chromeToolStripMenuItem_Click);
             // 
@@ -121,7 +160,7 @@
             // 
             this.计算器ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.计算器;
             this.计算器ToolStripMenuItem.Name = "计算器ToolStripMenuItem";
-            this.计算器ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.计算器ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.计算器ToolStripMenuItem.Text = "计算器";
             this.计算器ToolStripMenuItem.Click += new System.EventHandler(this.计算器ToolStripMenuItem_Click);
             // 
@@ -129,7 +168,7 @@
             // 
             this.记事本ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.notepad;
             this.记事本ToolStripMenuItem.Name = "记事本ToolStripMenuItem";
-            this.记事本ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.记事本ToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.记事本ToolStripMenuItem.Text = "记事本";
             this.记事本ToolStripMenuItem.Click += new System.EventHandler(this.记事本ToolStripMenuItem_Click);
             // 
@@ -177,48 +216,6 @@
             this.dockPanel1.Size = new System.Drawing.Size(784, 515);
             this.dockPanel1.TabIndex = 3;
             // 
-            // 视图VToolStripMenuItem
-            // 
-            this.视图VToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.数据库ToolStripMenuItem,
-            this.模板ToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.代码段ToolStripMenuItem});
-            this.视图VToolStripMenuItem.Name = "视图VToolStripMenuItem";
-            this.视图VToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.视图VToolStripMenuItem.Text = "视图(&V)";
-            // 
-            // 代码段ToolStripMenuItem
-            // 
-            this.代码段ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.code;
-            this.代码段ToolStripMenuItem.Name = "代码段ToolStripMenuItem";
-            this.代码段ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.I)));
-            this.代码段ToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.代码段ToolStripMenuItem.Text = "代码段";
-            this.代码段ToolStripMenuItem.Click += new System.EventHandler(this.代码段ToolStripMenuItem_Click);
-            // 
-            // 数据库ToolStripMenuItem
-            // 
-            this.数据库ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.database2;
-            this.数据库ToolStripMenuItem.Name = "数据库ToolStripMenuItem";
-            this.数据库ToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.数据库ToolStripMenuItem.Text = "数据库";
-            this.数据库ToolStripMenuItem.Click += new System.EventHandler(this.数据库ToolStripMenuItem_Click);
-            // 
-            // 模板ToolStripMenuItem
-            // 
-            this.模板ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.notepad;
-            this.模板ToolStripMenuItem.Name = "模板ToolStripMenuItem";
-            this.模板ToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.模板ToolStripMenuItem.Text = "模板";
-            this.模板ToolStripMenuItem.Click += new System.EventHandler(this.模板ToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(179, 6);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,7 +259,6 @@
         private System.Windows.Forms.ToolStripMenuItem 记事本ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 视图VToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 代码段ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 数据库ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 模板ToolStripMenuItem;
     }
