@@ -88,7 +88,7 @@ namespace {NameSpace}.DAL
 			DataSet ds = DbHelperSQL.Query(sql);
 			if (ds.Tables.Count == 0) return null;
 
-			List<MEDataModel> result = new List<MEDataModel>();
+			List<{Model}> result = new List<{Model}>();
 			foreach (DataRow row in ds.Tables[0].Rows)
 			{
 				result.Add(DataRowToModel(row));
@@ -124,7 +124,7 @@ namespace {NameSpace}.DAL
 			DataSet ds = DbHelperSQL.Query(sql);
 			if (ds.Tables.Count == 0) return null;
 
-			List<MEDataModel> result = new List<MEDataModel>();
+			List<{Model}> result = new List<{Model}>();
 			foreach (DataRow row in ds.Tables[0].Rows)
 			{
 				result.Add(DataRowToModel(row));
