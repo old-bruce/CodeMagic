@@ -20,6 +20,8 @@ namespace CodeMagic.Docks
     {
         private CommonConfig _config = Program.CommonConfig;
 
+        private DataTable dtTables;
+
         public SidebarDockForm()
         {
             InitializeComponent();
@@ -44,7 +46,7 @@ namespace CodeMagic.Docks
         {
             Task.Factory.StartNew(()=> 
             {
-                DataTable dtTables = new CommonDAL().GetTables();
+                dtTables = new CommonDAL().GetTables();
                 if (dtTables == null) return;
 
                 DataTable dtViews = new CommonDAL().GetViewTables();
@@ -96,7 +98,7 @@ namespace CodeMagic.Docks
             LoadTablesAsync();
         }
 
-        private void sQL查询ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 查询分析器ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Program.CurrentDBInfo == null) return;
             Program.MainForm.OpenSQLQuery();
@@ -123,15 +125,19 @@ namespace CodeMagic.Docks
 
         private void 代码生成设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Program.CurrentDBInfo != null)
+            if (Program.CurrentDBInfo == null) return;
+            CodeGenerateConfigDialogForm cgDialog = new CodeGenerateConfigDialogForm();
+            if (cgDialog.ShowDialog() == DialogResult.OK)
             {
-                CodeGenerateConfigDialogForm cgDialog = new CodeGenerateConfigDialogForm();
-                if (cgDialog.ShowDialog() == DialogResult.OK)
-                {
-                    Program.CurrentDBInfo.CodeGenerate = cgDialog.CodeGenerateConfig;
-                    CommonConfig.Save(Program.CommonConfig);
-                }
+                Program.CurrentDBInfo.CodeGenerate = cgDialog.CodeGenerateConfig;
+                CommonConfig.Save(Program.CommonConfig);
             }
+        }
+
+        private void 代码批量生成ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program.CurrentDBInfo == null) return;
+            new Dialogs.DefaultCodeCreateDialogForm(dtTables).ShowDialog();
         }
     }
 }

@@ -97,6 +97,12 @@
     <Compile Include="Dialogs\CodeGenerateConfigDialogForm.Designer.cs">
       <DependentUpon>CodeGenerateConfigDialogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\DefaultCodeCreateDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DefaultCodeCreateDialogForm.Designer.cs">
+      <DependentUpon>DefaultCodeCreateDialogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Docks\CodeDockForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DBInfoDialogForm.resx">
       <DependentUpon>DBInfoDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DefaultCodeCreateDialogForm.resx">
+      <DependentUpon>DefaultCodeCreateDialogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Docks\CodeDockForm.resx">
       <DependentUpon>CodeDockForm.cs</DependentUpon>
@@ -297,6 +306,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="magic_hat_64px_1217410_easyicon.net.ico" />
+    <None Include="Resources\ok.png" />
+    <None Include="Resources\magic_hat_64px_1217410_easyicon.net.ico" />
+    <None Include="Resources\build.png" />
     <None Include="Resources\del.png" />
     <None Include="Resources\page.png" />
     <None Include="Resources\html.png" />

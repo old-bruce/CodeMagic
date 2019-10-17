@@ -31,15 +31,16 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SidebarDockForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tvTables = new System.Windows.Forms.TreeView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.刷新FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.查询分析器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.代码批量生成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.新建数据库连接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.代码生成设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tvTables = new System.Windows.Forms.TreeView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.刷新FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sQL查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -54,42 +55,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(284, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新建数据库连接ToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = global::CodeMagic.Properties.Resources.database2;
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(101, 22);
-            this.toolStripDropDownButton1.Text = "数据库连接";
-            // 
-            // 新建数据库连接ToolStripMenuItem
-            // 
-            this.新建数据库连接ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.add_database1;
-            this.新建数据库连接ToolStripMenuItem.Name = "新建数据库连接ToolStripMenuItem";
-            this.新建数据库连接ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.新建数据库连接ToolStripMenuItem.Text = "新建数据库连接";
-            this.新建数据库连接ToolStripMenuItem.Click += new System.EventHandler(this.新建数据库连接ToolStripMenuItem_Click);
-            // 
-            // toolStripSplitButton1
-            // 
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.代码生成设置ToolStripMenuItem});
-            this.toolStripSplitButton1.Image = global::CodeMagic.Properties.Resources.code__1_;
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 22);
-            // 
-            // 代码生成设置ToolStripMenuItem
-            // 
-            this.代码生成设置ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.setting;
-            this.代码生成设置ToolStripMenuItem.Name = "代码生成设置ToolStripMenuItem";
-            this.代码生成设置ToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.代码生成设置ToolStripMenuItem.Text = " 代码生成设置";
-            this.代码生成设置ToolStripMenuItem.Click += new System.EventHandler(this.代码生成设置ToolStripMenuItem_Click);
             // 
             // tvTables
             // 
@@ -110,25 +75,10 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.刷新FToolStripMenuItem,
-            this.sQL查询ToolStripMenuItem});
+            this.查询分析器ToolStripMenuItem,
+            this.代码批量生成ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(122, 48);
-            // 
-            // 刷新FToolStripMenuItem
-            // 
-            this.刷新FToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.Refresh;
-            this.刷新FToolStripMenuItem.Name = "刷新FToolStripMenuItem";
-            this.刷新FToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
-            this.刷新FToolStripMenuItem.Text = "刷新(&R)";
-            this.刷新FToolStripMenuItem.Click += new System.EventHandler(this.刷新FToolStripMenuItem_Click);
-            // 
-            // sQL查询ToolStripMenuItem
-            // 
-            this.sQL查询ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.query;
-            this.sQL查询ToolStripMenuItem.Name = "sQL查询ToolStripMenuItem";
-            this.sQL查询ToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
-            this.sQL查询ToolStripMenuItem.Text = "SQL查询";
-            this.sQL查询ToolStripMenuItem.Click += new System.EventHandler(this.sQL查询ToolStripMenuItem_Click);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(168, 92);
             // 
             // imageList1
             // 
@@ -137,6 +87,66 @@
             this.imageList1.Images.SetKeyName(0, "101-database.png");
             this.imageList1.Images.SetKeyName(1, "文件夹.png");
             this.imageList1.Images.SetKeyName(2, "table.png");
+            // 
+            // 刷新FToolStripMenuItem
+            // 
+            this.刷新FToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.Refresh;
+            this.刷新FToolStripMenuItem.Name = "刷新FToolStripMenuItem";
+            this.刷新FToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.刷新FToolStripMenuItem.Text = "刷新(&R)";
+            this.刷新FToolStripMenuItem.Click += new System.EventHandler(this.刷新FToolStripMenuItem_Click);
+            // 
+            // 查询分析器ToolStripMenuItem
+            // 
+            this.查询分析器ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.query;
+            this.查询分析器ToolStripMenuItem.Name = "查询分析器ToolStripMenuItem";
+            this.查询分析器ToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.查询分析器ToolStripMenuItem.Text = "查询分析器(&Q)";
+            this.查询分析器ToolStripMenuItem.Click += new System.EventHandler(this.查询分析器ToolStripMenuItem_Click);
+            // 
+            // 代码批量生成ToolStripMenuItem
+            // 
+            this.代码批量生成ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.build;
+            this.代码批量生成ToolStripMenuItem.Name = "代码批量生成ToolStripMenuItem";
+            this.代码批量生成ToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.代码批量生成ToolStripMenuItem.Text = "代码批量生成(&B)";
+            this.代码批量生成ToolStripMenuItem.Click += new System.EventHandler(this.代码批量生成ToolStripMenuItem_Click);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新建数据库连接ToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = global::CodeMagic.Properties.Resources.database2;
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(101, 22);
+            this.toolStripDropDownButton1.Text = "数据库连接";
+            // 
+            // 新建数据库连接ToolStripMenuItem
+            // 
+            this.新建数据库连接ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.add_database1;
+            this.新建数据库连接ToolStripMenuItem.Name = "新建数据库连接ToolStripMenuItem";
+            this.新建数据库连接ToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.新建数据库连接ToolStripMenuItem.Text = "新建数据库连接";
+            this.新建数据库连接ToolStripMenuItem.Click += new System.EventHandler(this.新建数据库连接ToolStripMenuItem_Click);
+            // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.代码生成设置ToolStripMenuItem});
+            this.toolStripSplitButton1.Image = global::CodeMagic.Properties.Resources.code__1_;
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 22);
+            // 
+            // 代码生成设置ToolStripMenuItem
+            // 
+            this.代码生成设置ToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.setting;
+            this.代码生成设置ToolStripMenuItem.Name = "代码生成设置ToolStripMenuItem";
+            this.代码生成设置ToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.代码生成设置ToolStripMenuItem.Text = " 代码生成设置";
+            this.代码生成设置ToolStripMenuItem.Click += new System.EventHandler(this.代码生成设置ToolStripMenuItem_Click);
             // 
             // SidebarDockForm
             // 
@@ -172,6 +182,7 @@
         private System.Windows.Forms.ToolStripMenuItem 刷新FToolStripMenuItem;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripMenuItem 代码生成设置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sQL查询ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 查询分析器ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 代码批量生成ToolStripMenuItem;
     }
 }
