@@ -25,14 +25,36 @@ namespace CodeMagic.Docks
 
         private void LoadCodes()
         {
-            string templateDir = Application.StartupPath + "\\Codes";
-            string[] files = Directory.GetFiles(templateDir, "*.*");
             tvTemplates.Nodes.Clear();
+            string templateDir = Application.StartupPath + "\\Codes";
+
             TreeNode rootNode = new TreeNode(new DirectoryInfo(templateDir).Name);
             rootNode.ToolTipText = new DirectoryInfo(templateDir).FullName;
             rootNode.ImageIndex = 0;
             rootNode.SelectedImageIndex = 0;
             tvTemplates.Nodes.Add(rootNode);
+
+            LoadChildNodes(rootNode, templateDir);
+
+            tvTemplates.ExpandAll();
+        }
+
+        private void LoadChildNodes(TreeNode rootNode, string directoryPath)
+        {
+            rootNode.Nodes.Clear();
+            //子目录
+            DirectoryInfo[] dirs = new DirectoryInfo(directoryPath).GetDirectories();
+            foreach (var dir in dirs)
+            {
+                TreeNode childDirNode = new TreeNode(dir.Name);
+                childDirNode.Tag = dir;
+                childDirNode.ImageIndex = 0;
+                childDirNode.SelectedImageIndex = 0;
+                rootNode.Nodes.Add(childDirNode);
+            }
+
+            string[] files = Directory.GetFiles(directoryPath, "*.*");
+            //子文件
             foreach (string file in files)
             {
                 FileInfo fileInfo = new FileInfo(file);
@@ -64,13 +86,51 @@ namespace CodeMagic.Docks
                     newNode.SelectedImageIndex = 5;
                 }
                 rootNode.Nodes.Add(newNode);
+                rootNode.ExpandAll();
             }
-            tvTemplates.ExpandAll();
         }
 
         private void 刷新FToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadCodes();
+        }
+
+        private void cCS文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void htmlhtml文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cSScss文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void jSjs文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 其它文件ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tvTemplates_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Tag is DirectoryInfo)
+            {
+                LoadChildNodes(e.Node, ((DirectoryInfo)e.Node.Tag).FullName);
+            }
+            else if (e.Node.Tag is FileInfo)
+            {
+                FileInfo fileInfo = e.Node.Tag as FileInfo;
+                Program.MainForm.OpenCodeEditForm(fileInfo);
+            }
         }
     }
 }

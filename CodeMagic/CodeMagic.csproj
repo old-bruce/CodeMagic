@@ -97,6 +97,12 @@
     <Compile Include="Docks\CodeDockForm.Designer.cs">
       <DependentUpon>CodeDockForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Docks\CodeEditDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docks\CodeEditDockForm.Designer.cs">
+      <DependentUpon>CodeEditDockForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Docks\HomeDockForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Docks\CodeDockForm.resx">
       <DependentUpon>CodeDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docks\CodeEditDockForm.resx">
+      <DependentUpon>CodeEditDockForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Docks\HomeDockForm.resx">
       <DependentUpon>HomeDockForm.cs</DependentUpon>
@@ -275,7 +284,16 @@
     <Content Include="Codes\Bootstrap.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Codes\NewFolder1\TextFile1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="magic_hat_64px_1217410_easyicon.net.ico" />
+    <None Include="Resources\page.png" />
+    <None Include="Resources\html.png" />
+    <None Include="Resources\符号-JSX.png" />
+    <None Include="Resources\css.png" />
+    <None Include="Resources\code1.png" />
+    <None Include="Resources\language-csharp.png" />
     <None Include="Resources\query.png" />
     <None Include="Resources\run-c.png" />
     <None Include="Resources\brand_brands_chrome_logo_16px_1212918_easyicon.net1.png" />

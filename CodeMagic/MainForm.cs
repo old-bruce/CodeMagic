@@ -24,6 +24,7 @@ namespace CodeMagic
 
         private Dictionary<string, WeifenLuo.WinFormsUI.Docking.DockContent> _openTableForms = new Dictionary<string, WeifenLuo.WinFormsUI.Docking.DockContent>();
         private Dictionary<string, WeifenLuo.WinFormsUI.Docking.DockContent> _openTemplateForms = new Dictionary<string, WeifenLuo.WinFormsUI.Docking.DockContent>();
+        private Dictionary<string, WeifenLuo.WinFormsUI.Docking.DockContent> _openCodeForms = new Dictionary<string, WeifenLuo.WinFormsUI.Docking.DockContent>();
 
         public MainForm()
         {
@@ -41,7 +42,8 @@ namespace CodeMagic
         private void OpenDockForms()
         {
             ShowSidebar();
-            ShowTemplateAutoHide();
+            ShowTemplate();
+            OpenCodeDockSidebar();
             ShowHome();
         }
 
@@ -150,6 +152,20 @@ namespace CodeMagic
                 _openTemplateForms[fileInfo.Name] = templateForm;
             }
             _openTemplateForms[fileInfo.Name].Show(dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.Document);
+        }
+
+        public void OpenCodeEditForm(FileInfo fileInfo)
+        {
+            if (!_openCodeForms.ContainsKey(fileInfo.Name))
+            {
+                CodeEditDockForm codeEditForm = new CodeEditDockForm(fileInfo);
+                codeEditForm.FormClosed += (s, e) =>
+                {
+                    _openCodeForms.Remove(fileInfo.Name);
+                };
+                _openCodeForms[fileInfo.Name] = codeEditForm;
+            }
+            _openCodeForms[fileInfo.Name].Show(dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.Document);
         }
 
         private void MainForm_Load(object sender, EventArgs e)

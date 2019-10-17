@@ -299,7 +299,7 @@ namespace CodeMagic.BLL
                     continue;
                 result.AppendFormat("\t\t\tif (model.{0} == null){1}", columnName, Environment.NewLine);
                 result.AppendLine("\t\t\t{");
-                result.AppendFormat("\t\t\t\tparameters[{0}].Value = DBNull.Value;{1}", i, Environment.NewLine);
+                result.AppendFormat("\t\t\t\tparameters[{0}].Value = DBNull.Value;{1}", index, Environment.NewLine);
                 result.AppendLine("\t\t\t}");
                 result.AppendLine("\t\t\telse");
                 result.AppendLine("\t\t\t{");
@@ -327,11 +327,9 @@ namespace CodeMagic.BLL
             {
                 DataRow row = table.Rows[i];
                 string columnName = row["columnName"].ToString();
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
-                    continue;
                 result.AppendFormat("\t\t\tif (model.{0} == null){1}", columnName, Environment.NewLine);
                 result.AppendLine("\t\t\t{");
-                result.AppendFormat("\t\t\t\tparameters[{0}].Value = DBNull.Value;{1}", i, Environment.NewLine);
+                result.AppendFormat("\t\t\t\tparameters[{0}].Value = DBNull.Value;{1}", index, Environment.NewLine);
                 result.AppendLine("\t\t\t}");
                 result.AppendLine("\t\t\telse");
                 result.AppendLine("\t\t\t{");

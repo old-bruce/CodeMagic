@@ -11,34 +11,34 @@ using System.Windows.Forms;
 
 namespace CodeMagic.Docks
 {
-    public partial class TemplateEditDockForm : WeifenLuo.WinFormsUI.Docking.DockContent
+    public partial class CodeEditDockForm : WeifenLuo.WinFormsUI.Docking.DockContent
     {
         private bool _textChanged = false;
         private FileInfo _fileInfo;
 
-        public TemplateEditDockForm(FileInfo fileInfo)
+        public CodeEditDockForm(FileInfo fileInfo)
         {
             _fileInfo = fileInfo;
             InitializeComponent();
             this.Text = fileInfo.Name;
             tslFilePath.Text = fileInfo.FullName;
-            if (fileInfo.Name.Contains(".cs.tpl"))
+            if (fileInfo.Extension.Contains(".cs"))
             {
                 tecCode.SetHighlighting("C#");
             }
-            else if (fileInfo.Name.Contains(".cshtml.tpl"))
+            else
             {
                 tecCode.SetHighlighting("HTML");
             }
         }
 
-        private void TemplateEditDockForm_Load(object sender, EventArgs e)
+        private void CodeEditDockForm_Load(object sender, EventArgs e)
         {
             tecCode.Text = File.ReadAllText(_fileInfo.FullName, Encoding.UTF8);
             tecCode.TextChanged += tecCode_TextChanged;
         }
 
-        private void TemplateEditDockForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void CodeEditDockForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!_textChanged) return;
 
@@ -57,7 +57,7 @@ namespace CodeMagic.Docks
                 this.Text = _fileInfo.Name;
                 _textChanged = false;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MsgBox.Error(ex.Message);
             }
