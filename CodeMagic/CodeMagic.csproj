@@ -300,6 +300,9 @@
     <None Include="Templates\AdminLTE.List.cshtml.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Templates\CommonJS.cshtml.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Templates\Model.cs.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

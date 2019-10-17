@@ -40,8 +40,9 @@ namespace CodeMagic.BLL
             result = result.Replace("{Model}", modelClassName);
             result = result.Replace("{Keys}", GetKeysCode(table));
             result = result.Replace("{KeysParam}", GetKeysParam(table));
-            result = result.Replace("{GetListByInt}", GetGetListByIntCode(table, modelClassName));
+            result = result.Replace("{GetListByAll}", GetGetListByAllCode(table, modelClassName));
             result = result.Replace("{GetModelByAll}", GetGetModelByAllCode(table, modelClassName));
+            result = result.Replace("{DeleteByAll}", GetDeleteByAllCode(table));
             return result;
         }
 
@@ -83,7 +84,7 @@ namespace CodeMagic.BLL
             return sb.ToString();
         }
 
-        private string GetGetListByIntCode(DataTable table, string modelClassName)
+        private string GetGetListByAllCode(DataTable table, string modelClassName)
         {
             StringBuilder result = new StringBuilder();
             foreach (DataRow row in table.Rows)
@@ -93,7 +94,6 @@ namespace CodeMagic.BLL
 
                 string columnName = row["columnName"].ToString();
                 string columnTypeName = row["typeName"].ToString();
-                if (!columnTypeName.ToLower().Contains("int")) continue;
 
                 result.AppendFormat("\t\tpublic List<{0}> GetListBy{1}({2} {3}){4}",
                     modelClassName,
@@ -139,5 +139,30 @@ namespace CodeMagic.BLL
             return result.ToString();
         }
 
+        private string GetDeleteByAllCode(DataTable table)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach (DataRow row in table.Rows)
+            {
+                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                    continue;
+
+                string columnName = row["columnName"].ToString();
+                string columnTypeName = row["typeName"].ToString();
+                result.AppendFormat("\t\tpublic int DeleteBy{0}({1} {2}){3}",
+                    columnName,
+                    GetCSharpTypeString(columnTypeName, false),
+                    columnName.Substring(0, 1).ToLower() + columnName.Substring(1, columnName.Length - 1),
+                    Environment.NewLine);
+                result.AppendLine("\t\t{");
+                result.AppendFormat("\t\t\treturn dal.DeleteBy{0}({1});{2}",
+                    columnName,
+                    columnName.Substring(0, 1).ToLower() + columnName.Substring(1, columnName.Length - 1),
+                    Environment.NewLine);
+                // end of function
+                result.AppendLine("\t\t}" + Environment.NewLine);
+            }
+            return result.ToString();
+        }
     }
 }

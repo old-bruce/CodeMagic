@@ -91,7 +91,7 @@ namespace CodeMagic.Docks
                 file,
                 Program.CurrentDBInfo.CodeGenerate.NameSpaceName,
                 _tableName,
-                Program.CurrentDBInfo.CodeGenerate.DALSuffix,
+                Program.CurrentDBInfo.CodeGenerate.BLLSuffix,
                 new DALCreateBLL().GetDALClassName(_tableName, Program.CurrentDBInfo.CodeGenerate.DALSuffix),
                 new ModelCreateBLL().GetModelClassName(_tableName, Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
                 dtColumns);

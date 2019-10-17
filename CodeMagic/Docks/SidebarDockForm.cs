@@ -47,20 +47,43 @@ namespace CodeMagic.Docks
                 DataTable dtTables = new CommonDAL().GetTables();
                 if (dtTables == null) return;
 
+                DataTable dtViews = new CommonDAL().GetViewTables();
+
                 this.Invoke(new Action(() =>
                 {
                     tvTables.Nodes.Clear();
-                    TreeNode rootNode = new TreeNode(string.Format("{0}({1})", Program.CurrentDBInfo.DBName, dtTables.Rows.Count));
+
+                    TreeNode rootNode = new TreeNode(string.Format("{0}", Program.CurrentDBInfo.DBName));
                     rootNode.ImageIndex = 0;
                     rootNode.SelectedImageIndex = 0;
                     tvTables.Nodes.Add(rootNode);
+
+                    TreeNode tablesNode = new TreeNode(string.Format("Tables ({0})", dtTables.Rows.Count));
+                    tablesNode.ImageIndex = 1;
+                    tablesNode.SelectedImageIndex = 1;
+                    rootNode.Nodes.Add(tablesNode);
+
+                    TreeNode viewsNode = new TreeNode(string.Format("Views ({0})", dtViews.Rows.Count));
+                    viewsNode.ImageIndex = 1;
+                    viewsNode.SelectedImageIndex = 1;
+                    rootNode.Nodes.Add(viewsNode);
+
                     foreach (DataRow row in dtTables.Rows)
                     {
                         TreeNode tableNode = new TreeNode(row["name"].ToString());
                         tableNode.ImageIndex = 1;
                         tableNode.SelectedImageIndex = 1;
                         tableNode.Tag = row;
-                        rootNode.Nodes.Add(tableNode);
+                        tablesNode.Nodes.Add(tableNode);
+                    }
+
+                    foreach (DataRow row in dtViews.Rows)
+                    {
+                        TreeNode tableNode = new TreeNode(row["name"].ToString());
+                        tableNode.ImageIndex = 1;
+                        tableNode.SelectedImageIndex = 1;
+                        tableNode.Tag = row;
+                        viewsNode.Nodes.Add(tableNode);
                     }
                     tvTables.ExpandAll();
                 }));

@@ -46,8 +46,9 @@ namespace CodeMagic.BLL
             result = result.Replace("{InsertSqlParameter}", GetInsertSqlParameterCode(table));
             result = result.Replace("{UpdateSets}", GetUpdateSetsCode(table));
             result = result.Replace("{UpdateSqlParameter}", GetUpdateSqlParameterCode(table));
-            result = result.Replace("{GetListByInt}", GetGetListByIntCode(table, tableName, modelClassName));
+            result = result.Replace("{GetListByAll}", GetGetListByAllCode(table, tableName, modelClassName));
             result = result.Replace("{GetModelByAll}", GetGetModelByAllCode(table, tableName, modelClassName));
+            result = result.Replace("{DeleteByAll}", GetDeleteByAllCode(table, tableName));
             return result;
         }
 
@@ -121,7 +122,7 @@ namespace CodeMagic.BLL
             return result.ToString();
         }
 
-        private string GetGetListByIntCode(DataTable table, string tableName, string modelClassName)
+        private string GetGetListByAllCode(DataTable table, string tableName, string modelClassName)
         {
             StringBuilder result = new StringBuilder();
             foreach (DataRow row in table.Rows)
@@ -131,7 +132,6 @@ namespace CodeMagic.BLL
 
                 string columnName = row["columnName"].ToString();
                 string columnTypeName = row["typeName"].ToString();
-                if (!columnTypeName.ToLower().Contains("int")) continue;
 
                 result.AppendFormat("\t\tpublic List<{0}> GetListBy{1}({2} {3}){4}",
                     modelClassName,
@@ -213,6 +213,44 @@ namespace CodeMagic.BLL
             return result.ToString();
         }
 
+        private string GetDeleteByAllCode(DataTable table, string tableName)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach (DataRow row in table.Rows)
+            {
+                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                    continue;
+
+                string columnName = row["columnName"].ToString();
+                string columnTypeName = row["typeName"].ToString();
+                result.AppendFormat("\t\tpublic int DeleteBy{0}({1} {2}){3}",
+                    columnName,
+                    GetCSharpTypeString(columnTypeName, false),
+                    columnName.Substring(0, 1).ToLower() + columnName.Substring(1, columnName.Length - 1),
+                    Environment.NewLine);
+                result.AppendLine("\t\t{");
+                result.AppendFormat("\t\t\tstring sql = \"DELETE FROM [{0}] WHERE {1}=@{2}\";{3}",
+                    tableName,
+                    columnName,
+                    columnName,
+                    Environment.NewLine);
+                result.AppendLine("\t\t\tSqlParameter[] parameters = {");
+                result.AppendFormat("\t\t\t\tnew SqlParameter(\"@{0}\", SqlDbType.{1}),{2}",
+                    columnName,
+                    GetSqlServerDBTypeString(columnTypeName),
+                    Environment.NewLine);
+                // end of parameters
+                result.AppendLine("\t\t\t};");
+                result.AppendFormat("\t\t\tparameters[0].Value = {0};{1}",
+                    columnName.Substring(0, 1).ToLower() + columnName.Substring(1, columnName.Length - 1),
+                    Environment.NewLine);
+                result.AppendLine("\t\t\treturn DbHelperSQL.ExecuteSql(sql, parameters);");
+                // end of function
+                result.AppendLine("\t\t}" + Environment.NewLine);
+            }
+            return result.ToString();
+        }
+
         private string GetInsertFieldsCode(DataTable table)
         {
             StringBuilder sb = new StringBuilder();
@@ -256,13 +294,17 @@ namespace CodeMagic.BLL
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 DataRow row = table.Rows[i];
+                string columnName = row["columnName"].ToString();
                 if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
                     continue;
-                result.Append("\t\t\t" + "parameters[" + index.ToString() + "].Value = model." + table.Rows[i]["columnName"].ToString() + ";");
-                if (i < table.Rows.Count - 1)
-                {
-                    result.Append("\n");
-                }
+                result.AppendFormat("\t\t\tif (model.{0} == null){1}", columnName, Environment.NewLine);
+                result.AppendLine("\t\t\t{");
+                result.AppendFormat("\t\t\t\tparameters[{0}].Value = DBNull.Value;{1}", i, Environment.NewLine);
+                result.AppendLine("\t\t\t}");
+                result.AppendLine("\t\t\telse");
+                result.AppendLine("\t\t\t{");
+                result.AppendLine("\t\t\t\t" + "parameters[" + index.ToString() + "].Value = model." + columnName + ";");
+                result.AppendLine("\t\t\t}");
                 index++;
             }
 
@@ -284,11 +326,17 @@ namespace CodeMagic.BLL
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 DataRow row = table.Rows[i];
-                result.Append("\t\t\t" + "parameters[" + index.ToString() + "].Value = model." + table.Rows[i]["columnName"].ToString() + ";");
-                if (i < table.Rows.Count - 1)
-                {
-                    result.Append("\n");
-                }
+                string columnName = row["columnName"].ToString();
+                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                    continue;
+                result.AppendFormat("\t\t\tif (model.{0} == null){1}", columnName, Environment.NewLine);
+                result.AppendLine("\t\t\t{");
+                result.AppendFormat("\t\t\t\tparameters[{0}].Value = DBNull.Value;{1}", i, Environment.NewLine);
+                result.AppendLine("\t\t\t}");
+                result.AppendLine("\t\t\telse");
+                result.AppendLine("\t\t\t{");
+                result.AppendLine("\t\t\t\t" + "parameters[" + index.ToString() + "].Value = model." + columnName + ";");
+                result.AppendLine("\t\t\t}");
                 index++;
             }
 
@@ -365,7 +413,7 @@ namespace CodeMagic.BLL
                 code += "\t\t\t\t" + "model." + columnName + " = double.Parse(row[\"" + columnName + "\"].ToString());\n";
                 code += "\t\t\t}";
             }
-            else if (dbtype.Contains("decimal"))
+            else if (dbtype.Contains("decimal") || dbtype.Contains("numeric"))
             {
                 code = "if (row[\"" + columnName + "\"] != null && row[\"" + columnName + "\"].ToString() != \"\")\n";
                 code += "\t\t\t{\n";

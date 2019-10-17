@@ -62,6 +62,7 @@ namespace CodeMagic.BLL
             dict["char"] = "Char";
             dict["datetime"] = "DateTime";
             dict["decimal"] = "Decimal";
+            dict["numeric"] = "Decimal";
             dict["float"] = "Float";
             dict["image"] = "Image";
             dict["int"] = "Int";
@@ -87,6 +88,7 @@ namespace CodeMagic.BLL
             dict["time"] = "Time";
             dict["datetime2"] = "DateTime2";
             dict["dateTimeoffset"] = "DateTimeOffset";
+
             return dict.ContainsKey(dbtype.ToLower()) ? dict[dbtype.ToLower()] : string.Empty;
         }
     }
