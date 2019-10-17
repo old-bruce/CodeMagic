@@ -20,6 +20,7 @@ namespace CodeMagic
         private HomeDockForm _homeDockForm;
         private WebDockForm _webDockForm;
         private SqlQueryDockForm _sqlQueryDockForm;
+        private CodeDockForm _codeDockForm;
 
         private Dictionary<string, WeifenLuo.WinFormsUI.Docking.DockContent> _openTableForms = new Dictionary<string, WeifenLuo.WinFormsUI.Docking.DockContent>();
         private Dictionary<string, WeifenLuo.WinFormsUI.Docking.DockContent> _openTemplateForms = new Dictionary<string, WeifenLuo.WinFormsUI.Docking.DockContent>();
@@ -40,7 +41,7 @@ namespace CodeMagic
         private void OpenDockForms()
         {
             ShowSidebar();
-            ShowTemplate();
+            ShowTemplateAutoHide();
             ShowHome();
         }
 
@@ -60,6 +61,15 @@ namespace CodeMagic
                 _templateSidebarDockForm = new TemplateSibebarDockForm();
             }
             _templateSidebarDockForm.Show(dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.DockRight);
+        }
+
+        public void ShowTemplateAutoHide()
+        {
+            if (_templateSidebarDockForm == null)
+            {
+                _templateSidebarDockForm = new TemplateSibebarDockForm();
+            }
+            _templateSidebarDockForm.Show(dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.DockRightAutoHide);
         }
 
         public void ShowHome()
@@ -95,6 +105,19 @@ namespace CodeMagic
                 };
             }
             _sqlQueryDockForm.Show(dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.Document);
+        }
+
+        public void OpenCodeDockSidebar()
+        {
+            if (_codeDockForm == null)
+            {
+                _codeDockForm = new CodeDockForm();
+                _codeDockForm.FormClosed += (s, e) =>
+                {
+                    _codeDockForm = null;
+                };
+            }
+            _codeDockForm.Show(dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.DockRight);
         }
 
         public bool ExistTableForm(string tableName)
@@ -167,6 +190,21 @@ namespace CodeMagic
         private void 记事本ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("notepad.exe");
+        }
+
+        private void 数据库ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowSidebar();
+        }
+
+        private void 模板ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowTemplate();
+        }
+
+        private void 代码段ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenCodeDockSidebar();
         }
     }
 }

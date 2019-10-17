@@ -91,6 +91,12 @@
     <Compile Include="Dialogs\CodeGenerateConfigDialogForm.Designer.cs">
       <DependentUpon>CodeGenerateConfigDialogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Docks\CodeDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docks\CodeDockForm.Designer.cs">
+      <DependentUpon>CodeDockForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Docks\HomeDockForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DBInfoDialogForm.resx">
       <DependentUpon>DBInfoDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docks\CodeDockForm.resx">
+      <DependentUpon>CodeDockForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Docks\HomeDockForm.resx">
       <DependentUpon>HomeDockForm.cs</DependentUpon>
@@ -260,6 +269,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Codes\common.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Codes\Bootstrap.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="magic_hat_64px_1217410_easyicon.net.ico" />
     <None Include="Resources\query.png" />
     <None Include="Resources\run-c.png" />
@@ -300,9 +315,9 @@
     <None Include="Templates\AdminLTE.List.cshtml.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Templates\CommonJS.cshtml.tpl">
+    <Content Include="Codes\common.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="Templates\Model.cs.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
