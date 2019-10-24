@@ -1,0 +1,58 @@
+﻿<!-- 进度条和保存按钮 -->
+<div class="row">
+  <div class="col-md-6 text-left">
+    <div class="progress" id="btn_progress">
+        <div class="progress-bar progress-bar-primary" id="btn_progress_value" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+        </div>
+    </div>
+  </div>
+  <div class="col-md-6 text-right">
+    <a class="btn btn-primary" href="javascript:save_member()">保存</a>
+  </div>
+</div>
+<!-- ./row -->
+
+<script>
+function save_member() {
+    $.ajax({
+        type: 'POST',
+        url: '/admin/member/save/',
+        data: $("#frm_save_member").serialize(),
+        dataType: 'json',
+        success: function (data) {
+            if (data.code == 200) {
+                btn_progress_success();
+                location.reload();
+            } else {
+                alert(data.msg);
+                hidden_btn_progress();
+            }
+        }
+    });
+    show_btn_progress();
+}
+
+  /**
+  * 显示进度条，默认50%
+  */
+  function show_btn_progress() {
+  $('#btn_progress').show();
+  $('#btn_progress_value').width('50%');
+  }
+
+  /**
+  * 修改进度条为 100%
+  */
+  function btn_progress_success()
+  {
+  $('#btn_progress_value').width('100%');
+  }
+
+  /**
+  * 隐藏进度条
+  */
+  function hidden_btn_progress() {
+  $('#btn_progress').hide();
+  $('#btn_progress_value').width('0%');
+  }
+</script>

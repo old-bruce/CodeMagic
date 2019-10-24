@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlQueryDockForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControl();
+            this.tecSQL = new ICSharpCode.TextEditor.TextEditorControlEx();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.执行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvResult = new System.Windows.Forms.DataGridView();
-            this.tecSQL = new ICSharpCode.TextEditor.TextEditorControlEx();
-            this.textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -63,6 +63,27 @@
             this.splitContainer1.SplitterDistance = 150;
             this.splitContainer1.TabIndex = 0;
             // 
+            // textEditorControl1
+            // 
+            this.textEditorControl1.Font = new System.Drawing.Font("Courier New", 10F);
+            this.textEditorControl1.IsReadOnly = false;
+            this.textEditorControl1.Location = new System.Drawing.Point(328, 104);
+            this.textEditorControl1.Name = "textEditorControl1";
+            this.textEditorControl1.Size = new System.Drawing.Size(8, 8);
+            this.textEditorControl1.TabIndex = 1;
+            this.textEditorControl1.Text = "textEditorControl1";
+            // 
+            // tecSQL
+            // 
+            this.tecSQL.ContextMenuStrip = this.contextMenuStrip1;
+            this.tecSQL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tecSQL.Font = new System.Drawing.Font("Courier New", 10F);
+            this.tecSQL.Location = new System.Drawing.Point(0, 0);
+            this.tecSQL.Name = "tecSQL";
+            this.tecSQL.Size = new System.Drawing.Size(584, 150);
+            this.tecSQL.TabIndex = 0;
+            this.tecSQL.Text = "\r\nSELECT * FROM";
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -87,29 +108,10 @@
             this.dgvResult.Location = new System.Drawing.Point(0, 0);
             this.dgvResult.Name = "dgvResult";
             this.dgvResult.ReadOnly = true;
+            this.dgvResult.RowHeadersWidth = 80;
             this.dgvResult.Size = new System.Drawing.Size(584, 307);
             this.dgvResult.TabIndex = 0;
-            // 
-            // tecSQL
-            // 
-            this.tecSQL.ContextMenuStrip = this.contextMenuStrip1;
-            this.tecSQL.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tecSQL.Font = new System.Drawing.Font("Courier New", 10F);
-            this.tecSQL.Location = new System.Drawing.Point(0, 0);
-            this.tecSQL.Name = "tecSQL";
-            this.tecSQL.Size = new System.Drawing.Size(584, 150);
-            this.tecSQL.TabIndex = 0;
-            this.tecSQL.Text = "\r\nSELECT * FROM";
-            // 
-            // textEditorControl1
-            // 
-            this.textEditorControl1.Font = new System.Drawing.Font("Courier New", 10F);
-            this.textEditorControl1.IsReadOnly = false;
-            this.textEditorControl1.Location = new System.Drawing.Point(328, 104);
-            this.textEditorControl1.Name = "textEditorControl1";
-            this.textEditorControl1.Size = new System.Drawing.Size(8, 8);
-            this.textEditorControl1.TabIndex = 1;
-            this.textEditorControl1.Text = "textEditorControl1";
+            this.dgvResult.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgvResult_RowStateChanged);
             // 
             // SqlQueryDockForm
             // 

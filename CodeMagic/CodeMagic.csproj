@@ -296,6 +296,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Codes\Bootstrap Save.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Codes\common.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
