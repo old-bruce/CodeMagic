@@ -13,6 +13,7 @@ CodeMagic 是使用C#(WinFORM)编写的代码生成器，特性如下：
 
 ## 开发计划
 
+- 查询分析器生成符合查询条件的Model代码
 - 生成MVC Controller 代码
 - 一键生成整站Web CRUD代码（UI基于AdminLTE）
 - 自定义代码段生成
