@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 using CodeMagic.Utility;
 using {NameSpace}.Model;
 
@@ -18,11 +19,11 @@ namespace {NameSpace}.DAL
 
 		public List<{Model}> GetAll()
 		{
+			List<{Model}> result = new List<{Model}>();
 			string sql = "SELECT * FROM [{TableName}]";
 			DataSet ds = DbHelperSQL.Query(sql);
-			if (ds.Tables.Count == 0) return null;
+			if (ds.Tables.Count == 0) return result;
 
-			List<{Model}> result = new List<{Model}>();
 			foreach (DataRow row in ds.Tables[0].Rows)
 			{
 				result.Add(DataRowToModel(row));
@@ -44,15 +45,16 @@ namespace {NameSpace}.DAL
         /// </example>
 		public List<{Model}> GetListByWhere(string where, string orderName, string orderValue = "ASC")
 		{
-			string sql = "SELECT * FROM [{TableName}] WHERE 1=1";
+			StringBuilder sql = new StringBuilder("SELECT * FROM [{TableName}] WHERE 1=1");
 			if (!string.IsNullOrEmpty(where))
 			{
-				sql += " AND " + where;
+				sql.Append(" AND " + where);
 			}
-			DataSet ds = DbHelperSQL.Query(sql);
-			if (ds.Tables.Count == 0) return null;
 
 			List<{Model}> result = new List<{Model}>();
+			DataSet ds = DbHelperSQL.Query(sql.ToString());
+			if (ds.Tables.Count == 0) return result;
+
 			foreach (DataRow row in ds.Tables[0].Rows)
 			{
 				result.Add(DataRowToModel(row));
@@ -75,20 +77,20 @@ namespace {NameSpace}.DAL
         /// </example>
 		public List<{Model}> GetListByWhereAnd(IEnumerable<string> whereAnd, string orderName, string orderValue = "ASC")
 		{
-			string sql = "SELECT * FROM [MEData] WHERE 1=1";
+			StringBuilder sql = new StringBuilder("SELECT * FROM [{TableName}] WHERE 1=1");
 			foreach (var where in whereAnd)
 			{
 				if (!string.IsNullOrEmpty(where))
 				{
-					sql += " AND " + where;
+					sql.Append(" AND " + where);
 				}
 			}
-			sql += string.Format(" ORDER BY {0} {1}", orderName, orderValue);
+			sql.Append(string.Format(" ORDER BY {0} {1}", orderName, orderValue));
 			
-			DataSet ds = DbHelperSQL.Query(sql);
-			if (ds.Tables.Count == 0) return null;
-
 			List<{Model}> result = new List<{Model}>();
+			DataSet ds = DbHelperSQL.Query(sql.ToString());
+			if (ds.Tables.Count == 0) return result;
+
 			foreach (DataRow row in ds.Tables[0].Rows)
 			{
 				result.Add(DataRowToModel(row));
@@ -111,20 +113,20 @@ namespace {NameSpace}.DAL
         /// </example>
 		public List<{Model}> GetListByWhereOr(IEnumerable<string> whereAnd, string orderName, string orderValue = "ASC")
 		{
-			string sql = "SELECT * FROM [MEData] WHERE 1=1";
+			StringBuilder sql = new StringBuilder("SELECT * FROM [{TableName}] WHERE 1=1");
 			foreach (var where in whereAnd)
 			{
 				if (!string.IsNullOrEmpty(where))
 				{
-					sql += " OR " + where;
+					sql.Append(" OR " + where);
 				}
 			}
-			sql += string.Format(" ORDER BY {0} {1}", orderName, orderValue);
+			sql.Append(string.Format(" ORDER BY {0} {1}", orderName, orderValue));
 			
-			DataSet ds = DbHelperSQL.Query(sql);
-			if (ds.Tables.Count == 0) return null;
-
 			List<{Model}> result = new List<{Model}>();
+			DataSet ds = DbHelperSQL.Query(sql.ToString());
+			if (ds.Tables.Count == 0) return result;
+
 			foreach (DataRow row in ds.Tables[0].Rows)
 			{
 				result.Add(DataRowToModel(row));
