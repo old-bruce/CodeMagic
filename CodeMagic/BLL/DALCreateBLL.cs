@@ -156,11 +156,12 @@ namespace CodeMagic.BLL
                     columnName.Substring(0, 1).ToLower() + columnName.Substring(1, columnName.Length - 1),
                     Environment.NewLine);
                 result.AppendLine("\t\t\tDataSet ds = DbHelperSQL.Query(sql, parameters);");
-                result.AppendLine("\t\t\tif (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0) return null;");
                 result.AppendFormat("\t\t\tList<{0}> result = new List<{1}>();{2}",
-                    modelClassName,
-                    modelClassName,
-                    Environment.NewLine);
+                   modelClassName,
+                   modelClassName,
+                   Environment.NewLine);
+                result.AppendLine("\t\t\tif (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0) return result;");
+               
                 result.AppendLine("\t\t\tforeach(DataRow row in ds.Tables[0].Rows)");
                 result.AppendLine("\t\t\t{");
                 result.AppendLine("\t\t\t\tresult.Add(DataRowToModel(row));");
@@ -297,14 +298,9 @@ namespace CodeMagic.BLL
                 string columnName = row["columnName"].ToString();
                 if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
                     continue;
-                result.AppendFormat("\t\t\tif (model.{0} == null){1}", columnName, Environment.NewLine);
-                result.AppendLine("\t\t\t{");
-                result.AppendFormat("\t\t\t\tparameters[{0}].Value = DBNull.Value;{1}", index, Environment.NewLine);
-                result.AppendLine("\t\t\t}");
-                result.AppendLine("\t\t\telse");
-                result.AppendLine("\t\t\t{");
-                result.AppendLine("\t\t\t\t" + "parameters[" + index.ToString() + "].Value = model." + columnName + ";");
-                result.AppendLine("\t\t\t}");
+
+                result.AppendFormat("\t\t\tparameters[{0}].Value = model.{1} == null ? (object)DBNull.Value : model.{1};{2}", index, columnName, Environment.NewLine);
+
                 index++;
             }
 
@@ -327,14 +323,23 @@ namespace CodeMagic.BLL
             {
                 DataRow row = table.Rows[i];
                 string columnName = row["columnName"].ToString();
-                result.AppendFormat("\t\t\tif (model.{0} == null){1}", columnName, Environment.NewLine);
-                result.AppendLine("\t\t\t{");
-                result.AppendFormat("\t\t\t\tparameters[{0}].Value = DBNull.Value;{1}", index, Environment.NewLine);
-                result.AppendLine("\t\t\t}");
-                result.AppendLine("\t\t\telse");
-                result.AppendLine("\t\t\t{");
-                result.AppendLine("\t\t\t\t" + "parameters[" + index.ToString() + "].Value = model." + columnName + ";");
-                result.AppendLine("\t\t\t}");
+                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                {
+                    result.AppendFormat("\t\t\tparameters[{0}].Value = model.{1};{2}", index, columnName, Environment.NewLine);
+                }
+                else
+                {
+                    result.AppendFormat("\t\t\tparameters[{0}].Value = model.{1} == null ? (object)DBNull.Value : model.{1};{2}", index, columnName, Environment.NewLine);
+                }
+                
+                //result.AppendFormat("\t\t\tif (model.{0} == null){1}", columnName, Environment.NewLine);
+                //result.AppendLine("\t\t\t{");
+                //result.AppendFormat("\t\t\t\tparameters[{0}].Value = DBNull.Value;{1}", index, Environment.NewLine);
+                //result.AppendLine("\t\t\t}");
+                //result.AppendLine("\t\t\telse");
+                //result.AppendLine("\t\t\t{");
+                //result.AppendLine("\t\t\t\t" + "parameters[" + index.ToString() + "].Value = model." + columnName + ";");
+                //result.AppendLine("\t\t\t}");
                 index++;
             }
 
