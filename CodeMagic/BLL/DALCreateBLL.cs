@@ -140,7 +140,7 @@ namespace CodeMagic.BLL
                     columnName.Substring(0, 1).ToLower() + columnName.Substring(1, columnName.Length - 1),
                     Environment.NewLine);
                 result.AppendLine("\t\t{");
-                result.AppendFormat("\t\t\tstring sql = \"SELECT * FROM [{0}] WHERE {1}=@{2}\";{3}",
+                result.AppendFormat("\t\t\tstring sql = \"SELECT * FROM [{0}] WHERE [{1}]=@{2}\";{3}",
                     tableName,
                     columnName,
                     columnName,
@@ -189,7 +189,7 @@ namespace CodeMagic.BLL
                     columnName.Substring(0, 1).ToLower() + columnName.Substring(1, columnName.Length - 1),
                     Environment.NewLine);
                 result.AppendLine("\t\t{");
-                result.AppendFormat("\t\t\tstring sql = \"SELECT * FROM [{0}] WHERE {1}=@{2}\";{3}",
+                result.AppendFormat("\t\t\tstring sql = \"SELECT * FROM [{0}] WHERE [{1}]=@{2}\";{3}",
                     tableName,
                     columnName,
                     columnName,
@@ -229,7 +229,7 @@ namespace CodeMagic.BLL
                     columnName.Substring(0, 1).ToLower() + columnName.Substring(1, columnName.Length - 1),
                     Environment.NewLine);
                 result.AppendLine("\t\t{");
-                result.AppendFormat("\t\t\tstring sql = \"DELETE FROM [{0}] WHERE {1}=@{2}\";{3}",
+                result.AppendFormat("\t\t\tstring sql = \"DELETE FROM [{0}] WHERE [{1}]=@{2}\";{3}",
                     tableName,
                     columnName,
                     columnName,
@@ -259,7 +259,7 @@ namespace CodeMagic.BLL
                 if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
                     continue;
                 string columnName = row["columnName"].ToString();
-                sb.Append(columnName + ",");
+                sb.Append("[" + columnName + "],");
             }
             return sb.ToString().TrimEnd(',');
         }
@@ -349,7 +349,7 @@ namespace CodeMagic.BLL
                 if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
                     continue;
                 string columnName = row["columnName"].ToString();
-                sb.AppendFormat("{0}=@{0},", columnName);
+                sb.AppendFormat("[{0}]=@{0},", columnName);
             }
             return sb.ToString().TrimEnd(',');
         }
