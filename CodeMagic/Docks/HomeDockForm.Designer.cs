@@ -85,7 +85,7 @@
             // linkLabel4
             // 
             this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(15, 449);
+            this.linkLabel4.Location = new System.Drawing.Point(12, 447);
             this.linkLabel4.Name = "linkLabel4";
             this.linkLabel4.Size = new System.Drawing.Size(106, 13);
             this.linkLabel4.TabIndex = 6;
@@ -96,7 +96,7 @@
             // linkLabel5
             // 
             this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Location = new System.Drawing.Point(321, 449);
+            this.linkLabel5.Location = new System.Drawing.Point(315, 447);
             this.linkLabel5.Name = "linkLabel5";
             this.linkLabel5.Size = new System.Drawing.Size(172, 13);
             this.linkLabel5.TabIndex = 8;
@@ -107,7 +107,7 @@
             // linkLabel6
             // 
             this.linkLabel6.AutoSize = true;
-            this.linkLabel6.Location = new System.Drawing.Point(629, 449);
+            this.linkLabel6.Location = new System.Drawing.Point(621, 447);
             this.linkLabel6.Name = "linkLabel6";
             this.linkLabel6.Size = new System.Drawing.Size(134, 13);
             this.linkLabel6.TabIndex = 10;
@@ -119,7 +119,7 @@
             // 
             this.pictureBox6.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(629, 246);
+            this.pictureBox6.Location = new System.Drawing.Point(624, 244);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(300, 200);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -131,7 +131,7 @@
             // 
             this.pictureBox5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.pictureBox5.Image = global::CodeMagic.Properties.Resources.element;
-            this.pictureBox5.Location = new System.Drawing.Point(321, 246);
+            this.pictureBox5.Location = new System.Drawing.Point(318, 244);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(300, 200);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -143,7 +143,7 @@
             // 
             this.pictureBox4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.pictureBox4.Image = global::CodeMagic.Properties.Resources.vue;
-            this.pictureBox4.Location = new System.Drawing.Point(15, 246);
+            this.pictureBox4.Location = new System.Drawing.Point(12, 244);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(300, 200);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
