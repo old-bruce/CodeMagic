@@ -309,6 +309,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="magic_hat_64px_1217410_easyicon.net.ico" />
+    <None Include="Resources\adminLTE1.PNG" />
+    <None Include="Resources\adminLTE.PNG" />
+    <None Include="Resources\element.PNG" />
+    <None Include="Resources\vue.PNG" />
+    <None Include="Resources\github1.PNG" />
+    <None Include="Resources\easyicon.PNG" />
+    <None Include="Resources\iconfont1.PNG" />
     <None Include="Resources\ok.png" />
     <None Include="Resources\magic_hat_64px_1217410_easyicon.net.ico" />
     <None Include="Resources\build.png" />
