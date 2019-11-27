@@ -1,4 +1,5 @@
-﻿using CodeMagic.Docks;
+﻿using CodeMagic.BLL;
+using CodeMagic.Docks;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -221,6 +222,11 @@ namespace CodeMagic
         private void 代码段ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenCodeDockSidebar();
+        }
+
+        private void defaultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Dialogs.VueDefaultDialogForm().ShowDialog();
         }
     }
 }

@@ -46,6 +46,9 @@
             this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.dockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.codeCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.defaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +57,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文件FToolStripMenuItem,
             this.视图VToolStripMenuItem,
+            this.codeCToolStripMenuItem,
             this.工具TToolStripMenuItem,
             this.帮助HToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -204,8 +208,32 @@
             this.dockPanel1.Location = new System.Drawing.Point(0, 24);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.ShowDocumentIcon = true;
-            this.dockPanel1.Size = new System.Drawing.Size(784, 515);
+            this.dockPanel1.Size = new System.Drawing.Size(784, 537);
             this.dockPanel1.TabIndex = 3;
+            // 
+            // codeCToolStripMenuItem
+            // 
+            this.codeCToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.vueToolStripMenuItem});
+            this.codeCToolStripMenuItem.Name = "codeCToolStripMenuItem";
+            this.codeCToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.codeCToolStripMenuItem.Text = "Code(&C)";
+            // 
+            // vueToolStripMenuItem
+            // 
+            this.vueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.defaultToolStripMenuItem});
+            this.vueToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.Vue16;
+            this.vueToolStripMenuItem.Name = "vueToolStripMenuItem";
+            this.vueToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.vueToolStripMenuItem.Text = "Vue";
+            // 
+            // defaultToolStripMenuItem
+            // 
+            this.defaultToolStripMenuItem.Name = "defaultToolStripMenuItem";
+            this.defaultToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.defaultToolStripMenuItem.Text = "Default";
+            this.defaultToolStripMenuItem.Click += new System.EventHandler(this.defaultToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -249,6 +277,9 @@
         private System.Windows.Forms.ToolStripMenuItem 代码段ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 数据库ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 模板ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem codeCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem defaultToolStripMenuItem;
     }
 }
 

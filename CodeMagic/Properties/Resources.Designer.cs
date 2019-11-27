@@ -63,6 +63,16 @@ namespace CodeMagic.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap A {
+            get {
+                object obj = ResourceManager.GetObject("A", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_database {
             get {
                 object obj = ResourceManager.GetObject("add_database", resourceCulture);
@@ -516,6 +526,16 @@ namespace CodeMagic.Properties {
         internal static System.Drawing.Bitmap vue {
             get {
                 object obj = ResourceManager.GetObject("vue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Vue16 {
+            get {
+                object obj = ResourceManager.GetObject("Vue16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

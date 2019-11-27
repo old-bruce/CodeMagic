@@ -121,12 +121,21 @@ namespace CodeMagic.Docks
                 _dtColumns);
         }
 
+        private string CreateVUEDefaultCode(DataTable table)
+        {
+            string file = Application.StartupPath + "\\Templates\\VUE\\Default.vue.tpl";
+            return new VueDefaultCreateBLL().GetCode(
+                file,
+                _tableName,
+                new List<string>());
+        }
+
         private void 刷新RToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadColumnsAsync();
         }
 
-        private void btnAdminLTEList_Click(object sender, EventArgs e)
+        private void 列表页ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string codeText = CreateAdminLTEListCode(_dtColumns);
             var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
@@ -134,7 +143,7 @@ namespace CodeMagic.Docks
             dialog.ShowDialog();
         }
 
-        private void btnAdminLTEAdd_Click(object sender, EventArgs e)
+        private void 新增页ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string codeText = CreateAdminLTEAddCode(_dtColumns);
             var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
@@ -142,7 +151,7 @@ namespace CodeMagic.Docks
             dialog.ShowDialog();
         }
 
-        private void btnAdminLTEModify_Click(object sender, EventArgs e)
+        private void 编辑页ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string file = Application.StartupPath + "\\Templates\\AdminLTE.Modify.cshtml.tpl";
             string codeText = File.Exists(file) ? File.ReadAllText(file) : string.Empty;
@@ -151,12 +160,20 @@ namespace CodeMagic.Docks
             dialog.ShowDialog();
         }
 
-        private void btnAdminLTEInfo_Click(object sender, EventArgs e)
+        private void 详情页ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string file = Application.StartupPath + "\\Templates\\AdminLTE.Info.cshtml.tpl";
             string codeText = File.Exists(file) ? File.ReadAllText(file) : string.Empty;
             var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
             dialog.Text = "AdminLTE Info Code";
+            dialog.ShowDialog();
+        }
+
+        private void defaultvueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string codeText = CreateVUEDefaultCode(_dtColumns);
+            var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
+            dialog.Text = "VUE Default";
             dialog.ShowDialog();
         }
     }

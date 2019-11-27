@@ -71,6 +71,7 @@
     <Compile Include="BLL\BLLCreateBLL.cs" />
     <Compile Include="BLL\DALCreateBLL.cs" />
     <Compile Include="BLL\ModelCreateBLL.cs" />
+    <Compile Include="BLL\VueDefaultCreateBLL.cs" />
     <Compile Include="Common\JsonConfig.cs" />
     <Compile Include="Config\CommonConfig.cs" />
     <Compile Include="Dialogs\CodeDialogForm.cs">
@@ -102,6 +103,12 @@
     </Compile>
     <Compile Include="Dialogs\DefaultCodeCreateDialogForm.Designer.cs">
       <DependentUpon>DefaultCodeCreateDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\VueDefaultDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\VueDefaultDialogForm.Designer.cs">
+      <DependentUpon>VueDefaultDialogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Docks\CodeDockForm.cs">
       <SubType>Form</SubType>
@@ -192,6 +199,9 @@
     <EmbeddedResource Include="Dialogs\DefaultCodeCreateDialogForm.resx">
       <DependentUpon>DefaultCodeCreateDialogForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\VueDefaultDialogForm.resx">
+      <DependentUpon>VueDefaultDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Docks\CodeDockForm.resx">
       <DependentUpon>CodeDockForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -227,19 +237,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -309,6 +319,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="magic_hat_64px_1217410_easyicon.net.ico" />
+    <None Include="Resources\Vue16.png" />
+    <None Include="Resources\Vue1.png" />
+    <None Include="Resources\A.png" />
     <None Include="Resources\adminLTE1.PNG" />
     <None Include="Resources\adminLTE.PNG" />
     <None Include="Resources\element.PNG" />
@@ -350,6 +363,9 @@
     <None Include="Resources\code %281%29.png" />
     <None Include="Resources\setting.png" />
     <None Include="Resources\code.png" />
+    <None Include="Templates\Vue\Default.vue.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Templates\AdminLTE.Modify.cshtml.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -34,6 +34,14 @@
             this.dgvColumn = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.刷新RToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uI代码生成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adminLTEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.列表页ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.新增页ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.编辑页ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.详情页ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vUEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.defaultvueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpModel = new System.Windows.Forms.TabPage();
             this.tecModel = new ICSharpCode.TextEditor.TextEditorControlEx();
@@ -41,11 +49,6 @@
             this.tecDAL = new ICSharpCode.TextEditor.TextEditorControlEx();
             this.tpBLL = new System.Windows.Forms.TabPage();
             this.tecBLL = new ICSharpCode.TextEditor.TextEditorControlEx();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btnAdminLTEList = new System.Windows.Forms.Button();
-            this.btnAdminLTEAdd = new System.Windows.Forms.Button();
-            this.btnAdminLTEModify = new System.Windows.Forms.Button();
-            this.btnAdminLTEInfo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -56,7 +59,6 @@
             this.tpModel.SuspendLayout();
             this.tpDAL.SuspendLayout();
             this.tpBLL.SuspendLayout();
-            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -97,24 +99,89 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.刷新RToolStripMenuItem});
+            this.刷新RToolStripMenuItem,
+            this.uI代码生成ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(116, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
             // 
             // 刷新RToolStripMenuItem
             // 
             this.刷新RToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.Refresh;
             this.刷新RToolStripMenuItem.Name = "刷新RToolStripMenuItem";
-            this.刷新RToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.刷新RToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.刷新RToolStripMenuItem.Text = "刷新(&R)";
             this.刷新RToolStripMenuItem.Click += new System.EventHandler(this.刷新RToolStripMenuItem_Click);
+            // 
+            // uI代码生成ToolStripMenuItem
+            // 
+            this.uI代码生成ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.adminLTEToolStripMenuItem,
+            this.vUEToolStripMenuItem});
+            this.uI代码生成ToolStripMenuItem.Name = "uI代码生成ToolStripMenuItem";
+            this.uI代码生成ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.uI代码生成ToolStripMenuItem.Text = "UI代码生成";
+            // 
+            // adminLTEToolStripMenuItem
+            // 
+            this.adminLTEToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.列表页ToolStripMenuItem,
+            this.新增页ToolStripMenuItem,
+            this.编辑页ToolStripMenuItem,
+            this.详情页ToolStripMenuItem});
+            this.adminLTEToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.A;
+            this.adminLTEToolStripMenuItem.Name = "adminLTEToolStripMenuItem";
+            this.adminLTEToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.adminLTEToolStripMenuItem.Text = "AdminLTE";
+            // 
+            // 列表页ToolStripMenuItem
+            // 
+            this.列表页ToolStripMenuItem.Name = "列表页ToolStripMenuItem";
+            this.列表页ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.列表页ToolStripMenuItem.Text = "列表页";
+            this.列表页ToolStripMenuItem.Click += new System.EventHandler(this.列表页ToolStripMenuItem_Click);
+            // 
+            // 新增页ToolStripMenuItem
+            // 
+            this.新增页ToolStripMenuItem.Name = "新增页ToolStripMenuItem";
+            this.新增页ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.新增页ToolStripMenuItem.Text = "新增页";
+            this.新增页ToolStripMenuItem.Click += new System.EventHandler(this.新增页ToolStripMenuItem_Click);
+            // 
+            // 编辑页ToolStripMenuItem
+            // 
+            this.编辑页ToolStripMenuItem.Name = "编辑页ToolStripMenuItem";
+            this.编辑页ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.编辑页ToolStripMenuItem.Text = "编辑页";
+            this.编辑页ToolStripMenuItem.Click += new System.EventHandler(this.编辑页ToolStripMenuItem_Click);
+            // 
+            // 详情页ToolStripMenuItem
+            // 
+            this.详情页ToolStripMenuItem.Name = "详情页ToolStripMenuItem";
+            this.详情页ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.详情页ToolStripMenuItem.Text = "详情页";
+            this.详情页ToolStripMenuItem.Click += new System.EventHandler(this.详情页ToolStripMenuItem_Click);
+            // 
+            // vUEToolStripMenuItem
+            // 
+            this.vUEToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.defaultvueToolStripMenuItem});
+            this.vUEToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.Vue16;
+            this.vUEToolStripMenuItem.Name = "vUEToolStripMenuItem";
+            this.vUEToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.vUEToolStripMenuItem.Text = "VUE";
+            // 
+            // defaultvueToolStripMenuItem
+            // 
+            this.defaultvueToolStripMenuItem.Name = "defaultvueToolStripMenuItem";
+            this.defaultvueToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.defaultvueToolStripMenuItem.Text = "Default.vue";
+            this.defaultvueToolStripMenuItem.Click += new System.EventHandler(this.defaultvueToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tpModel);
             this.tabControl1.Controls.Add(this.tpDAL);
             this.tabControl1.Controls.Add(this.tpBLL);
-            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(5, 5);
             this.tabControl1.Name = "tabControl1";
@@ -137,6 +204,7 @@
             // tecModel
             // 
             this.tecModel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tecModel.FoldingStrategy = "CSharp";
             this.tecModel.Font = new System.Drawing.Font("Courier New", 10F);
             this.tecModel.Location = new System.Drawing.Point(3, 3);
             this.tecModel.Name = "tecModel";
@@ -157,6 +225,7 @@
             // tecDAL
             // 
             this.tecDAL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tecDAL.FoldingStrategy = "CSharp";
             this.tecDAL.Font = new System.Drawing.Font("Courier New", 10F);
             this.tecDAL.Location = new System.Drawing.Point(3, 3);
             this.tecDAL.Name = "tecDAL";
@@ -177,65 +246,12 @@
             // tecBLL
             // 
             this.tecBLL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tecBLL.FoldingStrategy = "CSharp";
             this.tecBLL.Font = new System.Drawing.Font("Courier New", 10F);
             this.tecBLL.Location = new System.Drawing.Point(3, 3);
             this.tecBLL.Name = "tecBLL";
             this.tecBLL.Size = new System.Drawing.Size(560, 335);
             this.tecBLL.TabIndex = 1;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.btnAdminLTEInfo);
-            this.tabPage4.Controls.Add(this.btnAdminLTEModify);
-            this.tabPage4.Controls.Add(this.btnAdminLTEAdd);
-            this.tabPage4.Controls.Add(this.btnAdminLTEList);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(566, 341);
-            this.tabPage4.TabIndex = 7;
-            this.tabPage4.Text = "UI";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // btnAdminLTEList
-            // 
-            this.btnAdminLTEList.Location = new System.Drawing.Point(20, 20);
-            this.btnAdminLTEList.Name = "btnAdminLTEList";
-            this.btnAdminLTEList.Size = new System.Drawing.Size(120, 23);
-            this.btnAdminLTEList.TabIndex = 0;
-            this.btnAdminLTEList.Text = "AdminLTE List";
-            this.btnAdminLTEList.UseVisualStyleBackColor = true;
-            this.btnAdminLTEList.Click += new System.EventHandler(this.btnAdminLTEList_Click);
-            // 
-            // btnAdminLTEAdd
-            // 
-            this.btnAdminLTEAdd.Location = new System.Drawing.Point(20, 49);
-            this.btnAdminLTEAdd.Name = "btnAdminLTEAdd";
-            this.btnAdminLTEAdd.Size = new System.Drawing.Size(120, 23);
-            this.btnAdminLTEAdd.TabIndex = 1;
-            this.btnAdminLTEAdd.Text = "AdminLTE Add";
-            this.btnAdminLTEAdd.UseVisualStyleBackColor = true;
-            this.btnAdminLTEAdd.Click += new System.EventHandler(this.btnAdminLTEAdd_Click);
-            // 
-            // btnAdminLTEModify
-            // 
-            this.btnAdminLTEModify.Location = new System.Drawing.Point(20, 78);
-            this.btnAdminLTEModify.Name = "btnAdminLTEModify";
-            this.btnAdminLTEModify.Size = new System.Drawing.Size(120, 23);
-            this.btnAdminLTEModify.TabIndex = 2;
-            this.btnAdminLTEModify.Text = "AdminLTE Modify";
-            this.btnAdminLTEModify.UseVisualStyleBackColor = true;
-            this.btnAdminLTEModify.Click += new System.EventHandler(this.btnAdminLTEModify_Click);
-            // 
-            // btnAdminLTEInfo
-            // 
-            this.btnAdminLTEInfo.Location = new System.Drawing.Point(20, 107);
-            this.btnAdminLTEInfo.Name = "btnAdminLTEInfo";
-            this.btnAdminLTEInfo.Size = new System.Drawing.Size(120, 23);
-            this.btnAdminLTEInfo.TabIndex = 3;
-            this.btnAdminLTEInfo.Text = "AdminLTE Info";
-            this.btnAdminLTEInfo.UseVisualStyleBackColor = true;
-            this.btnAdminLTEInfo.Click += new System.EventHandler(this.btnAdminLTEInfo_Click);
             // 
             // TableDockForm
             // 
@@ -257,7 +273,6 @@
             this.tpModel.ResumeLayout(false);
             this.tpDAL.ResumeLayout(false);
             this.tpBLL.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -275,10 +290,13 @@
         private ICSharpCode.TextEditor.TextEditorControlEx tecModel;
         private ICSharpCode.TextEditor.TextEditorControlEx tecDAL;
         private ICSharpCode.TextEditor.TextEditorControlEx tecBLL;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Button btnAdminLTEInfo;
-        private System.Windows.Forms.Button btnAdminLTEModify;
-        private System.Windows.Forms.Button btnAdminLTEAdd;
-        private System.Windows.Forms.Button btnAdminLTEList;
+        private System.Windows.Forms.ToolStripMenuItem uI代码生成ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adminLTEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vUEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem defaultvueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 列表页ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 新增页ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 编辑页ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 详情页ToolStripMenuItem;
     }
 }
