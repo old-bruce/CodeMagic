@@ -32,6 +32,7 @@ namespace CodeMagic.Docks
             tecModel.SetHighlighting("C#");
             tecDAL.SetHighlighting("C#");
             tecBLL.SetHighlighting("C#");
+            tecController.SetHighlighting("C#");
         }
 
         private void TableDockForm_Load(object sender, EventArgs e)
@@ -57,6 +58,7 @@ namespace CodeMagic.Docks
                     CreateModelCode(_dtColumns);
                     CreateDALCode(_dtColumns);
                     CreateBLLCode(_dtColumns);
+                    CreateControllerCode(_dtColumns);
                 }));
             }));
         }
@@ -93,6 +95,19 @@ namespace CodeMagic.Docks
                 _tableName,
                 Program.CurrentDBInfo.CodeGenerate.BLLSuffix,
                 new DALCreateBLL().GetDALClassName(_tableName, Program.CurrentDBInfo.CodeGenerate.DALSuffix),
+                new ModelCreateBLL().GetModelClassName(_tableName, Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
+                dtColumns);
+        }
+
+        private void CreateControllerCode(DataTable dtColumns)
+        {
+            string file = Application.StartupPath + "\\Templates\\Controller.cs.tpl";
+            tecController.Text = new ControllerCreateBLL().GetCode(
+                file,
+                Program.CurrentDBInfo.CodeGenerate.NameSpaceName,
+                _tableName,
+                Program.CurrentDBInfo.CodeGenerate.BLLSuffix,
+                new BLLCreateBLL().GetBLLClassName(_tableName, Program.CurrentDBInfo.CodeGenerate.BLLSuffix),
                 new ModelCreateBLL().GetModelClassName(_tableName, Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
                 dtColumns);
         }

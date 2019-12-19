@@ -6,11 +6,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <!--<i class="fa fa-list"></i> -->{Table}
+        <!--<span class="fa fa-list"></span> -->{Table}
         <small></small>
     </h1>
     <ol class="breadcrumb">
-        <li><a><i class="fa fa-dashboard"></i> {Table}</a></li>
+        <li><a><span class="fa fa-dashboard"></span> {Table}</a></li>
         <li class="active">{Table}</li>
     </ol>
 </section>
@@ -19,10 +19,10 @@
 <section class="content container-fluid">
     <div class="box">
         <div class="box-body">
-            <button class="btn btn-sm btn-info" onclick="location.reload()"><i class="fa fa-refresh"></i> Refresh</button>
-            <a class="btn btn-sm btn-success" href="~/{Table}/Add"><i class="fa fa-plus"></i> Add</a>
-            <a class="btn btn-sm btn-warning" href="~/{Table}/Import"><i class="fa fa-reply"></i> Import</a>
-            <a class="btn btn-sm btn-warning" href="~/{Table}/Export" target="_blank"><i class="fa fa-share"></i> Export</a>
+            <button class="btn btn-sm btn-info" onclick="location.reload()"><span class="fa fa-refresh"></span> Refresh</button>
+            <a class="btn btn-sm btn-success" href="~/{Table}/Add"><span class="fa fa-plus"></span> Add</a>
+            <a class="btn btn-sm btn-warning" href="~/{Table}/Import"><span class="fa fa-reply"></span> Import</a>
+            <a class="btn btn-sm btn-warning" href="~/{Table}/Export" target="_blank"><span class="fa fa-share"></span> Export</a>
         </div>
     </div>
     <div class="box">

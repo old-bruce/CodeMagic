@@ -5,11 +5,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <!--<i class="fa fa-list"></i>-->{Table}
+        <!--<span class="fa fa-list"></span>-->{Table}
         <small></small>
     </h1>
     <ol class="breadcrumb">
-        <li><a><i class="fa fa-dashboard"></i> JOMS</a></li>
+        <li><a><span class="fa fa-dashboard"></span> JOMS</a></li>
         <li><a href="~/{Table}">{Table}</a></li>
         <li class="active">Add</li>
 
@@ -20,8 +20,8 @@
 <section class="content container-fluid">
     <div class="box">
         <div class="box-body">
-            <button class="btn btn-sm btn-info" onclick="location.reload()"><i class="fa fa-refresh"></i> Refresh</button>
-            <a class="btn btn-sm btn-default" href="~/{Table}"><i class="fa fa-reply"></i> Return</a>
+            <button class="btn btn-sm btn-info" onclick="location.reload()"><span class="fa fa-refresh"></span> Refresh</button>
+            <a class="btn btn-sm btn-default" href="~/{Table}"><span class="fa fa-reply"></span> Return</a>
         </div>
     </div>
     <div class="box">
@@ -41,8 +41,8 @@
                     <span class="label label-default">* Is Required</span>
                 </div>
                 <div class="col-md-6 text-right">
-                    <button class="btn btn-sm btn-success" onclick="Save()"><i class="fa fa-save"></i> Save</button>
-                    <a class="btn btn-sm btn-default" href="~/{Table}"><i class="fa fa-reply"></i> Return</a>
+                    <button class="btn btn-sm btn-success" onclick="Save()"><span class="fa fa-save"></span> Save</button>
+                    <a class="btn btn-sm btn-default" href="~/{Table}"><span class="fa fa-reply"></span> Return</a>
                 </div>
             </div>
         </div>

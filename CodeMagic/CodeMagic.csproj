@@ -69,6 +69,7 @@
     <Compile Include="BLL\AdminLTEListCreateBLL.cs" />
     <Compile Include="BLL\BaseCreateBLL.cs" />
     <Compile Include="BLL\BLLCreateBLL.cs" />
+    <Compile Include="BLL\ControllerCreateBLL.cs" />
     <Compile Include="BLL\DALCreateBLL.cs" />
     <Compile Include="BLL\ModelCreateBLL.cs" />
     <Compile Include="BLL\VueDefaultCreateBLL.cs" />
@@ -363,6 +364,9 @@
     <None Include="Resources\code %281%29.png" />
     <None Include="Resources\setting.png" />
     <None Include="Resources\code.png" />
+    <None Include="Templates\Controller.cs.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Templates\Vue\Default.vue.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
