@@ -58,7 +58,7 @@ namespace {NameSpace}.Controllers
         private void Insert()
         {
             {TableName}Model model = new {TableName}Model();
-            {Insert}
+{Insert}
             {tableName}Bll.Insert(model);
         }
 
@@ -66,7 +66,7 @@ namespace {NameSpace}.Controllers
         {
             int {tableName}ID = int.Parse(Request.Params["{id}"]);
             {TableName}Model model = {tableName}Bll.GetModel({id});
-            {Update}
+{Update}
             {tableName}Bll.Update(model);
         }
 

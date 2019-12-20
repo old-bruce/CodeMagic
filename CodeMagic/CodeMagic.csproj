@@ -316,7 +316,7 @@
     <Content Include="Codes\Bootstrap.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Codes\NewFolder1\TextFile1.txt">
+    <Content Include="Codes\common.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="magic_hat_64px_1217410_easyicon.net.ico" />
@@ -385,7 +385,7 @@
     <None Include="Templates\AdminLTE.List.cshtml.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Content Include="Codes\common.js">
+    <Content Include="Codes\util.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Templates\Model.cs.tpl">
