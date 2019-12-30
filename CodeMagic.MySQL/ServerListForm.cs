@@ -57,5 +57,16 @@ namespace CodeMagic.MySQL
             AppConfig.Instance.Save();
             LoadServerList();
         }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            if (dgv1.SelectedRows.Count == 0) return;
+
+            var server = dgv1.SelectedRows[0].DataBoundItem as Server;
+            if (new ModifyServerForm(server).ShowDialog() == DialogResult.OK)
+            {
+                LoadServerList();
+            }
+        }
     }
 }

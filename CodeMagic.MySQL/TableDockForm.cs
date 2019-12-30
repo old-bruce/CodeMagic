@@ -1,4 +1,6 @@
 ﻿using CodeMagic.MySQL.Config;
+using CodeMagic.MySQL.DataAccess;
+using CodeMagic.MySQL.DataAccess.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +25,41 @@ namespace CodeMagic.MySQL
 
         }
 
+        private Server _currentServer;
         public void LoadTablesAsync(Server server)
+        {
+            _currentServer = server;
+            tv.Nodes.Clear();
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    using (var db = new AppDb(server.GetInformation_chemaConnectString()))
+                    {
+                        db.Open();
+
+                        TablesDal dal = new TablesDal(db);
+                        List<TablesModel> modelList = dal.GetListBySchemaName(server.DbName);
+                        this.Invoke(new Action(() =>
+                        {
+                            SetUI(server, modelList);
+                            this.TabText = "数据库";
+                        }));
+                    }
+                }
+                catch(Exception ex)
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        this.TabText = "数据库";
+                        MsgBox.Error("加载表异常！\n" + ex.Message);
+                    }));
+                }
+            });
+            this.TabText = "loading...";
+        }
+
+        private void SetUI(Server server, List<TablesModel> modelList)
         {
             TreeNode hostNode = new TreeNode(server.Host);
             hostNode.ImageIndex = 0;
@@ -36,7 +72,24 @@ namespace CodeMagic.MySQL
             dbNode.SelectedImageIndex = 1;
             hostNode.Nodes.Add(dbNode);
 
+            foreach (var model in modelList)
+            {
+                TreeNode tableNode = new TreeNode(model.TABLE_NAME);
+                tableNode.ToolTipText = string.Format("{0}\n\n存储引擎：{1}",
+                    model.TABLE_COMMENT, model.ENGINE);
+                tableNode.Tag = model;
+                dbNode.Nodes.Add(tableNode);
+            }
+
             tv.ExpandAll();
+        }
+
+        private void tv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            TablesModel model = e.Node.Tag as TablesModel;
+            if (model == null) return;
+
+            new ColumnDockForm(_currentServer, model).Show(Program.DockMainForm.dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.Document);
         }
     }
 }

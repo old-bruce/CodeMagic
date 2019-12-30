@@ -5,11 +5,11 @@ using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace {NameSpace}.Models
+namespace {NameSpace}.DataAccess.Model
 {
     public class {Table}
     {
-        {Columns}
+{Columns}
 
         internal AppDb Db { get; set; }
 
@@ -20,22 +20,48 @@ namespace {NameSpace}.Models
             this.Db = db;
         }
 
+        public void Insert()
+        {
+            var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = {InsertSQL};
+            BindParams(cmd);
+            cmd.ExecuteNonQuery();
+            Id = (int)cmd.LastInsertedId;
+        }
+
         public async Task InsertAsync()
         {
-            using var cmd = Db.Connection.CreateCommand();
+            var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = {InsertSQL};
             BindParams(cmd);
             await cmd.ExecuteNonQueryAsync();
             Id = (int)cmd.LastInsertedId;
         }
 
+        public void Update()
+        {
+            var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = {UpdateSQL};
+            BindParams(cmd);
+            BindId(cmd);
+            cmd.ExecuteNonQuery();
+        }
+
         public async Task UpdateAsync()
         {
-            using var cmd = Db.Connection.CreateCommand();
+            var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = {UpdateSQL};
             BindParams(cmd);
             BindId(cmd);
             await cmd.ExecuteNonQueryAsync();
+        }
+
+        public void Delete()
+        {
+            var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = {DeleteSQL};
+            BindId(cmd);
+            cmd.ExecuteNonQuery();
         }
 
         public async Task DeleteAsync()
@@ -48,12 +74,12 @@ namespace {NameSpace}.Models
 
         private void BindId(MySqlCommand cmd)
         {
-            {BindId}
+{BindId}
         }
 
         private void BindParams(MySqlCommand cmd)
         {
-            {BindParams}
+{BindParams}
         }
     }
 }

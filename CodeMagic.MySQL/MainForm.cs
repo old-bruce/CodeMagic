@@ -47,7 +47,7 @@ namespace CodeMagic.MySQL
         private void 模型类ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CodeDockForm codeForm = new CodeDockForm();
-            codeForm.Text = "Table.cs.tpl";
+            codeForm.TabText = "Table.cs.tpl";
             codeForm.teCode.Text = File.ReadAllText(Application.StartupPath + @"\Templates\Table.cs.tpl");
             codeForm.Show(dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.Document);
         }
@@ -55,7 +55,7 @@ namespace CodeMagic.MySQL
         private void 查询类ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CodeDockForm codeForm = new CodeDockForm();
-            codeForm.Text = "TableQuery.cs.tpl";
+            codeForm.TabText = "TableQuery.cs.tpl";
             codeForm.teCode.Text = File.ReadAllText(Application.StartupPath + @"\Templates\TableQuery.cs.tpl");
             codeForm.Show(dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.Document);
         }
@@ -63,7 +63,7 @@ namespace CodeMagic.MySQL
         private void appDBToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             CodeDockForm codeForm = new CodeDockForm();
-            codeForm.Text = "AppDb.cs.tpl";
+            codeForm.TabText = "AppDb.cs.tpl";
             codeForm.teCode.Text = File.ReadAllText(Application.StartupPath + @"\Templates\AppDb.cs.tpl");
             codeForm.Show(dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.Document);
         }
@@ -85,8 +85,8 @@ namespace CodeMagic.MySQL
             {
                 _tableDockForm = new TableDockForm();
             }
-            _tableDockForm.LoadTablesAsync(currentServer);
             _tableDockForm.Show(dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft);
+            _tableDockForm.LoadTablesAsync(currentServer);
         }
 
         private void 刷新ToolStripMenuItem_Click(object sender, EventArgs e)

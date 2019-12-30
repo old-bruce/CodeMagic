@@ -7,6 +7,8 @@ namespace CodeMagic.MySQL
 {
     static class Program
     {
+        public static MainForm DockMainForm { get; set; }
+
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -15,7 +17,8 @@ namespace CodeMagic.MySQL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            DockMainForm = new MainForm();
+            Application.Run(DockMainForm);
         }
     }
 }

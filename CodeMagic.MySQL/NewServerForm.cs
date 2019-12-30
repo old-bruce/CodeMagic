@@ -1,4 +1,5 @@
 ﻿using CodeMagic.MySQL.Config;
+using CodeMagic.MySQL.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,6 +54,29 @@ namespace CodeMagic.MySQL
                 Password = tbxPassword.Text,
                 DbName = tbxDBName.Text
             };
+
+            try
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    using (var db = new AppDb(server.GetConnectString()))
+                    {
+                        db.Open();
+                    }
+                    this.Invoke(new Action(()=> 
+                    {
+                        MsgBox.Info("测试连接成功");
+                        btnTest.Enabled = true;
+                    }));
+                    
+                });
+                btnTest.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Error(ex.Message);
+                btnTest.Enabled = true;
+            }
         }
 
         private bool CheckUI()

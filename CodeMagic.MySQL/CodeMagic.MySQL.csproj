@@ -41,11 +41,27 @@
     <Reference Include="ICSharpCode.TextEditor, Version=3.2.1.6466, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
       <HintPath>..\packages\ICSharpCode.TextEditor.3.2.1.6466\lib\Net20\ICSharpCode.TextEditor.dll</HintPath>
     </Reference>
+    <Reference Include="MySqlConnector, Version=0.61.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySqlConnector.0.61.0\lib\net45\MySqlConnector.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.0\lib\netstandard1.1\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,14 +75,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bll\AppDbCodeBll.cs" />
+    <Compile Include="Bll\CodeHelp.cs" />
+    <Compile Include="Bll\ControllerCodeBll.cs" />
+    <Compile Include="Bll\TableCodeBll.cs" />
+    <Compile Include="Bll\TableQueryCodeBll.cs" />
     <Compile Include="CodeDockForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CodeDockForm.Designer.cs">
       <DependentUpon>CodeDockForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ColumnDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ColumnDockForm.Designer.cs">
+      <DependentUpon>ColumnDockForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Config\AppConfig.cs" />
     <Compile Include="Config\Server.cs" />
+    <Compile Include="DataAccess\AppDb.cs" />
+    <Compile Include="DataAccess\ColumnsDal.cs" />
+    <Compile Include="DataAccess\Model\ColumnsModel.cs" />
+    <Compile Include="DataAccess\Model\TablesModel.cs" />
+    <Compile Include="DataAccess\TablesDal.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +106,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MsgBox.cs" />
+    <Compile Include="ModifyServerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifyServerForm.Designer.cs">
+      <DependentUpon>ModifyServerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewServerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,8 +135,14 @@
     <EmbeddedResource Include="CodeDockForm.resx">
       <DependentUpon>CodeDockForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ColumnDockForm.resx">
+      <DependentUpon>ColumnDockForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyServerForm.resx">
+      <DependentUpon>ModifyServerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewServerForm.resx">
       <DependentUpon>NewServerForm.cs</DependentUpon>
@@ -130,6 +174,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Templates\Controller.cs.tpl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Templates\AppDb.cs.tpl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

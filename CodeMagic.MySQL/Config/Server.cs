@@ -16,5 +16,17 @@ namespace CodeMagic.MySQL.Config
         public string DbName { get; set; }
 
         public string NameSpace { get; set; }
+
+        public string GetConnectString()
+        {
+            return string.Format("Server={0};Port={1};User ID={2};Password={3};Database={4}",
+                Host, Port, User, Password, DbName);
+        }
+
+        public string GetInformation_chemaConnectString()
+        {
+            return string.Format("Server={0};Port={1};User ID={2};Password={3};Database=Information_schema",
+                Host, Port, User, Password);
+        }
     }
 }

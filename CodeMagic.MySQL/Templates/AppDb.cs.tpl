@@ -13,6 +13,11 @@ namespace {NameSpace}
             Connection = new MySqlConnection(connectionString);
         }
 
+        public void Open()
+        {
+            return this.Connection.Open();
+        }
+
         public Task OpenAsync()
         {
             return this.Connection.OpenAsync();

@@ -30,18 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerListForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnAdd = new System.Windows.Forms.ToolStripButton();
+            this.btnModify = new System.Windows.Forms.ToolStripButton();
+            this.btnRemove = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.dgv1 = new System.Windows.Forms.DataGridView();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dgv1 = new System.Windows.Forms.DataGridView();
             this.host = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.port = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.user = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dbname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cnamespace = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAdd = new System.Windows.Forms.ToolStripButton();
-            this.btnModify = new System.Windows.Forms.ToolStripButton();
-            this.btnRemove = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
@@ -62,16 +62,49 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::CodeMagic.MySQL.Properties.Resources.Add;
+            this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(63, 24);
+            this.btnAdd.Text = "新增";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnModify
+            // 
+            this.btnModify.Image = global::CodeMagic.MySQL.Properties.Resources.edit;
+            this.btnModify.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnModify.Name = "btnModify";
+            this.btnModify.Size = new System.Drawing.Size(63, 24);
+            this.btnModify.Text = "修改";
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Image = global::CodeMagic.MySQL.Properties.Resources.remove;
+            this.btnRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(64, 24);
+            this.btnRemove.Text = "删除";
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 627);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 671);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1093, 26);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(40, 20);
+            this.toolStripStatusLabel1.Text = "就绪";
             // 
             // dgv1
             // 
@@ -91,14 +124,8 @@
             this.dgv1.ReadOnly = true;
             this.dgv1.RowHeadersWidth = 51;
             this.dgv1.RowTemplate.Height = 27;
-            this.dgv1.Size = new System.Drawing.Size(1093, 590);
+            this.dgv1.Size = new System.Drawing.Size(1093, 634);
             this.dgv1.TabIndex = 2;
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(39, 20);
-            this.toolStripStatusLabel1.Text = "就绪";
             // 
             // host
             // 
@@ -154,37 +181,11 @@
             this.cnamespace.ReadOnly = true;
             this.cnamespace.Width = 125;
             // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::CodeMagic.MySQL.Properties.Resources.Add;
-            this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(63, 24);
-            this.btnAdd.Text = "新增";
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnModify
-            // 
-            this.btnModify.Image = global::CodeMagic.MySQL.Properties.Resources.edit;
-            this.btnModify.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(63, 24);
-            this.btnModify.Text = "修改";
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Image = global::CodeMagic.MySQL.Properties.Resources.remove;
-            this.btnRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(63, 24);
-            this.btnRemove.Text = "删除";
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
             // ServerListForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1093, 653);
+            this.ClientSize = new System.Drawing.Size(1093, 697);
             this.Controls.Add(this.dgv1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
