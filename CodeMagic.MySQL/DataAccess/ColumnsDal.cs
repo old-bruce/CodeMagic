@@ -15,34 +15,36 @@ namespace CodeMagic.MySQL.DataAccess
             Db = db;
         }
 
-        public List<ColumnsModel> GetListBySchemaAndTable(string SCHEMA_NAME, string TABLE_NAME)
+        public List<ColumnModel> GetListBySchemaAndTable(string SCHEMA_NAME, string TABLE_NAME)
         {
-            var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `TABLE_SCHEMA`,`TABLE_NAME`,`COLUMN_NAME`,`IS_NULLABLE`,`DATA_TYPE`,`COLUMN_TYPE`,`COLUMN_KEY`,`EXTRA`,`COLUMN_COMMENT` FROM `COLUMNS` WHERE `TABLE_SCHEMA` = @TABLE_SCHEMA AND `TABLE_NAME` = @TABLE_NAME";
-            cmd.Parameters.Add(new MySqlParameter
+            using (var cmd = Db.Connection.CreateCommand())
             {
-                ParameterName = "@TABLE_SCHEMA",
-                DbType = DbType.String,
-                Value = SCHEMA_NAME
-            });
-            cmd.Parameters.Add(new MySqlParameter
-            {
-                ParameterName = "@TABLE_NAME",
-                DbType = DbType.String,
-                Value = TABLE_NAME
-            });
-            return ReadAll(cmd.ExecuteReader());
+                cmd.CommandText = @"SELECT `TABLE_SCHEMA`,`TABLE_NAME`,`COLUMN_NAME`,`IS_NULLABLE`,`DATA_TYPE`,`COLUMN_TYPE`,`COLUMN_KEY`,`EXTRA`,`COLUMN_COMMENT` FROM `COLUMNS` WHERE `TABLE_SCHEMA` = @TABLE_SCHEMA AND `TABLE_NAME` = @TABLE_NAME";
+                cmd.Parameters.Add(new MySqlParameter
+                {
+                    ParameterName = "@TABLE_SCHEMA",
+                    DbType = DbType.String,
+                    Value = SCHEMA_NAME
+                });
+                cmd.Parameters.Add(new MySqlParameter
+                {
+                    ParameterName = "@TABLE_NAME",
+                    DbType = DbType.String,
+                    Value = TABLE_NAME
+                });
+                return ReadAll(cmd.ExecuteReader());
+            }
         }
 
-        private List<ColumnsModel> ReadAll(DbDataReader reader)
+        private List<ColumnModel> ReadAll(DbDataReader reader)
         {
-            var result = new List<ColumnsModel>();
+            var result = new List<ColumnModel>();
             using (reader)
             {
                 while (reader.Read())
                 {
-                    var model = new ColumnsModel();
-                    model.TABLE_SCHEMA = reader.GetString(0);
+                    var model = new ColumnModel();
+                    model.TABLE_SCHEMA = reader.GetFieldValue<string>(0);
                     model.TABLE_NAME = reader.GetString(1);
                     model.COLUMN_NAME = reader.GetString(2);
                     model.IS_NULLABLE = reader.GetString(3);

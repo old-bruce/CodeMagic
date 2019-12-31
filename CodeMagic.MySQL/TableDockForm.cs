@@ -39,7 +39,7 @@ namespace CodeMagic.MySQL
                         db.Open();
 
                         TablesDal dal = new TablesDal(db);
-                        List<TablesModel> modelList = dal.GetListBySchemaName(server.DbName);
+                        List<TableModel> modelList = dal.GetListBySchemaName(server.DbName);
                         this.Invoke(new Action(() =>
                         {
                             SetUI(server, modelList);
@@ -52,14 +52,14 @@ namespace CodeMagic.MySQL
                     this.Invoke(new Action(() =>
                     {
                         this.TabText = "数据库";
-                        MsgBox.Error("加载表异常！\n" + ex.Message);
+                        MsgBox.Error(string.Format("[{0}]：加载表异常！\n{1}", server.DbName, ex.Message));
                     }));
                 }
             });
             this.TabText = "loading...";
         }
 
-        private void SetUI(Server server, List<TablesModel> modelList)
+        private void SetUI(Server server, List<TableModel> modelList)
         {
             TreeNode hostNode = new TreeNode(server.Host);
             hostNode.ImageIndex = 0;
@@ -86,7 +86,7 @@ namespace CodeMagic.MySQL
 
         private void tv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            TablesModel model = e.Node.Tag as TablesModel;
+            TableModel model = e.Node.Tag as TableModel;
             if (model == null) return;
 
             new ColumnDockForm(_currentServer, model).Show(Program.DockMainForm.dockPanel1, WeifenLuo.WinFormsUI.Docking.DockState.Document);

@@ -15,27 +15,29 @@ namespace CodeMagic.MySQL.DataAccess
             Db = db;
         }
 
-        public List<TablesModel> GetListBySchemaName(string SCHEMA_NAME)
+        public List<TableModel> GetListBySchemaName(string SCHEMA_NAME)
         {
-            var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `TABLE_SCHEMA`,`TABLE_NAME`,`ENGINE`,`TABLE_COMMENT` FROM `TABLES` WHERE `TABLE_SCHEMA` = @TABLE_SCHEMA";
-            cmd.Parameters.Add(new MySqlParameter
+            using (var cmd = Db.Connection.CreateCommand())
             {
-                ParameterName = "@TABLE_SCHEMA",
-                DbType = DbType.String,
-                Value = SCHEMA_NAME
-            });
-            return ReadAll(cmd.ExecuteReader());
+                cmd.CommandText = @"SELECT `TABLE_SCHEMA`,`TABLE_NAME`,`ENGINE`,`TABLE_COMMENT` FROM `TABLES` WHERE `TABLE_SCHEMA` = @TABLE_SCHEMA";
+                cmd.Parameters.Add(new MySqlParameter
+                {
+                    ParameterName = "@TABLE_SCHEMA",
+                    DbType = DbType.String,
+                    Value = SCHEMA_NAME
+                });
+                return ReadAll(cmd.ExecuteReader());
+            }
         }
 
-        private List<TablesModel> ReadAll(DbDataReader reader)
+        private List<TableModel> ReadAll(DbDataReader reader)
         {
-            var result = new List<TablesModel>();
+            var result = new List<TableModel>();
             using (reader)
             {
                 while (reader.Read())
                 {
-                    var model = new TablesModel();
+                    var model = new TableModel();
                     model.TABLE_SCHEMA = reader.GetString(0);
                     model.TABLE_NAME = reader.GetString(1);
                     model.ENGINE = reader.GetString(2);

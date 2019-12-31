@@ -19,6 +19,16 @@ namespace CodeMagic.MySQL.Bll
         }
 
         /// <summary>
+        /// 首字母小写
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string FirstLower(string value)
+        {
+            return value.Substring(0, 1).ToLower() + value.Substring(1, value.Length - 1);
+        }
+
+        /// <summary>
         /// 驼峰命名
         /// </summary>
         /// <param name="value"></param>
@@ -56,6 +66,22 @@ namespace CodeMagic.MySQL.Bll
         public static string Tab5()
         {
             return TabString(5);
+        }
+        public static string Tab6()
+        {
+            return TabString(6);
+        }
+        public static string Tab7()
+        {
+            return TabString(7);
+        }
+        public static string Tab8()
+        {
+            return TabString(8);
+        }
+        public static string Tab9()
+        {
+            return TabString(9);
         }
 
         public static string TabString(int tabCount)

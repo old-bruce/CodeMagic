@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeMagic.MySQL.DataAccess.Model
 {
-    public class ColumnsModel
+    public class ColumnModel
     {
         /// <summary>
         /// 数据库名称

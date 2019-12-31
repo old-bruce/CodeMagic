@@ -96,8 +96,8 @@
     <Compile Include="Config\Server.cs" />
     <Compile Include="DataAccess\AppDb.cs" />
     <Compile Include="DataAccess\ColumnsDal.cs" />
-    <Compile Include="DataAccess\Model\ColumnsModel.cs" />
-    <Compile Include="DataAccess\Model\TablesModel.cs" />
+    <Compile Include="DataAccess\Model\ColumnModel.cs" />
+    <Compile Include="DataAccess\Model\TableModel.cs" />
     <Compile Include="DataAccess\TablesDal.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

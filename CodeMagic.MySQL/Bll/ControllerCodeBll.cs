@@ -13,8 +13,8 @@ namespace CodeMagic.MySQL.Bll
     {
         private Server _server;
         private string _tableName;
-        private List<ColumnsModel> _columnsModels;
-        public ControllerCodeBll(Server server, string tableName, List<ColumnsModel> columnsModels)
+        private List<ColumnModel> _columnsModels;
+        public ControllerCodeBll(Server server, string tableName, List<ColumnModel> columnsModels)
         {
             _server = server;
             _tableName = tableName;

@@ -17,8 +17,8 @@ namespace CodeMagic.MySQL
     public partial class ColumnDockForm : WeifenLuo.WinFormsUI.Docking.DockContent
     {
         private Server _server;
-        private TablesModel _model;
-        public ColumnDockForm(Server serverInfo, TablesModel model)
+        private TableModel _model;
+        public ColumnDockForm(Server serverInfo, TableModel model)
         {
             _server = serverInfo;
             _model = model;
@@ -47,7 +47,7 @@ namespace CodeMagic.MySQL
                         db.Open();
 
                         ColumnsDal dal = new ColumnsDal(db);
-                        List<ColumnsModel> modelList = dal.GetListBySchemaAndTable(_server.DbName, _model.TABLE_NAME);
+                        List<ColumnModel> modelList = dal.GetListBySchemaAndTable(_server.DbName, _model.TABLE_NAME);
                         this.Invoke(new Action(() =>
                         {
                             dgvColumn.DataSource = modelList;
@@ -65,7 +65,7 @@ namespace CodeMagic.MySQL
             });
         }
 
-        private void CreateCode(List<ColumnsModel> modelList)
+        private void CreateCode(List<ColumnModel> modelList)
         {
             tecTable.Text = new TableCodeBll(_server, _model.TABLE_NAME, modelList).CreateCode(Application.StartupPath + @"/Templates/Table.cs.tpl");
             tecTableQuery.Text = new TableQueryCodeBll(_server, _model.TABLE_NAME,  modelList).CreateCode(Application.StartupPath + @"/Templates/TableQuery.cs.tpl");
