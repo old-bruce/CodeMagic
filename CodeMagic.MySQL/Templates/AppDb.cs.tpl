@@ -15,7 +15,7 @@ namespace {NameSpace}.DataAccess
 
         public void Open()
         {
-            return this.Connection.Open();
+            this.Connection.Open();
         }
 
         public Task OpenAsync()
