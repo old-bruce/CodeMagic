@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace {NameSpace}
+namespace {NameSpace}.DataAccess
 {
     public class AppDb : IDisposable
     {

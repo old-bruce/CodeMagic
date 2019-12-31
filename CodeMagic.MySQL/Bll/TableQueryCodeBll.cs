@@ -29,7 +29,7 @@ namespace CodeMagic.MySQL.Bll
         /// {Columns}
         /// {KeyWhere}
         /// {FindByColumnParam}
-        /// 
+        /// {KeyParamters}
         /// </summary>
         /// <param name="tplFile"></param>
         /// <returns></returns>
@@ -44,6 +44,7 @@ namespace CodeMagic.MySQL.Bll
             content = content.Replace("{KeyWhere}", GetKeyWhereCode());
             content = content.Replace("{ModelParam}", GetModelParamCode());
             content = content.Replace("{FindByColumnMethodList}", GetFindByColumnMethodListCode());
+            content = content.Replace("{KeyParamters}", GetKeyParamtersCode());
             return content;
         }
 
@@ -107,6 +108,7 @@ namespace CodeMagic.MySQL.Bll
             foreach (var columnModel in _columnsModels)
             {
                 result.AppendLine(GetFindByColumnMethodCode(columnModel));
+                result.AppendLine(GetFindByColumnMethodAsyncCode(columnModel));
             }
             return result.ToString();
         }
@@ -142,6 +144,37 @@ namespace CodeMagic.MySQL.Bll
             return result.ToString();
         }
 
+        private string GetFindByColumnMethodAsyncCode(ColumnModel columnModel)
+        {
+            StringBuilder result = new StringBuilder();
+            result.AppendFormat(CodeHelp.Tab2() + "public Task<List<{0}>> FindBy{1}Async({2} {3})\n",
+                CodeHelp.CamelCase(_tableName),
+                CodeHelp.CamelCase(columnModel.COLUMN_NAME),
+                CodeHelp.GetCSharpTypeString(columnModel.COLUMN_TYPE, false),
+                CodeHelp.FirstLower(CodeHelp.CamelCase(columnModel.COLUMN_NAME)));
+            result.AppendLine(CodeHelp.Tab2() + "{");
+            result.AppendLine(CodeHelp.Tab3() + "using (var cmd = Db.Connection.CreateCommand())");
+            result.AppendLine(CodeHelp.Tab3() + "{");
+            result.AppendFormat(CodeHelp.Tab4() + "cmd.CommandText = @\"SELECT {0} FROM `{1}` WHERE {2} = @{3}\";\n",
+                GetColumnsCode(),
+                _tableName,
+                columnModel.COLUMN_NAME,
+                CodeHelp.CamelCase(columnModel.COLUMN_NAME));
+            result.AppendLine(CodeHelp.Tab4() + "cmd.Parameters.Add(new MySqlParameter");
+            result.AppendLine(CodeHelp.Tab4() + "{");
+            result.AppendFormat(CodeHelp.Tab5() + "ParameterName = \"@{0}\",\n",
+                CodeHelp.CamelCase(columnModel.COLUMN_NAME));
+            result.AppendFormat(CodeHelp.Tab5() + "DbType = DbType.{0},\n",
+                CodeHelp.GetMySqlDBTypeString(columnModel.COLUMN_TYPE));
+            result.AppendFormat(CodeHelp.Tab5() + "Value = {0},\n",
+                CodeHelp.FirstLower(CodeHelp.CamelCase(columnModel.COLUMN_NAME)));
+            result.AppendLine(CodeHelp.Tab4() + "});");
+            result.AppendLine(CodeHelp.Tab4() + "return await ReadAllAsync(await cmd.ExecuteReaderAsync());");
+            result.AppendLine(CodeHelp.Tab3() + "}");
+            result.AppendLine(CodeHelp.Tab2() + "}");
+            return result.ToString();
+        }
+
         private string GetModelParamCode()
         {
             StringBuilder result = new StringBuilder();
@@ -168,12 +201,23 @@ namespace CodeMagic.MySQL.Bll
             return result.ToString();
         }
 
-        private string GetCode()
+        private string GetKeyParamtersCode()
         {
             StringBuilder result = new StringBuilder();
-            foreach (var columnModel in _columnsModels) 
-            { 
-
+            foreach (var columnModel in _columnsModels)
+            {
+                if (columnModel.COLUMN_KEY == "PRI")
+                {
+                    result.AppendLine(CodeHelp.Tab4() + "cmd.Parameters.Add(new MySqlParameter");
+                    result.AppendLine(CodeHelp.Tab4() + "{");
+                    result.AppendFormat(CodeHelp.Tab5() + "ParameterName = \"@{0}\",\n",
+                        CodeHelp.CamelCase(columnModel.COLUMN_NAME));
+                    result.AppendFormat(CodeHelp.Tab5() + "DbType = DbType.{0},\n",
+                        CodeHelp.GetCSharpTypeString(columnModel.COLUMN_TYPE, false));
+                    result.AppendFormat(CodeHelp.Tab5() + "Value = {0},\n",
+                        CodeHelp.FirstLower(CodeHelp.CamelCase(columnModel.COLUMN_NAME)));
+                    result.AppendLine(CodeHelp.Tab4() + "}");
+                }
             }
             return result.ToString();
         }

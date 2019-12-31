@@ -128,6 +128,7 @@
             // 
             // 新建服务器ToolStripMenuItem1
             // 
+            this.新建服务器ToolStripMenuItem1.Image = global::CodeMagic.MySQL.Properties.Resources.add__1_;
             this.新建服务器ToolStripMenuItem1.Name = "新建服务器ToolStripMenuItem1";
             this.新建服务器ToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.A)));

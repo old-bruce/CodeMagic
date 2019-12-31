@@ -12,8 +12,10 @@ using {NameSpace}.DataAccess;
 
 namespace {NameSpace}.Controllers
 {
-    public class {Table}Controller : BaseController
+    public class {Table}Controller : Controller
     {
+        private AppDb Db;
+
         public {Table}Controller(AppDb db)
         {
             this.Db = db;

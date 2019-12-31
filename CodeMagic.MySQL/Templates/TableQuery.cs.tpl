@@ -19,35 +19,57 @@ namespace {NameSpace}.DataAccess
 
         public {Table} FindOne({FindOneParams})
         {
-            var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT {Columns} FROM `{table}` WHERE {KeyWhere}";
-{KeyParamters}
-            cmd.Parameters.Add(new MySqlParameter
+            using (var cmd = Db.Connection.CreateCommand())
             {
-                ParameterName = "@id",
-                DbType = DbType.Int32,
-                Value = id,
-            });
-            var result = ReadAll(cmd.ExecuteReader());
-            return result.Count > 0 ? result[0] : null;
+                cmd.CommandText = @"SELECT {Columns} FROM `{table}` WHERE {KeyWhere}";
+{KeyParamters}
+                var result = ReadAll(cmd.ExecuteReader());
+                return result.Count > 0 ? result[0] : null;
+            }
+        }
+
+        public Task<{Table}> FindOneAsync({FindOneParams})
+        {
+            using (var cmd = Db.Connection.CreateCommand())
+            {
+                cmd.CommandText = @"SELECT {Columns} FROM `{table}` WHERE {KeyWhere}";
+{KeyParamters}
+                var result = await ReadAllAsync(await cmd.ExecuteReaderAsync());
+                return result.Count > 0 ? result[0] : null;
+            }
         }
 
 {FindByColumnMethodList}
 
         public {Table} FindAll()
         {
-            var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT {Columns} FROM `{table}`";
-            return ReadAll(cmd.ExecuteReader());
+            using (var cmd = Db.Connection.CreateCommand())
+            {
+                cmd.CommandText = @"SELECT {Columns} FROM `{table}`";
+                return ReadAll(cmd.ExecuteReader());
+            }
+		}
+
+        public Task<{Table}> FindAllAsync()
+        {
+            using (var cmd = Db.Connection.CreateCommand())
+            {
+                cmd.CommandText = @"SELECT {Columns} FROM `{table}`";
+                return await ReadAllAsync(await cmd.ExecuteReader());
+            }
 		}
 
         public void DeleteAll()
         {
-            var txn = Db.Connection.BeginTransaction();
-            var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"DELETE FROM `{table}`";
-            cmd.ExecuteNonQuery();
-            txn.Commit();
+            using (var txn = Db.Connection.BeginTransaction())
+            {
+                using (var cmd = Db.Connection.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM `{table}`";
+                    cmd.ExecuteNonQuery();
+                    txn.Commit();
+                }
+            }
         }
 
         public async Task DeleteAllAsync()
