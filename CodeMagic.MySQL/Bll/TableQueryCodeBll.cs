@@ -58,13 +58,13 @@ namespace CodeMagic.MySQL.Bll
                     if (result.Length == 0)
                     {
                         result.AppendFormat("{0} {1}",
-                            CodeHelp.GetCSharpTypeString(columnModel.COLUMN_TYPE, false),
+                            CodeHelp.GetCSharpTypeString(columnModel.DATA_TYPE, false),
                             CodeHelp.FirstLower(CodeHelp.CamelCase(columnModel.COLUMN_NAME)));
                     }
                     else
                     {
                         result.AppendFormat(", {0} {1}",
-                            CodeHelp.GetCSharpTypeString(columnModel.COLUMN_TYPE, false),
+                            CodeHelp.GetCSharpTypeString(columnModel.DATA_TYPE, false),
                             CodeHelp.FirstLower(CodeHelp.CamelCase(columnModel.COLUMN_NAME)));
                     }
                 }
@@ -119,27 +119,25 @@ namespace CodeMagic.MySQL.Bll
             result.AppendFormat(CodeHelp.Tab2() + "public List<{0}> FindBy{1}({2} {3})\n",
                 CodeHelp.CamelCase(_tableName),
                 CodeHelp.CamelCase(columnModel.COLUMN_NAME),
-                CodeHelp.GetCSharpTypeString(columnModel.COLUMN_TYPE, false),
+                CodeHelp.GetCSharpTypeString(columnModel.DATA_TYPE, false),
                 CodeHelp.FirstLower(CodeHelp.CamelCase(columnModel.COLUMN_NAME)));
             result.AppendLine(CodeHelp.Tab2() + "{");
-            result.AppendLine(CodeHelp.Tab3() + "using (var cmd = Db.Connection.CreateCommand())");
-            result.AppendLine(CodeHelp.Tab3() + "{");
-            result.AppendFormat(CodeHelp.Tab4() + "cmd.CommandText = @\"SELECT {0} FROM `{1}` WHERE {2} = @{3}\";\n",
+            result.AppendLine(CodeHelp.Tab3() + "using var cmd = Db.Connection.CreateCommand();");
+            result.AppendFormat(CodeHelp.Tab3() + "cmd.CommandText = @\"SELECT {0} FROM `{1}` WHERE {2} = @{3}\";\n",
                 GetColumnsCode(),
                 _tableName,
                 columnModel.COLUMN_NAME,
                 CodeHelp.CamelCase(columnModel.COLUMN_NAME));
-            result.AppendLine(CodeHelp.Tab4() + "cmd.Parameters.Add(new MySqlParameter");
-            result.AppendLine(CodeHelp.Tab4() + "{");
-            result.AppendFormat(CodeHelp.Tab5() + "ParameterName = \"@{0}\",\n", 
+            result.AppendLine(CodeHelp.Tab3() + "cmd.Parameters.Add(new MySqlParameter");
+            result.AppendLine(CodeHelp.Tab3() + "{");
+            result.AppendFormat(CodeHelp.Tab4() + "ParameterName = \"@{0}\",\n", 
                 CodeHelp.CamelCase(columnModel.COLUMN_NAME));
-            result.AppendFormat(CodeHelp.Tab5() + "DbType = DbType.{0},\n",
-                CodeHelp.GetMySqlDBTypeString(columnModel.COLUMN_TYPE));
-            result.AppendFormat(CodeHelp.Tab5() + "Value = {0},\n",
+            result.AppendFormat(CodeHelp.Tab4() + "DbType = DbType.{0},\n",
+                CodeHelp.GetMySqlDBTypeString(columnModel.DATA_TYPE));
+            result.AppendFormat(CodeHelp.Tab4() + "Value = {0},\n",
                 CodeHelp.FirstLower(CodeHelp.CamelCase(columnModel.COLUMN_NAME)));
-            result.AppendLine(CodeHelp.Tab4() + "});");
-            result.AppendLine(CodeHelp.Tab4() + "return ReadAll(cmd.ExecuteReader());");
-            result.AppendLine(CodeHelp.Tab3() + "}");
+            result.AppendLine(CodeHelp.Tab3() + "});");
+            result.AppendLine(CodeHelp.Tab3() + "return ReadAll(cmd.ExecuteReader());");
             result.AppendLine(CodeHelp.Tab2() + "}");
             return result.ToString();
         }
@@ -147,30 +145,28 @@ namespace CodeMagic.MySQL.Bll
         private string GetFindByColumnMethodAsyncCode(ColumnModel columnModel)
         {
             StringBuilder result = new StringBuilder();
-            result.AppendFormat(CodeHelp.Tab2() + "public Task<List<{0}>> FindBy{1}Async({2} {3})\n",
+            result.AppendFormat(CodeHelp.Tab2() + "public async Task<List<{0}>> FindBy{1}Async({2} {3})\n",
                 CodeHelp.CamelCase(_tableName),
                 CodeHelp.CamelCase(columnModel.COLUMN_NAME),
-                CodeHelp.GetCSharpTypeString(columnModel.COLUMN_TYPE, false),
+                CodeHelp.GetCSharpTypeString(columnModel.DATA_TYPE, false),
                 CodeHelp.FirstLower(CodeHelp.CamelCase(columnModel.COLUMN_NAME)));
             result.AppendLine(CodeHelp.Tab2() + "{");
-            result.AppendLine(CodeHelp.Tab3() + "using (var cmd = Db.Connection.CreateCommand())");
-            result.AppendLine(CodeHelp.Tab3() + "{");
-            result.AppendFormat(CodeHelp.Tab4() + "cmd.CommandText = @\"SELECT {0} FROM `{1}` WHERE {2} = @{3}\";\n",
+            result.AppendLine(CodeHelp.Tab3() + "using var cmd = Db.Connection.CreateCommand();");
+            result.AppendFormat(CodeHelp.Tab3() + "cmd.CommandText = @\"SELECT {0} FROM `{1}` WHERE {2} = @{3}\";\n",
                 GetColumnsCode(),
                 _tableName,
                 columnModel.COLUMN_NAME,
                 CodeHelp.CamelCase(columnModel.COLUMN_NAME));
-            result.AppendLine(CodeHelp.Tab4() + "cmd.Parameters.Add(new MySqlParameter");
-            result.AppendLine(CodeHelp.Tab4() + "{");
-            result.AppendFormat(CodeHelp.Tab5() + "ParameterName = \"@{0}\",\n",
+            result.AppendLine(CodeHelp.Tab3() + "cmd.Parameters.Add(new MySqlParameter");
+            result.AppendLine(CodeHelp.Tab3() + "{");
+            result.AppendFormat(CodeHelp.Tab4() + "ParameterName = \"@{0}\",\n",
                 CodeHelp.CamelCase(columnModel.COLUMN_NAME));
-            result.AppendFormat(CodeHelp.Tab5() + "DbType = DbType.{0},\n",
-                CodeHelp.GetMySqlDBTypeString(columnModel.COLUMN_TYPE));
-            result.AppendFormat(CodeHelp.Tab5() + "Value = {0},\n",
+            result.AppendFormat(CodeHelp.Tab4() + "DbType = DbType.{0},\n",
+                CodeHelp.GetMySqlDBTypeString(columnModel.DATA_TYPE));
+            result.AppendFormat(CodeHelp.Tab4() + "Value = {0},\n",
                 CodeHelp.FirstLower(CodeHelp.CamelCase(columnModel.COLUMN_NAME)));
-            result.AppendLine(CodeHelp.Tab4() + "});");
-            result.AppendLine(CodeHelp.Tab4() + "return await ReadAllAsync(await cmd.ExecuteReaderAsync());");
-            result.AppendLine(CodeHelp.Tab3() + "}");
+            result.AppendLine(CodeHelp.Tab3() + "});");
+            result.AppendLine(CodeHelp.Tab3() + "return await ReadAllAsync(await cmd.ExecuteReaderAsync());");
             result.AppendLine(CodeHelp.Tab2() + "}");
             return result.ToString();
         }
@@ -186,7 +182,7 @@ namespace CodeMagic.MySQL.Bll
                     result.AppendFormat("{0}model.{1} = reader.IsDBNull ? null: reader.GetFieldValue<{2}>({3});\n",
                         CodeHelp.Tab5(),
                         CodeHelp.CamelCase(columnModel.COLUMN_NAME),
-                        CodeHelp.GetCSharpTypeString(columnModel.COLUMN_TYPE, false),
+                        CodeHelp.GetCSharpTypeString(columnModel.DATA_TYPE, false),
                         i);
                 }
                 else
@@ -194,7 +190,7 @@ namespace CodeMagic.MySQL.Bll
                     result.AppendFormat("{0}model.{1} = reader.GetFieldValue<{2}>({3});\n",
                         CodeHelp.Tab5(),
                         CodeHelp.CamelCase(columnModel.COLUMN_NAME),
-                        CodeHelp.GetCSharpTypeString(columnModel.COLUMN_TYPE, false),
+                        CodeHelp.GetCSharpTypeString(columnModel.DATA_TYPE, false),
                         i);
                 }
             }
@@ -213,10 +209,10 @@ namespace CodeMagic.MySQL.Bll
                     result.AppendFormat(CodeHelp.Tab5() + "ParameterName = \"@{0}\",\n",
                         CodeHelp.CamelCase(columnModel.COLUMN_NAME));
                     result.AppendFormat(CodeHelp.Tab5() + "DbType = DbType.{0},\n",
-                        CodeHelp.GetCSharpTypeString(columnModel.COLUMN_TYPE, false));
+                        CodeHelp.GetMySqlDBTypeString(columnModel.DATA_TYPE));
                     result.AppendFormat(CodeHelp.Tab5() + "Value = {0},\n",
                         CodeHelp.FirstLower(CodeHelp.CamelCase(columnModel.COLUMN_NAME)));
-                    result.AppendLine(CodeHelp.Tab4() + "}");
+                    result.AppendLine(CodeHelp.Tab4() + "});");
                 }
             }
             return result.ToString();

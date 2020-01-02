@@ -22,66 +22,54 @@ namespace {NameSpace}.DataAccess.Model
 
         public void Insert()
         {
-            using (var cmd = Db.Connection.CreateCommand())
-            {
-                cmd.CommandText = {InsertSQL};
-                BindParams(cmd);
-                cmd.ExecuteNonQuery();
-                Id = (int)cmd.LastInsertedId;
-			}
+            using var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = {InsertSQL};
+            BindParams(cmd);
+            cmd.ExecuteNonQuery();
+            Id = (int)cmd.LastInsertedId;
         }
 
         public async Task InsertAsync()
         {
-            using (var cmd = Db.Connection.CreateCommand())
-            {
-                cmd.CommandText = {InsertSQL};
-                BindParams(cmd);
-                await cmd.ExecuteNonQueryAsync();
-                Id = (int)cmd.LastInsertedId;
-            }
+            using var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = {InsertSQL};
+            BindParams(cmd);
+            await cmd.ExecuteNonQueryAsync();
+            Id = (int)cmd.LastInsertedId;
         }
 
         public void Update()
         {
-            using (var cmd = Db.Connection.CreateCommand())
-            {
-                cmd.CommandText = {UpdateSQL};
-                BindParams(cmd);
-                BindId(cmd);
-                cmd.ExecuteNonQuery();
-            }
+            using var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = {UpdateSQL};
+            BindParams(cmd);
+            BindId(cmd);
+            cmd.ExecuteNonQuery();
         }
 
         public async Task UpdateAsync()
         {
-            using (var cmd = Db.Connection.CreateCommand())
-            {
-                cmd.CommandText = {UpdateSQL};
-                BindParams(cmd);
-                BindId(cmd);
-                await cmd.ExecuteNonQueryAsync();
-            }
+            using var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = {UpdateSQL};
+            BindParams(cmd);
+            BindId(cmd);
+            await cmd.ExecuteNonQueryAsync();
         }
 
         public void Delete()
         {
-            using (var cmd = Db.Connection.CreateCommand())
-            {
-                cmd.CommandText = {DeleteSQL};
-                BindId(cmd);
-                cmd.ExecuteNonQuery();
-            }
+            using var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = {DeleteSQL};
+            BindId(cmd);
+            cmd.ExecuteNonQuery();
         }
 
         public async Task DeleteAsync()
         {
-            using (var cmd = Db.Connection.CreateCommand())
-            {
-                cmd.CommandText = {DeleteSQL};
-                BindId(cmd);
-                await cmd.ExecuteNonQueryAsync();
-            }
+            using var cmd = Db.Connection.CreateCommand();
+            cmd.CommandText = {DeleteSQL};
+            BindId(cmd);
+            await cmd.ExecuteNonQueryAsync();
         }
 
         private void BindId(MySqlCommand cmd)

@@ -126,13 +126,17 @@ namespace CodeMagic.MySQL.Bll
             {
                 return allowDBNULL ? "decimal?" : "decimal";
             }
-            if (dbtype.Contains("date"))
+            if (dbtype.Contains("date") || dbtype.Contains("timestamp"))
             {
                 return allowDBNULL ? "DateTime?" : "DateTime";
             }
             if (dbtype.Contains("blob"))
             {
                 return "byte[]";
+            }
+            if (dbtype.Contains("bit"))
+            {
+                return "bool";
             }
             return "string";
         }
@@ -156,6 +160,7 @@ namespace CodeMagic.MySQL.Bll
             dict["BLOB"] = "Binary";
             dict["MEDIUMBLOB"] = "Binary";
             dict["LONGBLOB"] = "Binary";
+            dict["BIT"] = "Boolean";
             
             return dict.ContainsKey(dbtype.ToUpper()) ? dict[dbtype.ToUpper()] : "String";
         }

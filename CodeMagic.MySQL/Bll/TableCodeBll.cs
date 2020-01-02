@@ -57,7 +57,7 @@ namespace CodeMagic.MySQL.Bll
                 result.AppendFormat("{0}/// </summary>\n", CodeHelp.Tab2());
                 result.AppendFormat("{0}public {1} {2};\n",
                     CodeHelp.Tab2(),
-                    CodeHelp.GetCSharpTypeString(columnModel.COLUMN_NAME, columnModel.IS_NULLABLE == "YES"),
+                    CodeHelp.GetCSharpTypeString(columnModel.DATA_TYPE, columnModel.IS_NULLABLE == "YES"),
                     CodeHelp.CamelCase(columnModel.COLUMN_NAME));
             }
             return result.ToString();
@@ -135,9 +135,9 @@ namespace CodeMagic.MySQL.Bll
                     result.AppendLine(CodeHelp.Tab3() + "cmd.Parameters.Add(new MySqlParameter");
                     result.AppendLine(CodeHelp.Tab3() + "{");
                     result.AppendFormat(CodeHelp.Tab4() + "ParameterName = \"@{0}\",\n", columnModel.COLUMN_NAME);
-                    result.AppendFormat(CodeHelp.Tab4() + "DbType = DbType.{0},\n", CodeHelp.GetMySqlDBTypeString(columnModel.COLUMN_TYPE));
+                    result.AppendFormat(CodeHelp.Tab4() + "DbType = DbType.{0},\n", CodeHelp.GetMySqlDBTypeString(columnModel.DATA_TYPE));
                     result.AppendFormat(CodeHelp.Tab4() + "Value = {0}\n", CodeHelp.CamelCase(columnModel.COLUMN_NAME));
-                    result.AppendLine(CodeHelp.Tab3() + "};");
+                    result.AppendLine(CodeHelp.Tab3() + "});");
                 }
             }
             return result.ToString();
@@ -152,9 +152,9 @@ namespace CodeMagic.MySQL.Bll
                 result.AppendLine(CodeHelp.Tab3() + "cmd.Parameters.Add(new MySqlParameter");
                 result.AppendLine(CodeHelp.Tab3() + "{");
                 result.AppendFormat(CodeHelp.Tab4() + "ParameterName = \"@{0}\",\n", columnModel.COLUMN_NAME);
-                result.AppendFormat(CodeHelp.Tab4() + "DbType = DbType.{0},\n", CodeHelp.GetMySqlDBTypeString(columnModel.COLUMN_TYPE));
+                result.AppendFormat(CodeHelp.Tab4() + "DbType = DbType.{0},\n", CodeHelp.GetMySqlDBTypeString(columnModel.DATA_TYPE));
                 result.AppendFormat(CodeHelp.Tab4() + "Value = {0}\n", CodeHelp.CamelCase(columnModel.COLUMN_NAME));
-                result.AppendLine(CodeHelp.Tab3() + "};");
+                result.AppendLine(CodeHelp.Tab3() + "});");
             }
             return result.ToString();
         }
