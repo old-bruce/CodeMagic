@@ -91,5 +91,44 @@ namespace CodeMagic.BLL
 
             return dict.ContainsKey(dbtype.ToLower()) ? dict[dbtype.ToLower()] : string.Empty;
         }
+
+        /// <summary>
+        /// 首字母大写
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public string FirstUpper(string value)
+        {
+            return value.Substring(0, 1).ToUpper() + value.Substring(1, value.Length - 1);
+        }
+
+        /// <summary>
+        /// 首字母小写
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public string FirstLower(string value)
+        {
+            return value.Substring(0, 1).ToLower() + value.Substring(1, value.Length - 1);
+        }
+
+        /// <summary>
+        /// 驼峰命名
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public string CamelCase(string value)
+        {
+            string[] names = value.Split('_').Length > 0 ? value.Split('_') : value.Split('-');
+            if (names.Length == 0) return FirstUpper(value);
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var name in names)
+            {
+                if (string.IsNullOrEmpty(name)) continue;
+                sb.Append(FirstUpper(name));
+            }
+            return sb.ToString();
+        }
     }
 }

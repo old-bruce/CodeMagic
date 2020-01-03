@@ -31,6 +31,7 @@ namespace CodeMagic.BLL
             result = result.Replace("{Insert}", GetDataFieldCode(table));
             result = result.Replace("{Update}", GetDataFieldCode(table));
             result = result.Replace("{id}", GetID(table));
+            result = result.Replace("{Id}", FirstUpper(GetID(table)));
             return result;
         }
 

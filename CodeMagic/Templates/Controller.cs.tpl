@@ -76,7 +76,7 @@ namespace {NameSpace}.Controllers
             {TableName}Model model = {tableName}Bll.GetModel({id});
             if (model != null)
             {
-                {tableName}Bll.Delete(model.{id});
+                {tableName}Bll.Delete(model.{Id});
             }
             else
             {
