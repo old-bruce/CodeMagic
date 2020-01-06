@@ -14,7 +14,7 @@ namespace {NameSpace}.BLL
     {
 		#region Auto Create By Code Magic
 
-		private {DAL} dal = new {DAL}();
+		private readonly {DAL} dal = new {DAL}();
 
 		public List<{Model}> GetAll()
 		{

@@ -15,7 +15,7 @@ namespace {NameSpace}.Controllers
 {
     public class {TableName}Controller : Controller
     {
-        private {BLL} {tableName}Bll = new {BLL}();
+        private readonly {BLL} {tableName}Bll = new {BLL}();
 
         public ActionResult Index()
         {
@@ -47,12 +47,12 @@ namespace {NameSpace}.Controllers
                 {
                     Update();
                 }
+                return Json(new { code = 200 });
             }
             catch (Exception ex)
             {
                 return Json(new { code = 500, msg = ex.Message });
             }
-            return Json(new { code = 200 });
         }
 
         private void Insert()
