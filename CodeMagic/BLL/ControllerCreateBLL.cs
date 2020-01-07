@@ -36,6 +36,7 @@ namespace CodeMagic.BLL
             result = result.Replace("{BLL}", bllClassName);
             result = result.Replace("{Keys}", GetKeysCode(table, tableName));
             result = result.Replace("{KeysParam}", GetKeysParam(table, tableName));
+            result = result.Replace("{ModifyKeysParam}", GetModifyKeysParamCode(table, tableName));
             result = result.Replace("{Insert}", GetDataFieldCode(table, tableName, modelClassName));
             result = result.Replace("{Update}", GetDataFieldCode(table, tableName, modelClassName));
             result = result.Replace("{ViewModel}", GetViewModelCode(table));
@@ -97,6 +98,41 @@ namespace CodeMagic.BLL
                     else
                     {
                         sb.Append(", " + columnName);
+                    }
+                    index++;
+                }
+            }
+            return sb.ToString();
+        }
+
+        private string GetModifyKeysParamCode(DataTable table, string tableName)
+        {
+            StringBuilder sb = new StringBuilder();
+            DataTable dtKeys = new CommonDAL().GetKeyColumns(tableName);
+            int index = 0;
+            foreach (DataRow row in table.Rows)
+            {
+                string columnName = row["columnName"].ToString();
+                string columnTypeName = row["typeName"].ToString();
+                bool isKey = false;
+                foreach (DataRow rowKey in dtKeys.Rows)
+                {
+                    if (rowKey["ColumnName"].ToString() == columnName)
+                    {
+                        isKey = true;
+                        break;
+                    }
+                }
+
+                if (isKey)
+                {
+                    if (index == 0)
+                    {
+                        sb.Append("model." + columnName);
+                    }
+                    else
+                    {
+                        sb.Append(", " + "model." + columnName);
                     }
                     index++;
                 }

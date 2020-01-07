@@ -44,7 +44,7 @@ namespace CodeMagic.BLL
                 DataRow row = table.Rows[i];
                 string columnName = row["columnName"].ToString();
                 string columnTypeName = row["typeName"].ToString();
-                bool allowDBNull = bool.Parse(row["allownulls"].ToString());
+                bool allowDBNull = bool.Parse(row["is_nullable"].ToString());
 
                 bool isKey = false;
                 foreach (DataRow rowKey in dtKeys.Rows)

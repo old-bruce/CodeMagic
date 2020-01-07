@@ -40,9 +40,6 @@
             this.lblBLL = new System.Windows.Forms.Label();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.pb1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.lblProgress = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.btnController = new System.Windows.Forms.Button();
             this.tbxController = new System.Windows.Forms.TextBox();
@@ -51,7 +48,9 @@
             this.cbxDAL = new System.Windows.Forms.CheckBox();
             this.cbxBLL = new System.Windows.Forms.CheckBox();
             this.cbxController = new System.Windows.Forms.CheckBox();
-            this.statusStrip1.SuspendLayout();
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // lblModel
@@ -134,7 +133,7 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(553, 426);
+            this.btnCreate.Location = new System.Drawing.Point(475, 424);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(75, 26);
             this.btnCreate.TabIndex = 9;
@@ -144,36 +143,13 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(634, 426);
+            this.btnCancel.Location = new System.Drawing.Point(556, 424);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 26);
             this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "取消(&C)";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pb1,
-            this.lblProgress});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 507);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(748, 25);
-            this.statusStrip1.TabIndex = 11;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // pb1
-            // 
-            this.pb1.Name = "pb1";
-            this.pb1.Size = new System.Drawing.Size(680, 19);
-            // 
-            // lblProgress
-            // 
-            this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(17, 20);
-            this.lblProgress.Text = "0";
             // 
             // btnController
             // 
@@ -241,11 +217,38 @@
             this.cbxController.Text = "生成";
             this.cbxController.UseVisualStyleBackColor = true;
             // 
+            // bgWorker
+            // 
+            this.bgWorker.WorkerReportsProgress = true;
+            this.bgWorker.WorkerSupportsCancellation = true;
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorker_ProgressChanged);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(637, 424);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 26);
+            this.btnExit.TabIndex = 19;
+            this.btnExit.Text = "退出(&X)";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(35, 426);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(406, 23);
+            this.progressBar1.TabIndex = 20;
+            // 
             // BatchCodeDialogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 532);
+            this.ClientSize = new System.Drawing.Size(748, 497);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.cbxController);
             this.Controls.Add(this.cbxBLL);
             this.Controls.Add(this.cbxDAL);
@@ -253,7 +256,6 @@
             this.Controls.Add(this.btnController);
             this.Controls.Add(this.tbxController);
             this.Controls.Add(this.lblController);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.btnBLL);
@@ -272,8 +274,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "代码批量生成";
             this.Load += new System.EventHandler(this.BatchCodeDialogForm_Load);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,9 +292,6 @@
         private System.Windows.Forms.Label lblBLL;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripProgressBar pb1;
-        private System.Windows.Forms.ToolStripStatusLabel lblProgress;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button btnController;
         private System.Windows.Forms.TextBox tbxController;
@@ -303,5 +300,8 @@
         private System.Windows.Forms.CheckBox cbxDAL;
         private System.Windows.Forms.CheckBox cbxBLL;
         private System.Windows.Forms.CheckBox cbxController;
+        private System.ComponentModel.BackgroundWorker bgWorker;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

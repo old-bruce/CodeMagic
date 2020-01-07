@@ -11,7 +11,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace {NameSpace}.Controllers
+namespace {NameSpace}.Web.Controllers
 {
     public class {TableName}Controller : Controller
     {
@@ -60,9 +60,9 @@ namespace {NameSpace}.Controllers
 		{
 			try
             {
-				{TableName}Model {tableName}model = {tableName}Bll.GetModel({KeysParam});
+				{TableName}Model {tableName}Model = {tableName}Bll.GetModel({ModifyKeysParam});
 {Insert}
-				{tableName}Bll.Insert({tableName}model);
+				{tableName}Bll.Insert({tableName}Model);
                 return Json(new { code = 200 });
             }
             catch (Exception ex)
@@ -83,7 +83,7 @@ namespace {NameSpace}.Controllers
 				}
 				else
 				{
-					return Json(new { code = 500, msg = "{id} is null" });
+					return Json(new { code = 500, msg = "parms is null" });
 				}
                 return Json(new { code = 200 });
             }

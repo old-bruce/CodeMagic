@@ -339,7 +339,7 @@ namespace CodeMagic.BLL
             {
                 DataRow row = table.Rows[i];
                 string columnName = row["columnName"].ToString();
-                bool allowDBNull = bool.Parse(row["allownulls"].ToString());
+                bool allowDBNull = bool.Parse(row["is_nullable"].ToString());
                 if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
                     continue;
                 if (!allowDBNull)
@@ -373,7 +373,7 @@ namespace CodeMagic.BLL
             {
                 DataRow row = table.Rows[i];
                 string columnName = row["columnName"].ToString();
-                bool allowDBNull = bool.Parse(row["allownulls"].ToString());
+                bool allowDBNull = bool.Parse(row["is_nullable"].ToString());
                 if (!allowDBNull)
                 {
                     result.AppendFormat("\t\t\tparameters[{0}].Value = model.{1};\n", index, columnName);
