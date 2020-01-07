@@ -136,7 +136,7 @@ namespace {NameSpace}.DAL
 
 		public {Model} GetModel({Keys})
 		{
-			string sql = "SELECT * FROM [{TableName}] WHERE{WhereKeys}";
+			string sql = "SELECT * FROM [{TableName}] WHERE {WhereKeys}";
 			{GetModelSqlParameter}
 			DataSet ds = DbHelperSQL.Query(sql, parameters);
 			if (ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0) return null;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeMagic.DAL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -37,9 +38,9 @@ namespace CodeMagic.BLL
             result = result.Replace("{TableName}", tableName);
             result = result.Replace("{DALSuffix}", dalSuffix);
             result = result.Replace("{Model}", modelClassName);
-            result = result.Replace("{Keys}", GetKeysCode(table));
-            result = result.Replace("{WhereKeys}", GetWhereKeys(table));
-            result = result.Replace("{GetModelSqlParameter}", GetGetModelSqlParameterCode(table));
+            result = result.Replace("{Keys}", GetKeysCode(table, tableName));
+            result = result.Replace("{WhereKeys}", GetWhereKeys(table, tableName));
+            result = result.Replace("{GetModelSqlParameter}", GetGetModelSqlParameterCode(table, tableName));
             result = result.Replace("{DataRowToModel}", GetDataRowToModelCode(table));
             result = result.Replace("{InsertFields}", GetInsertFieldsCode(table));
             result = result.Replace("{InsertValues}", GetInsertValuesCode(table));
@@ -52,31 +53,52 @@ namespace CodeMagic.BLL
             return result;
         }
 
-        private string GetKeysCode(DataTable table)
+        private string GetKeysCode(DataTable table, string tableName)
         {
+            DataTable dtKeys = new CommonDAL().GetKeyColumns(tableName);
             StringBuilder sb = new StringBuilder();
             foreach (DataRow row in table.Rows)
             {
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                string columnName = row["columnName"].ToString();
+                string columnTypeName = row["typeName"].ToString();
+                bool isKey = false;
+                foreach (DataRow rowKey in dtKeys.Rows)
                 {
-                    string columnName = row["columnName"].ToString();
-                    string columnTypeName = row["typeName"].ToString();
-                    sb.AppendFormat("{0} {1},", GetCSharpTypeString(columnTypeName, false), columnName);
+                    if (rowKey["ColumnName"].ToString() == columnName)
+                    {
+                        isKey = true;
+                        break;
+                    }
+                }
+                if (isKey)
+                {
+                    sb.AppendFormat("{0} {1}, ", GetCSharpTypeString(columnTypeName, false), columnName);
                 }
             }
-            return sb.ToString().Length > 0 ? sb.ToString().TrimEnd(',') : string.Empty;
+            return sb.ToString().Length > 0 ? sb.ToString().Trim().TrimEnd(',') : string.Empty;
         }
 
-        private string GetWhereKeys(DataTable table)
+        private string GetWhereKeys(DataTable table, string tableName)
         {
             StringBuilder sb = new StringBuilder();
+            DataTable dtKeys = new CommonDAL().GetKeyColumns(tableName);
             int index = 0;
             foreach (DataRow row in table.Rows)
             {
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                string columnName = row["columnName"].ToString();
+                bool isKey = false;
+                foreach (DataRow rowKey in dtKeys.Rows)
                 {
-                    string columnName = row["columnName"].ToString();
-                    if(index == 0)
+                    if (rowKey["ColumnName"].ToString() == columnName)
+                    {
+                        isKey = true;
+                        break;
+                    }
+                }
+
+                if (isKey)
+                {
+                    if (index == 0)
                     {
                         sb.AppendFormat(" {0}=@{0}", columnName);
                     }
@@ -90,17 +112,27 @@ namespace CodeMagic.BLL
             return sb.ToString();
         }
 
-        private string GetGetModelSqlParameterCode(DataTable table)
+        private string GetGetModelSqlParameterCode(DataTable table, string tableName)
         {
             StringBuilder result = new StringBuilder();
+            DataTable dtKeys = new CommonDAL().GetKeyColumns(tableName);
             result.Append("SqlParameter[] parameters = {" + Environment.NewLine);
             foreach (DataRow row in table.Rows)
             {
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                string columnName = row["columnName"].ToString();              
+                bool isKey = false;
+                foreach (DataRow rowKey in dtKeys.Rows)
                 {
-                    string columnName = row["columnName"].ToString();
+                    if (rowKey["ColumnName"].ToString() == columnName)
+                    {
+                        isKey = true;
+                        break;
+                    }
+                }
+                if (isKey)
+                {
                     string columnTypeName = row["typeName"].ToString();
-                    result.Append("\t\t\t\t" + "new SqlParameter(\"@" + columnName + "\", SqlDbType."+ GetSqlServerDBTypeString(columnTypeName) + ")," + Environment.NewLine);
+                    result.Append("\t\t\t\t" + "new SqlParameter(\"@" + columnName + "\", SqlDbType." + GetSqlServerDBTypeString(columnTypeName) + ")," + Environment.NewLine);
                 }
             }
             result.Append("\t\t\t};" + Environment.NewLine);
@@ -108,9 +140,20 @@ namespace CodeMagic.BLL
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 DataRow row = table.Rows[i];
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                string columnName = row["columnName"].ToString();
+                bool isKey = false;
+                foreach (DataRow rowKey in dtKeys.Rows)
                 {
-                    result.Append("\t\t\t" + "parameters[" + index.ToString() +"].Value = " + table.Rows[i]["columnName"].ToString() + ";");
+                    if (rowKey["ColumnName"].ToString() == columnName)
+                    {
+                        isKey = true;
+                        break;
+                    }
+                }
+
+                if (isKey)
+                {
+                    result.Append("\t\t\t" + "parameters[" + index.ToString() + "].Value = " + table.Rows[i]["columnName"].ToString() + ";");
                     if (i < table.Rows.Count - 1)
                     {
                         result.Append(Environment.NewLine);
@@ -127,8 +170,8 @@ namespace CodeMagic.BLL
             StringBuilder result = new StringBuilder();
             foreach (DataRow row in table.Rows)
             {
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
-                    continue;
+                //if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                //    continue;
 
                 string columnName = row["columnName"].ToString();
                 string columnTypeName = row["typeName"].ToString();
@@ -178,8 +221,8 @@ namespace CodeMagic.BLL
             StringBuilder result = new StringBuilder();
             foreach (DataRow row in table.Rows)
             {
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
-                    continue;
+                //if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                //    continue;
 
                 string columnName = row["columnName"].ToString();
                 string columnTypeName = row["typeName"].ToString();
@@ -219,8 +262,8 @@ namespace CodeMagic.BLL
             StringBuilder result = new StringBuilder();
             foreach (DataRow row in table.Rows)
             {
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
-                    continue;
+                //if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                //    continue;
 
                 string columnName = row["columnName"].ToString();
                 string columnTypeName = row["typeName"].ToString();
@@ -296,10 +339,17 @@ namespace CodeMagic.BLL
             {
                 DataRow row = table.Rows[i];
                 string columnName = row["columnName"].ToString();
+                bool allowDBNull = bool.Parse(row["allownulls"].ToString());
                 if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
                     continue;
-
-                result.AppendFormat("\t\t\tparameters[{0}].Value = model.{1} == null ? (object)DBNull.Value : model.{1};{2}", index, columnName, Environment.NewLine);
+                if (!allowDBNull)
+                {
+                    result.AppendFormat("\t\t\tparameters[{0}].Value = model.{1};\n", index, columnName);
+                }
+                else
+                {
+                    result.AppendFormat("\t\t\tparameters[{0}].Value = model.{1} == null ? (object)DBNull.Value : model.{1};\n", index, columnName);
+                }
 
                 index++;
             }
@@ -323,23 +373,15 @@ namespace CodeMagic.BLL
             {
                 DataRow row = table.Rows[i];
                 string columnName = row["columnName"].ToString();
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                bool allowDBNull = bool.Parse(row["allownulls"].ToString());
+                if (!allowDBNull)
                 {
-                    result.AppendFormat("\t\t\tparameters[{0}].Value = model.{1};{2}", index, columnName, Environment.NewLine);
+                    result.AppendFormat("\t\t\tparameters[{0}].Value = model.{1};\n", index, columnName);
                 }
                 else
                 {
-                    result.AppendFormat("\t\t\tparameters[{0}].Value = model.{1} == null ? (object)DBNull.Value : model.{1};{2}", index, columnName, Environment.NewLine);
+                    result.AppendFormat("\t\t\tparameters[{0}].Value = model.{1} == null ? (object)DBNull.Value : model.{1};\n", index, columnName);
                 }
-                
-                //result.AppendFormat("\t\t\tif (model.{0} == null){1}", columnName, Environment.NewLine);
-                //result.AppendLine("\t\t\t{");
-                //result.AppendFormat("\t\t\t\tparameters[{0}].Value = DBNull.Value;{1}", index, Environment.NewLine);
-                //result.AppendLine("\t\t\t}");
-                //result.AppendLine("\t\t\telse");
-                //result.AppendLine("\t\t\t{");
-                //result.AppendLine("\t\t\t\t" + "parameters[" + index.ToString() + "].Value = model." + columnName + ";");
-                //result.AppendLine("\t\t\t}");
                 index++;
             }
 

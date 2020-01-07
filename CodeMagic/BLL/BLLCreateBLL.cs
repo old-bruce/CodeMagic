@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeMagic.DAL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -38,39 +39,62 @@ namespace CodeMagic.BLL
             result = result.Replace("{BLLSuffix}", bllSuffix);
             result = result.Replace("{DAL}", dalClassName);
             result = result.Replace("{Model}", modelClassName);
-            result = result.Replace("{Keys}", GetKeysCode(table));
-            result = result.Replace("{KeysParam}", GetKeysParam(table));
+            result = result.Replace("{Keys}", GetKeysCode(table, tableName));
+            result = result.Replace("{KeysParam}", GetKeysParam(table, tableName));
             result = result.Replace("{GetListByAll}", GetGetListByAllCode(table, modelClassName));
             result = result.Replace("{GetModelByAll}", GetGetModelByAllCode(table, modelClassName));
             result = result.Replace("{DeleteByAll}", GetDeleteByAllCode(table));
             return result;
         }
 
-        private string GetKeysCode(DataTable table)
+        private string GetKeysCode(DataTable table, string tableName)
         {
             StringBuilder sb = new StringBuilder();
+            DataTable dtKeys = new CommonDAL().GetKeyColumns(tableName);
             foreach (DataRow row in table.Rows)
             {
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                string columnName = row["columnName"].ToString();
+                bool isKey = false;
+                foreach (DataRow rowKey in dtKeys.Rows)
                 {
-                    string columnName = row["columnName"].ToString();
+                    if (rowKey["ColumnName"].ToString() == columnName)
+                    {
+                        isKey = true;
+                        break;
+                    }
+                }
+
+                if (isKey)
+                {
                     string columnTypeName = row["typeName"].ToString();
-                    sb.AppendFormat("{0} {1},", GetCSharpTypeString(columnTypeName, false), columnName);
+                    sb.AppendFormat("{0} {1}, ", GetCSharpTypeString(columnTypeName, false), columnName);
                 }
             }
-            return sb.ToString().Length > 0 ? sb.ToString().TrimEnd(',') : string.Empty;
+            return sb.ToString().Length > 0 ? sb.ToString().Trim().TrimEnd(',') : string.Empty;
         }
 
-        private string GetKeysParam(DataTable table)
+        private string GetKeysParam(DataTable table, string tableName)
         {
             StringBuilder sb = new StringBuilder();
+            DataTable dtKeys = new CommonDAL().GetKeyColumns(tableName);
             int index = 0;
             foreach (DataRow row in table.Rows)
             {
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                string columnName = row["columnName"].ToString();
+                string columnTypeName = row["typeName"].ToString();
+                bool isKey = false;
+                foreach (DataRow rowKey in dtKeys.Rows)
                 {
-                    string columnName = row["columnName"].ToString();
-                    if(index == 0)
+                    if (rowKey["ColumnName"].ToString() == columnName)
+                    {
+                        isKey = true;
+                        break;
+                    }
+                }
+
+                if (isKey)
+                {
+                    if (index == 0)
                     {
                         sb.Append(columnName);
                     }
@@ -89,8 +113,8 @@ namespace CodeMagic.BLL
             StringBuilder result = new StringBuilder();
             foreach (DataRow row in table.Rows)
             {
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
-                    continue;
+                //if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                //    continue;
 
                 string columnName = row["columnName"].ToString();
                 string columnTypeName = row["typeName"].ToString();
@@ -117,8 +141,8 @@ namespace CodeMagic.BLL
             StringBuilder result = new StringBuilder();
             foreach (DataRow row in table.Rows)
             {
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
-                    continue;
+                //if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                //    continue;
 
                 string columnName = row["columnName"].ToString();
                 string columnTypeName = row["typeName"].ToString();
@@ -144,8 +168,8 @@ namespace CodeMagic.BLL
             StringBuilder result = new StringBuilder();
             foreach (DataRow row in table.Rows)
             {
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
-                    continue;
+                //if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                //    continue;
 
                 string columnName = row["columnName"].ToString();
                 string columnTypeName = row["typeName"].ToString();

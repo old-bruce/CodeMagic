@@ -68,5 +68,21 @@ namespace CodeMagic.DAL
             DataSet ds = DbHelperSQL.Query(sql, parameters);
             return ds.Tables.Count > 0 ? ds.Tables[0] : null;
         }
+
+        public DataTable GetKeyColumns(string tableName)
+        {
+            string sql = string.Format(@"SELECT t.name tableName, c.name ColumnName FROM sys.objects T INNER JOIN sys.objects P
+ON t.object_id=p.parent_object_id AND t.type='U' AND p.type='PK'
+INNER JOIN sys.SysColumns C ON c.id=t.object_id
+INNER JOIN sysindexes i ON i.name=p.name
+INNER JOIN sysindexkeys k ON k.id=c.id AND k.colid=c.colid AND k.indid=i.indid
+WHERE t.name=@tableName", tableName);
+            SqlParameter[] parameters = {
+                new SqlParameter("@tableName", SqlDbType.VarChar)
+            };
+            parameters[0].Value = tableName;
+            DataSet ds = DbHelperSQL.Query(sql, parameters);
+            return ds.Tables.Count > 0 ? ds.Tables[0] : null;
+        }
     }
 }

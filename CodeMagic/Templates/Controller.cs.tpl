@@ -15,6 +15,11 @@ namespace {NameSpace}.Controllers
 {
     public class {TableName}Controller : Controller
     {
+		public class {TableName}ViewModel
+		{
+{ViewModel}
+		}
+
         private readonly {BLL} {tableName}Bll = new {BLL}();
 
         public ActionResult Index()
@@ -28,61 +33,64 @@ namespace {NameSpace}.Controllers
             return View();
         }
 
-        public ActionResult Modify(int {id})
-        {
-            ViewBag.{TableName}Model = {tableName}Bll.GetModel({id});
-            return View();
-        }
-
-        [HttpPost]
-        public JsonResult Save()
-        {
-            try
+		[HttpPost]
+        public JsonResult AddSubmit({TableName}ViewModel model)
+		{
+			try
             {
-                if (string.IsNullOrEmpty(Request.Params["{id}"]))
-                {
-                    Insert();
-                }
-                else
-                {
-                    Update();
-                }
+				{TableName}Model {tableName}Model = new {TableName}Model();
+{Insert}
+				{tableName}Bll.Insert({tableName}Model);
                 return Json(new { code = 200 });
             }
             catch (Exception ex)
             {
                 return Json(new { code = 500, msg = ex.Message });
             }
+		}
+
+        public ActionResult Modify({Keys})
+        {
+            ViewBag.{TableName}Model = {tableName}Bll.GetModel({KeysParam});
+            return View();
         }
 
-        private void Insert()
-        {
-            {TableName}Model model = new {TableName}Model();
+		[HttpPost]
+        public JsonResult ModifySubmit({TableName}ViewModel model)
+		{
+			try
+            {
+				{TableName}Model {tableName}model = {tableName}Bll.GetModel({KeysParam});
 {Insert}
-            {tableName}Bll.Insert(model);
-        }
-
-        private void Update()
-        {
-            int {tableName}ID = int.Parse(Request.Params["{id}"]);
-            {TableName}Model model = {tableName}Bll.GetModel({id});
-{Update}
-            {tableName}Bll.Update(model);
-        }
+				{tableName}Bll.Insert({tableName}model);
+                return Json(new { code = 200 });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = 500, msg = ex.Message });
+            }
+		}
 
         [HttpPost]
-        public JsonResult Delete(int {id})
+        public JsonResult Delete({Keys})
         {
-            {TableName}Model model = {tableName}Bll.GetModel({id});
-            if (model != null)
+			try
             {
-                {tableName}Bll.Delete(model.{Id});
+				{TableName}Model model = {tableName}Bll.GetModel({KeysParam});
+				if (model != null)
+				{
+					{tableName}Bll.Delete({KeysParam});
+				}
+				else
+				{
+					return Json(new { code = 500, msg = "{id} is null" });
+				}
+                return Json(new { code = 200 });
             }
-            else
+            catch (Exception ex)
             {
-                return Json(new { code = 500, msg = "{id} is null" });
+                return Json(new { code = 500, msg = ex.Message });
             }
-            return Json(new { code = 200 });
         }
     }
 }

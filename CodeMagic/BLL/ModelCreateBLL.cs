@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeMagic.DAL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -37,19 +38,25 @@ namespace CodeMagic.BLL
             result = result.Replace("{TableName}", tableName);
             result = result.Replace("{ModelSuffix}", modelSuffix);
             StringBuilder sbColumns = new StringBuilder();
+            DataTable dtKeys = new CommonDAL().GetKeyColumns(tableName);
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 DataRow row = table.Rows[i];
                 string columnName = row["columnName"].ToString();
                 string columnTypeName = row["typeName"].ToString();
                 bool allowDBNull = bool.Parse(row["allownulls"].ToString());
-                bool isKey = bool.Parse(row["is_identity"].ToString());
-                if (i == 0)
+
+                bool isKey = false;
+                foreach (DataRow rowKey in dtKeys.Rows)
                 {
-                    sbColumns.AppendLine(string.Format("public {0} {1}",
-                        GetCSharpTypeString(columnTypeName, isKey ? false : allowDBNull), columnName) + " { get; set; }");
+                    if (rowKey["ColumnName"].ToString() == columnName)
+                    {
+                        isKey = true;
+                        break;
+                    }
                 }
-                else if (i == table.Rows.Count - 1)
+
+                if (i == table.Rows.Count - 1)
                 {
                     sbColumns.Append(string.Format("\t\tpublic {0} {1}",
                         GetCSharpTypeString(columnTypeName, isKey ? false : allowDBNull), columnName) + " { get; set; }");

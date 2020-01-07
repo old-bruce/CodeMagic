@@ -75,6 +75,12 @@
     <Compile Include="BLL\VueDefaultCreateBLL.cs" />
     <Compile Include="Common\JsonConfig.cs" />
     <Compile Include="Config\CommonConfig.cs" />
+    <Compile Include="Dialogs\BatchCodeDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\BatchCodeDialogForm.Designer.cs">
+      <DependentUpon>BatchCodeDialogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\CodeDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +190,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BatchCodeDialogForm.resx">
+      <DependentUpon>BatchCodeDialogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CodeDialogForm.resx">
       <DependentUpon>CodeDialogForm.cs</DependentUpon>

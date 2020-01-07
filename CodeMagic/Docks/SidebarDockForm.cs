@@ -139,5 +139,11 @@ namespace CodeMagic.Docks
             if (Program.CurrentDBInfo == null) return;
             new Dialogs.DefaultCodeCreateDialogForm(dtTables).ShowDialog();
         }
+
+        private void 批量生成ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program.CurrentDBInfo == null) return;
+            new BatchCodeDialogForm().ShowDialog();
+        }
     }
 }

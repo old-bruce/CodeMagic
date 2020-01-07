@@ -99,6 +99,7 @@ namespace CodeMagic.BLL
         /// <returns></returns>
         public string FirstUpper(string value)
         {
+            if (string.IsNullOrEmpty(value)) return value;
             return value.Substring(0, 1).ToUpper() + value.Substring(1, value.Length - 1);
         }
 
@@ -109,6 +110,7 @@ namespace CodeMagic.BLL
         /// <returns></returns>
         public string FirstLower(string value)
         {
+            if (string.IsNullOrEmpty(value)) return value;
             return value.Substring(0, 1).ToLower() + value.Substring(1, value.Length - 1);
         }
 
@@ -119,6 +121,7 @@ namespace CodeMagic.BLL
         /// <returns></returns>
         public string CamelCase(string value)
         {
+            if (string.IsNullOrEmpty(value)) return value;
             string[] names = value.Split('_').Length > 0 ? value.Split('_') : value.Split('-');
             if (names.Length == 0) return FirstUpper(value);
 

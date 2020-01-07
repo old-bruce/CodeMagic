@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeMagic.DAL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -10,6 +11,11 @@ namespace CodeMagic.BLL
 {
     public class ControllerCreateBLL : BaseCreateBLL
     {
+        public string GetControllerClassName(string tableName)
+        {
+            return tableName + "Controller";
+        }
+
         public string GetCode(string templateFile, string nameSpace, string tableName, string bllSuffix, string bllClassName, string modelClassName, DataTable table)
         {
             if (string.IsNullOrEmpty(nameSpace))
@@ -28,29 +34,79 @@ namespace CodeMagic.BLL
             result = result.Replace("{TableName}", tableName);
             result = result.Replace("{tableName}", tableName.Substring(0, 1).ToLower() + tableName.Substring(1, tableName.Length - 1));
             result = result.Replace("{BLL}", bllClassName);
-            result = result.Replace("{Insert}", GetDataFieldCode(table));
-            result = result.Replace("{Update}", GetDataFieldCode(table));
-            result = result.Replace("{id}", GetID(table));
-            result = result.Replace("{Id}", FirstUpper(GetID(table)));
+            result = result.Replace("{Keys}", GetKeysCode(table, tableName));
+            result = result.Replace("{KeysParam}", GetKeysParam(table, tableName));
+            result = result.Replace("{Insert}", GetDataFieldCode(table, tableName, modelClassName));
+            result = result.Replace("{Update}", GetDataFieldCode(table, tableName, modelClassName));
+            result = result.Replace("{ViewModel}", GetViewModelCode(table));
+
             return result;
         }
 
-        private string GetID(DataTable table)
+        private string GetKeysCode(DataTable table, string tableName)
         {
             StringBuilder sb = new StringBuilder();
+            DataTable dtKeys = new CommonDAL().GetKeyColumns(tableName);
             foreach (DataRow row in table.Rows)
             {
-                if (row["is_identity"] != null && row["is_identity"].ToString() != "" && bool.Parse(row["is_identity"].ToString()))
+                string columnName = row["columnName"].ToString();
+                bool isKey = false;
+                foreach (DataRow rowKey in dtKeys.Rows)
                 {
-                    string columnName = row["columnName"].ToString();
-                    return columnName.Substring(0, 1).ToLower() + columnName.Substring(1, columnName.Length - 1);
+                    if (rowKey["ColumnName"].ToString() == columnName)
+                    {
+                        isKey = true;
+                        break;
+                    }
+                }
+
+                if (isKey)
+                {
+                    string columnTypeName = row["typeName"].ToString();
+                    sb.AppendFormat("{0} {1}, ", GetCSharpTypeString(columnTypeName, false), columnName);
                 }
             }
-            return string.Empty;
+            return sb.ToString().Length > 0 ? sb.ToString().Trim().TrimEnd(',') : string.Empty;
         }
 
-        private string GetDataFieldCode(DataTable table)
+        private string GetKeysParam(DataTable table, string tableName)
         {
+            StringBuilder sb = new StringBuilder();
+            DataTable dtKeys = new CommonDAL().GetKeyColumns(tableName);
+            int index = 0;
+            foreach (DataRow row in table.Rows)
+            {
+                string columnName = row["columnName"].ToString();
+                string columnTypeName = row["typeName"].ToString();
+                bool isKey = false;
+                foreach (DataRow rowKey in dtKeys.Rows)
+                {
+                    if (rowKey["ColumnName"].ToString() == columnName)
+                    {
+                        isKey = true;
+                        break;
+                    }
+                }
+
+                if (isKey)
+                {
+                    if (index == 0)
+                    {
+                        sb.Append(columnName);
+                    }
+                    else
+                    {
+                        sb.Append(", " + columnName);
+                    }
+                    index++;
+                }
+            }
+            return sb.ToString();
+        }
+
+        private string GetDataFieldCode(DataTable table, string tableName, string modelClassName)
+        {
+            tableName = FirstLower(tableName);
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < table.Rows.Count; i++)
             {
@@ -61,36 +117,22 @@ namespace CodeMagic.BLL
                 string columnName = row["columnName"].ToString();
                 string columnTypeName = row["typeName"].ToString();
                 bool allowDBNull = bool.Parse(row["is_nullable"].ToString());
-                result.Append("\t\t\t");
+                result.AppendFormat("\t\t\t\t{0}.{1} = model.{1};\n", FirstLower(modelClassName), columnName);
+            }
+            return result.ToString();
+        }
 
-                if (columnTypeName.Contains("bit"))
-                {
-                    result.AppendFormat("model.{0} = bool.Parse(Request.Params[\"{0}\"]);\n", columnName);
-                }
-                else if (columnTypeName.Contains("int"))
-                {
-                    result.AppendFormat("model.{0} = int.Parse(Request.Params[\"{0}\"]);\n", columnName);
-                }
-                else if (columnTypeName.Contains("float"))
-                {
-                    result.AppendFormat("model.{0} = float.Parse(Request.Params[\"{0}\"]);\n", columnName);
-                }
-                else if (columnTypeName.Contains("double"))
-                {
-                    result.AppendFormat("model.{0} = double.Parse(Request.Params[\"{0}\"]);\n", columnName);
-                }
-                else if (columnTypeName.Contains("decimal") || columnTypeName.Contains("numeric"))
-                {
-                    result.AppendFormat("model.{0} = decimal.Parse(Request.Params[\"{0}\"]);\n", columnName);
-                }
-                else if (columnTypeName.Contains("datetime"))
-                {
-                    result.AppendFormat("model.{0} = DateTime.Parse(Request.Params[\"{0}\"]);\n", columnName);
-                }
-                else
-                {
-                    result.AppendFormat("model.{0} = Request.Params[\"{0}\"];\n", columnName);
-                }
+        private string GetViewModelCode(DataTable table)
+        {
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                DataRow row = table.Rows[i];
+                string columnName = row["columnName"].ToString();
+                string columnTypeName = row["typeName"].ToString();
+                result.Append(string.Format("\t\t\tpublic {0} {1}",
+                        GetCSharpTypeString(columnTypeName, false), columnName) + " { get; set; }");
+                if (i < table.Rows.Count - 1) result.Append("\n");
             }
             return result.ToString();
         }
