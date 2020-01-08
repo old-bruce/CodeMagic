@@ -34,7 +34,7 @@ namespace {NameSpace}.Web.Controllers
         }
 
 		[HttpPost]
-        public JsonResult AddSubmit({TableName}ViewModel model)
+        public JsonResult Insert({TableName}ViewModel model)
 		{
 			try
             {
@@ -56,7 +56,7 @@ namespace {NameSpace}.Web.Controllers
         }
 
 		[HttpPost]
-        public JsonResult ModifySubmit({TableName}ViewModel model)
+        public JsonResult Update({TableName}ViewModel model)
 		{
 			try
             {

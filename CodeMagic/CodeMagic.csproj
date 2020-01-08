@@ -66,6 +66,9 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="BLL\AdminLTEAddCreateBLL.cs" />
+    <Compile Include="BLL\BootstrapModifyCreateBLL.cs" />
+    <Compile Include="BLL\BootstrapAddCreateBLL.cs" />
+    <Compile Include="BLL\BootstrapListCreateBLL.cs" />
     <Compile Include="BLL\AdminLTEListCreateBLL.cs" />
     <Compile Include="BLL\BaseCreateBLL.cs" />
     <Compile Include="BLL\BLLCreateBLL.cs" />
@@ -329,6 +332,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="magic_hat_64px_1217410_easyicon.net.ico" />
+    <None Include="Resources\modify.png" />
+    <None Include="Resources\list.png" />
+    <None Include="Resources\Add.png" />
+    <None Include="Resources\Bootstrap.png" />
     <None Include="Resources\Vue16.png" />
     <None Include="Resources\Vue1.png" />
     <None Include="Resources\A.png" />
@@ -373,6 +380,15 @@
     <None Include="Resources\code %281%29.png" />
     <None Include="Resources\setting.png" />
     <None Include="Resources\code.png" />
+    <None Include="Templates\Bootstrap.Modify.cshtml.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\Bootstrap.Add.cshtml.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\Bootstrap.List.cshtml.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Templates\Controller.cs.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

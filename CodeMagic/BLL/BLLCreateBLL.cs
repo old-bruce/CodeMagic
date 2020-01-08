@@ -15,7 +15,7 @@ namespace CodeMagic.BLL
         {
             if (string.IsNullOrEmpty(bllSuffix))
             {
-                bllSuffix = "BLL";
+                bllSuffix = "Bll";
             }
             return tableName + bllSuffix;
         }
@@ -29,7 +29,7 @@ namespace CodeMagic.BLL
 
             if (string.IsNullOrEmpty(bllSuffix))
             {
-                bllSuffix = "BLL";
+                bllSuffix = "Bll";
             }
 
             string result = File.ReadAllText(templateFile);

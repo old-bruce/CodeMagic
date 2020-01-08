@@ -145,6 +145,42 @@ namespace CodeMagic.Docks
                 new List<string>());
         }
 
+        private string CreateBootstrapListCode(DataTable table)
+        {
+            string file = Application.StartupPath + "\\Templates\\Bootstrap.List.cshtml.tpl";
+            return new BootstrapListCreateBLL().GetCode(
+                file,
+                Program.CurrentDBInfo.CodeGenerate.NameSpaceName,
+                _tableName,
+                new ModelCreateBLL().GetModelClassName(_tableName,
+                Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
+                _dtColumns);
+        }
+
+        private string CreateBootstrapAddCode(DataTable table)
+        {
+            string file = Application.StartupPath + "\\Templates\\Bootstrap.Add.cshtml.tpl";
+            return new BootstrapAddCreateBLL().GetCode(
+                file,
+                Program.CurrentDBInfo.CodeGenerate.NameSpaceName,
+                _tableName,
+                new ModelCreateBLL().GetModelClassName(_tableName,
+                Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
+                _dtColumns);
+        }
+
+        private string CreateBootstrapModifyCode(DataTable table)
+        {
+            string file = Application.StartupPath + "\\Templates\\Bootstrap.Modify.cshtml.tpl";
+            return new BootstrapModifyCreateBLL().GetCode(
+                file,
+                Program.CurrentDBInfo.CodeGenerate.NameSpaceName,
+                _tableName,
+                new ModelCreateBLL().GetModelClassName(_tableName,
+                Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
+                _dtColumns);
+        }
+
         private void 刷新RToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadColumnsAsync();
@@ -189,6 +225,30 @@ namespace CodeMagic.Docks
             string codeText = CreateVUEDefaultCode(_dtColumns);
             var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
             dialog.Text = "VUE Default";
+            dialog.ShowDialog();
+        }
+
+        private void listToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string codeText = CreateBootstrapListCode(_dtColumns);
+            var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
+            dialog.Text = "Bootstrap List Code";
+            dialog.ShowDialog();
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string codeText = CreateBootstrapAddCode(_dtColumns);
+            var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
+            dialog.Text = "Bootstrap Add Code";
+            dialog.ShowDialog();
+        }
+
+        private void modifyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string codeText = CreateBootstrapModifyCode(_dtColumns);
+            var dialog = new Dialogs.CodeDialogForm("HTML", codeText);
+            dialog.Text = "Bootstrap Modify Code";
             dialog.ShowDialog();
         }
     }

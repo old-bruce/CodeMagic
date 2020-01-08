@@ -15,7 +15,7 @@ namespace CodeMagic.BLL
         {
             if (string.IsNullOrEmpty(dalSuffix))
             {
-                dalSuffix = "DAL";
+                dalSuffix = "Dal";
             }
             return tableName + dalSuffix;
         }
@@ -29,7 +29,7 @@ namespace CodeMagic.BLL
 
             if (string.IsNullOrEmpty(dalSuffix))
             {
-                dalSuffix = "DAL";
+                dalSuffix = "Dal";
             }
 
             string result = File.ReadAllText(templateFile);

@@ -4,7 +4,6 @@
  *
  * Create By liya@20191030
  * 
- * Copyright @ JABIL WUX IT
  */
 
 
@@ -218,13 +217,39 @@ function SubmitFormAsync(url, formId, callback) {
         dataType: 'json',
         success: function (data) {
             if (data.code == 200) {
-                rc.msg.alert("Save Success", "Submit", function () {
+                rc.msg.alert("Submit Success", "Submit", function () {
                     if (callback) {
                         callback();
                     } else {
                         location.reload();
                     }
                 });
+            } else {
+                rc.msg.alert(data.msg);
+            }
+        }
+    });
+}
+
+/**
+ * 异步提交表单数据
+ *
+ * @ param {{url}}          异步提交的URL
+ * @ param {{callback}}     成功回掉函数
+ *
+ * 提交成功后，调用 callback
+ */
+function SubmitUrlAsync(url, callback) {
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: '',
+        dataType: 'json',
+        success: function (data) {
+            if (data.code == 200) {
+                if (callback) {
+                    callback();
+                }
             } else {
                 rc.msg.alert(data.msg);
             }

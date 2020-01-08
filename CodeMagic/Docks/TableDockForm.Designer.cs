@@ -35,6 +35,10 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.刷新RToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uI代码生成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bootstrapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminLTEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.列表页ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新增页ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +72,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -96,7 +100,7 @@
             this.dgvColumn.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvColumn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvColumn.Location = new System.Drawing.Point(7, 6);
-            this.dgvColumn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvColumn.Margin = new System.Windows.Forms.Padding(4);
             this.dgvColumn.Name = "dgvColumn";
             this.dgvColumn.ReadOnly = true;
             this.dgvColumn.Size = new System.Drawing.Size(765, 209);
@@ -109,24 +113,60 @@
             this.刷新RToolStripMenuItem,
             this.uI代码生成ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(158, 56);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(180, 84);
             // 
             // 刷新RToolStripMenuItem
             // 
             this.刷新RToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.Refresh;
             this.刷新RToolStripMenuItem.Name = "刷新RToolStripMenuItem";
-            this.刷新RToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.刷新RToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.刷新RToolStripMenuItem.Text = "刷新(&R)";
             this.刷新RToolStripMenuItem.Click += new System.EventHandler(this.刷新RToolStripMenuItem_Click);
             // 
             // uI代码生成ToolStripMenuItem
             // 
             this.uI代码生成ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bootstrapToolStripMenuItem,
             this.adminLTEToolStripMenuItem,
             this.vUEToolStripMenuItem});
             this.uI代码生成ToolStripMenuItem.Name = "uI代码生成ToolStripMenuItem";
-            this.uI代码生成ToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
+            this.uI代码生成ToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.uI代码生成ToolStripMenuItem.Text = "UI代码生成";
+            // 
+            // bootstrapToolStripMenuItem
+            // 
+            this.bootstrapToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.listToolStripMenuItem,
+            this.addToolStripMenuItem,
+            this.modifyToolStripMenuItem});
+            this.bootstrapToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.Bootstrap;
+            this.bootstrapToolStripMenuItem.Name = "bootstrapToolStripMenuItem";
+            this.bootstrapToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.bootstrapToolStripMenuItem.Text = "Bootstrap";
+            // 
+            // listToolStripMenuItem
+            // 
+            this.listToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.list;
+            this.listToolStripMenuItem.Name = "listToolStripMenuItem";
+            this.listToolStripMenuItem.Size = new System.Drawing.Size(131, 26);
+            this.listToolStripMenuItem.Text = "List";
+            this.listToolStripMenuItem.Click += new System.EventHandler(this.listToolStripMenuItem_Click);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.Add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(131, 26);
+            this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // modifyToolStripMenuItem
+            // 
+            this.modifyToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.modify;
+            this.modifyToolStripMenuItem.Name = "modifyToolStripMenuItem";
+            this.modifyToolStripMenuItem.Size = new System.Drawing.Size(131, 26);
+            this.modifyToolStripMenuItem.Text = "Modify";
+            this.modifyToolStripMenuItem.Click += new System.EventHandler(this.modifyToolStripMenuItem_Click);
             // 
             // adminLTEToolStripMenuItem
             // 
@@ -137,8 +177,9 @@
             this.详情页ToolStripMenuItem});
             this.adminLTEToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.A;
             this.adminLTEToolStripMenuItem.Name = "adminLTEToolStripMenuItem";
-            this.adminLTEToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
+            this.adminLTEToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.adminLTEToolStripMenuItem.Text = "AdminLTE";
+            this.adminLTEToolStripMenuItem.Visible = false;
             // 
             // 列表页ToolStripMenuItem
             // 
@@ -174,13 +215,14 @@
             this.defaultvueToolStripMenuItem});
             this.vUEToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.Vue16;
             this.vUEToolStripMenuItem.Name = "vUEToolStripMenuItem";
-            this.vUEToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
+            this.vUEToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.vUEToolStripMenuItem.Text = "VUE";
+            this.vUEToolStripMenuItem.Visible = false;
             // 
             // defaultvueToolStripMenuItem
             // 
             this.defaultvueToolStripMenuItem.Name = "defaultvueToolStripMenuItem";
-            this.defaultvueToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
+            this.defaultvueToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.defaultvueToolStripMenuItem.Text = "Default.vue";
             this.defaultvueToolStripMenuItem.Click += new System.EventHandler(this.defaultvueToolStripMenuItem_Click);
             // 
@@ -192,7 +234,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(7, 6);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(3, 3);
             this.tabControl1.SelectedIndex = 0;
@@ -203,9 +245,9 @@
             // 
             this.tpModel.Controls.Add(this.tecModel);
             this.tpModel.Location = new System.Drawing.Point(4, 25);
-            this.tpModel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpModel.Margin = new System.Windows.Forms.Padding(4);
             this.tpModel.Name = "tpModel";
-            this.tpModel.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpModel.Padding = new System.Windows.Forms.Padding(4);
             this.tpModel.Size = new System.Drawing.Size(757, 423);
             this.tpModel.TabIndex = 3;
             this.tpModel.Text = "Model";
@@ -217,7 +259,7 @@
             this.tecModel.FoldingStrategy = "CSharp";
             this.tecModel.Font = new System.Drawing.Font("Courier New", 10F);
             this.tecModel.Location = new System.Drawing.Point(4, 4);
-            this.tecModel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tecModel.Margin = new System.Windows.Forms.Padding(4);
             this.tecModel.Name = "tecModel";
             this.tecModel.Size = new System.Drawing.Size(749, 415);
             this.tecModel.TabIndex = 1;
@@ -226,9 +268,9 @@
             // 
             this.tpDAL.Controls.Add(this.tecDAL);
             this.tpDAL.Location = new System.Drawing.Point(4, 25);
-            this.tpDAL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpDAL.Margin = new System.Windows.Forms.Padding(4);
             this.tpDAL.Name = "tpDAL";
-            this.tpDAL.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpDAL.Padding = new System.Windows.Forms.Padding(4);
             this.tpDAL.Size = new System.Drawing.Size(757, 423);
             this.tpDAL.TabIndex = 0;
             this.tpDAL.Text = "DAL";
@@ -240,7 +282,7 @@
             this.tecDAL.FoldingStrategy = "CSharp";
             this.tecDAL.Font = new System.Drawing.Font("Courier New", 10F);
             this.tecDAL.Location = new System.Drawing.Point(4, 4);
-            this.tecDAL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tecDAL.Margin = new System.Windows.Forms.Padding(4);
             this.tecDAL.Name = "tecDAL";
             this.tecDAL.Size = new System.Drawing.Size(749, 415);
             this.tecDAL.TabIndex = 1;
@@ -249,9 +291,9 @@
             // 
             this.tpBLL.Controls.Add(this.tecBLL);
             this.tpBLL.Location = new System.Drawing.Point(4, 25);
-            this.tpBLL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpBLL.Margin = new System.Windows.Forms.Padding(4);
             this.tpBLL.Name = "tpBLL";
-            this.tpBLL.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpBLL.Padding = new System.Windows.Forms.Padding(4);
             this.tpBLL.Size = new System.Drawing.Size(757, 423);
             this.tpBLL.TabIndex = 1;
             this.tpBLL.Text = "BLL";
@@ -263,7 +305,7 @@
             this.tecBLL.FoldingStrategy = "CSharp";
             this.tecBLL.Font = new System.Drawing.Font("Courier New", 10F);
             this.tecBLL.Location = new System.Drawing.Point(4, 4);
-            this.tecBLL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tecBLL.Margin = new System.Windows.Forms.Padding(4);
             this.tecBLL.Name = "tecBLL";
             this.tecBLL.Size = new System.Drawing.Size(749, 415);
             this.tecBLL.TabIndex = 1;
@@ -297,7 +339,7 @@
             this.ClientSize = new System.Drawing.Size(779, 690);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TableDockForm";
             this.Text = "TableDockForm";
             this.Load += new System.EventHandler(this.TableDockForm_Load);
@@ -339,5 +381,9 @@
         private System.Windows.Forms.ToolStripMenuItem 详情页ToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage1;
         private ICSharpCode.TextEditor.TextEditorControlEx tecController;
+        private System.Windows.Forms.ToolStripMenuItem bootstrapToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modifyToolStripMenuItem;
     }
 }

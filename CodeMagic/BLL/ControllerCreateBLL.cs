@@ -64,7 +64,7 @@ namespace CodeMagic.BLL
                 if (isKey)
                 {
                     string columnTypeName = row["typeName"].ToString();
-                    sb.AppendFormat("{0} {1}, ", GetCSharpTypeString(columnTypeName, false), columnName);
+                    sb.AppendFormat("{0} {1}, ", GetCSharpTypeString(columnTypeName, false), FirstLower(columnName));
                 }
             }
             return sb.ToString().Length > 0 ? sb.ToString().Trim().TrimEnd(',') : string.Empty;
@@ -93,11 +93,11 @@ namespace CodeMagic.BLL
                 {
                     if (index == 0)
                     {
-                        sb.Append(columnName);
+                        sb.Append(FirstLower(columnName));
                     }
                     else
                     {
-                        sb.Append(", " + columnName);
+                        sb.Append(", " + FirstLower(columnName));
                     }
                     index++;
                 }
