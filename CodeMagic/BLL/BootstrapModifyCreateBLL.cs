@@ -22,6 +22,7 @@ namespace CodeMagic.BLL
             result = result.Replace("{NameSpace}", nameSpace);
             result = result.Replace("{Table}", tableName);
             result = result.Replace("{Model}", modelClassName);
+            result = result.Replace("{ItemParams}", GetItemParamsCode(table, tableName));
             result = result.Replace("{FormHiddens}", GetFormHiddens(table));
             result = result.Replace("{FormItems}", GetFormItemsCode(table, tableName));
             return result;
@@ -86,6 +87,32 @@ namespace CodeMagic.BLL
                 result.AppendLine("\t\t\t\t</div>");
             }
             return result.ToString();
+        }
+
+        private string GetItemParamsCode(DataTable table, string tableName)
+        {
+            StringBuilder result = new StringBuilder();
+            DataTable dtKeys = new CommonDAL().GetKeyColumns(tableName);
+            foreach (DataRow row in table.Rows)
+            {
+                string columnName = row["columnName"].ToString();
+                string columnTypeName = row["typeName"].ToString();
+                bool allowDBNull = bool.Parse(row["is_nullable"].ToString());
+                bool isKey = false;
+                foreach (DataRow rowKey in dtKeys.Rows)
+                {
+                    if (rowKey["ColumnName"].ToString() == columnName)
+                    {
+                        isKey = true;
+                        break;
+                    }
+                }
+                if (isKey)
+                {
+                    result.AppendFormat("{0} = @item.{1}, ", FirstLower(columnName), columnName);
+                }
+            }
+            return result.ToString().Length > 0 ? result.ToString().Trim().TrimEnd(',') : string.Empty;
         }
     }
 }

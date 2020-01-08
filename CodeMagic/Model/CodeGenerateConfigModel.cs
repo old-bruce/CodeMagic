@@ -46,5 +46,6 @@ namespace CodeMagic.Model
         public bool DALCreate { get; set; }
         public bool BLLCreate { get; set; }
         public bool ControllerCreate { get; set; }
+        public bool ViewCreate { get; set; }
     }
 }

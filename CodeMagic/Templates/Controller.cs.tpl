@@ -62,7 +62,7 @@ namespace {NameSpace}.Web.Controllers
             {
 				{TableName}Model {tableName}Model = {tableName}Bll.GetModel({ModifyKeysParam});
 {Insert}
-				{tableName}Bll.Insert({tableName}Model);
+				{tableName}Bll.Update({tableName}Model);
                 return Json(new { code = 200 });
             }
             catch (Exception ex)

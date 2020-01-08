@@ -12,29 +12,25 @@
 <div class="container-fluid">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <span class="glyphicon glyphicon-modal-window"></span>
-            <span>{Table}</span>
-        </div>
-
-        <div class="panel-command">
             <div class="pull-left">
-                <div class="btn-group" role="group" aria-label="...">
-                    <a href="@Url.Action("Index", "{Table}")" class="btn btn-default">
-                        <span class="glyphicon glyphicon-refresh"></span>
-                        <span>Refresh</span>
-                    </a>
-                    <a href="@Url.Action("Add", "{Table}")" class="btn btn-success">
-                        <span class="glyphicon glyphicon-plus"></span>
-                        <span>Add</span>
-                    </a>
-                </div>
+                <span class="glyphicon glyphicon-list"></span>
+                <span>{Table} List</span>
             </div>
+            
             <div class="pull-right">
-
+                <a href="@Url.Action("Index", "{Table}")" class="btn btn-sm btn-default">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                    <span>Refresh</span>
+                </a>
+                <a href="@Url.Action("Add", "{Table}")" class="btn btn-sm btn-success">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span>Add</span>
+                </a>
             </div>
             <div class="clearfix"></div>
         </div>
-        <div class="panel-body">
+
+        <div class="panel-body" style="overflow-y: scroll;">
             <table id="table1" class="table table-striped">
                 <thead>
 {thlist}
@@ -60,6 +56,8 @@
     </div>
 </div>
 
+@section scripts {
+
 <!-- DataTables -->
 <script src="~/Scripts/jquery.dataTables.min.js"></script>
 <script src="~/Scripts/dataTables.bootstrap.min.js"></script>
@@ -68,3 +66,5 @@
         $('#table1').DataTable();
     });
 </script>
+
+}

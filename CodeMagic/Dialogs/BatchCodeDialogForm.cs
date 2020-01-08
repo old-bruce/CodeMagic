@@ -33,6 +33,7 @@ namespace CodeMagic.Dialogs
             cbxBLL.Checked = Program.CurrentDBInfo.CodeGenerate.BLLCreate;
             tbxController.Text = Program.CurrentDBInfo.CodeGenerate.ControllerPath;
             cbxController.Checked = Program.CurrentDBInfo.CodeGenerate.ControllerCreate;
+            cbxView.Checked = Program.CurrentDBInfo.CodeGenerate.ViewCreate;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -83,6 +84,7 @@ namespace CodeMagic.Dialogs
         bool createDAL;
         bool createBLL;
         bool createController;
+        bool createView;
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
@@ -97,6 +99,7 @@ namespace CodeMagic.Dialogs
 
             Program.CurrentDBInfo.CodeGenerate.ControllerCreate = cbxController.Checked;
             Program.CurrentDBInfo.CodeGenerate.ControllerPath = tbxController.Text;
+            Program.CurrentDBInfo.CodeGenerate.ViewCreate = cbxView.Checked;
 
             CommonConfig.Save(Program.CommonConfig);
 
@@ -108,6 +111,7 @@ namespace CodeMagic.Dialogs
             createDAL = cbxDAL.Checked;
             createBLL = cbxBLL.Checked;
             createController = cbxController.Checked;
+            createView = cbxView.Checked;
 
             progressBar1.Value = 0;
             bgWorker.RunWorkerAsync();
@@ -167,6 +171,42 @@ namespace CodeMagic.Dialogs
                 Program.CurrentDBInfo.CodeGenerate.BLLSuffix,
                 new DALCreateBLL().GetDALClassName(tableName, Program.CurrentDBInfo.CodeGenerate.DALSuffix),
                 new ModelCreateBLL().GetModelClassName(tableName, Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
+                dtColumns);
+        }
+
+        private string CreateIndexViewCode(string tableName, DataTable dtColumns)
+        {
+            string file = Application.StartupPath + "\\Templates\\Bootstrap.List.cshtml.tpl";
+            return new BootstrapListCreateBLL().GetCode(
+                file,
+                Program.CurrentDBInfo.CodeGenerate.NameSpaceName,
+                tableName,
+                new ModelCreateBLL().GetModelClassName(tableName,
+                Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
+                dtColumns);
+        }
+
+        private string CreateAddViewCode(string tableName, DataTable dtColumns)
+        {
+            string file = Application.StartupPath + "\\Templates\\Bootstrap.Add.cshtml.tpl";
+            return new BootstrapAddCreateBLL().GetCode(
+                file,
+                Program.CurrentDBInfo.CodeGenerate.NameSpaceName,
+                tableName,
+                new ModelCreateBLL().GetModelClassName(tableName,
+                Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
+                dtColumns);
+        }
+
+        private string CreateModifyViewCode(string tableName, DataTable dtColumns)
+        {
+            string file = Application.StartupPath + "\\Templates\\Bootstrap.Modify.cshtml.tpl";
+            return new BootstrapModifyCreateBLL().GetCode(
+                file,
+                Program.CurrentDBInfo.CodeGenerate.NameSpaceName,
+                tableName,
+                new ModelCreateBLL().GetModelClassName(tableName,
+                Program.CurrentDBInfo.CodeGenerate.ModelSuffix),
                 dtColumns);
         }
 
@@ -246,6 +286,24 @@ namespace CodeMagic.Dialogs
                     File.WriteAllText(file, CreateControllerCode(tableName, dtColumns), Encoding.UTF8);
                 }
 
+                if (createView)
+                {
+                    var dirPath = Directory.GetParent(controllerFolder) + "/Views/" + tableName;
+                    if (!Directory.Exists(dirPath))
+                    {
+                        Directory.CreateDirectory(dirPath);
+                    }
+
+                    var indexFile = dirPath + "/Index.cshtml";
+                    File.WriteAllText(indexFile, CreateIndexViewCode(tableName, dtColumns), Encoding.UTF8);
+
+                    var addFile = dirPath + "/Add.cshtml";
+                    File.WriteAllText(addFile, CreateAddViewCode(tableName, dtColumns), Encoding.UTF8);
+
+                    var modifyFile = dirPath + "/Modify.cshtml";
+                    File.WriteAllText(modifyFile, CreateModifyViewCode(tableName, dtColumns), Encoding.UTF8);
+                }
+
                 int progress = (int)(i * 100 / all);
                 bgWorker.ReportProgress(progress);
             }
@@ -287,6 +345,24 @@ namespace CodeMagic.Dialogs
                     {
                         var file = controllerFolder + "/" + GetControllerName(tableName) + ".cs";
                         File.WriteAllText(file, CreateControllerCode(tableName, dtColumns), Encoding.UTF8);
+                    }
+
+                    if (createView)
+                    {
+                        var dirPath = Directory.GetParent(controllerFolder) + "/Views/" + tableName;
+                        if (!Directory.Exists(dirPath))
+                        {
+                            Directory.CreateDirectory(dirPath);
+                        }
+
+                        var indexFile = dirPath + "/Index.cshtml";
+                        File.WriteAllText(indexFile, CreateIndexViewCode(tableName, dtColumns), Encoding.UTF8);
+
+                        var addFile = dirPath + "/Add.cshtml";
+                        File.WriteAllText(addFile, CreateAddViewCode(tableName, dtColumns), Encoding.UTF8);
+
+                        var modifyFile = dirPath + "/Modify.cshtml";
+                        File.WriteAllText(modifyFile, CreateModifyViewCode(tableName, dtColumns), Encoding.UTF8);
                     }
 
                     int progress = (int)(i * 100 / all);

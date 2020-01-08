@@ -51,6 +51,7 @@
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.btnExit = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.cbxView = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lblModel
@@ -242,11 +243,22 @@
             this.progressBar1.Size = new System.Drawing.Size(406, 23);
             this.progressBar1.TabIndex = 20;
             // 
+            // cbxView
+            // 
+            this.cbxView.AutoSize = true;
+            this.cbxView.Location = new System.Drawing.Point(106, 372);
+            this.cbxView.Name = "cbxView";
+            this.cbxView.Size = new System.Drawing.Size(144, 21);
+            this.cbxView.TabIndex = 21;
+            this.cbxView.Text = "生成 View (CRUD)";
+            this.cbxView.UseVisualStyleBackColor = true;
+            // 
             // BatchCodeDialogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(748, 497);
+            this.Controls.Add(this.cbxView);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.cbxController);
@@ -303,5 +315,6 @@
         private System.ComponentModel.BackgroundWorker bgWorker;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.CheckBox cbxView;
     }
 }
