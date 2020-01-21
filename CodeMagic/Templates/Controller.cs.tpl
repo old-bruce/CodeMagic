@@ -1,9 +1,4 @@
-﻿/**
- * Auto Create By Code Magic {DateTime}
- *
- * Code Magic GitHub https://github.com/old-bruce/CodeMagic
- */
-using {NameSpace}.BLL;
+﻿using {NameSpace}.BLL;
 using {NameSpace}.Model;
 using System;
 using System.Collections.Generic;
@@ -15,11 +10,6 @@ namespace {NameSpace}.Web.Controllers
 {
     public class {TableName}Controller : Controller
     {
-		public class {TableName}ViewModel
-		{
-{ViewModel}
-		}
-
         private readonly {BLL} {tableName}Bll = new {BLL}();
 
         public ActionResult Index()

@@ -40,9 +40,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(25, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(162, 17);
+            this.label1.Size = new System.Drawing.Size(349, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "数据库连接字符串加解密";
+            this.label1.Text = "Database connection string encryption and decryption";
             // 
             // tbxSource
             // 
@@ -55,11 +55,11 @@
             // 
             // btnDecrypt
             // 
-            this.btnDecrypt.Location = new System.Drawing.Point(436, 241);
+            this.btnDecrypt.Location = new System.Drawing.Point(436, 246);
             this.btnDecrypt.Name = "btnDecrypt";
             this.btnDecrypt.Size = new System.Drawing.Size(75, 26);
             this.btnDecrypt.TabIndex = 2;
-            this.btnDecrypt.Text = "解密";
+            this.btnDecrypt.Text = "Decrypt";
             this.btnDecrypt.UseVisualStyleBackColor = true;
             this.btnDecrypt.Click += new System.EventHandler(this.btnDecrypt_Click);
             // 
@@ -75,11 +75,11 @@
             // 
             // btnEncrypt
             // 
-            this.btnEncrypt.Location = new System.Drawing.Point(517, 241);
+            this.btnEncrypt.Location = new System.Drawing.Point(517, 246);
             this.btnEncrypt.Name = "btnEncrypt";
             this.btnEncrypt.Size = new System.Drawing.Size(75, 26);
             this.btnEncrypt.TabIndex = 4;
-            this.btnEncrypt.Text = "加密";
+            this.btnEncrypt.Text = "Encrypt";
             this.btnEncrypt.UseVisualStyleBackColor = true;
             this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
             // 
@@ -87,7 +87,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 433);
+            this.ClientSize = new System.Drawing.Size(622, 312);
             this.Controls.Add(this.btnEncrypt);
             this.Controls.Add(this.tbxDest);
             this.Controls.Add(this.btnDecrypt);

@@ -47,5 +47,9 @@ namespace CodeMagic.Model
         public bool BLLCreate { get; set; }
         public bool ControllerCreate { get; set; }
         public bool ViewCreate { get; set; }
+        /// <summary>
+        /// 是否生成版本信息
+        /// </summary>
+        public bool ShowCopyright { get; set; }
     }
 }

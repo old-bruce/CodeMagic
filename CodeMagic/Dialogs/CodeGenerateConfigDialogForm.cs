@@ -13,20 +13,6 @@ namespace CodeMagic.Dialogs
 {
     public partial class CodeGenerateConfigDialogForm : Form
     {
-        public CodeGenerateConfigModel CodeGenerateConfig
-        {
-            get
-            {
-                return new CodeGenerateConfigModel()
-                {
-                    NameSpaceName = tbxNameSpace.Text.Trim(),
-                    ModelSuffix = tbxModelSuffix.Text.Trim(),
-                    DALSuffix = tbxDALSuffix.Text.Trim(),
-                    BLLSuffix = tbxBLLSuffix.Text.Trim()
-                };
-            }
-        }
-
         public CodeGenerateConfigDialogForm()
         {
             InitializeComponent();
@@ -39,7 +25,20 @@ namespace CodeMagic.Dialogs
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            try
+            {
+                Program.CurrentDBInfo.CodeGenerate.NameSpaceName = tbxNameSpace.Text;
+                Program.CurrentDBInfo.CodeGenerate.ModelSuffix = tbxModelSuffix.Text;
+                Program.CurrentDBInfo.CodeGenerate.DALSuffix = tbxDALSuffix.Text;
+                Program.CurrentDBInfo.CodeGenerate.BLLSuffix = tbxBLLSuffix.Text;
+                Program.CurrentDBInfo.CodeGenerate.ShowCopyright = cbxCopyright.Checked;
+                MessageBox.Show("保存成功");
+                this.DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void CodeGenerateConfigDialogForm_Load(object sender, EventArgs e)
@@ -48,6 +47,7 @@ namespace CodeMagic.Dialogs
             tbxModelSuffix.Text = Program.CurrentDBInfo.CodeGenerate.ModelSuffix;
             tbxDALSuffix.Text = Program.CurrentDBInfo.CodeGenerate.DALSuffix;
             tbxBLLSuffix.Text = Program.CurrentDBInfo.CodeGenerate.BLLSuffix;
+            cbxCopyright.Checked = Program.CurrentDBInfo.CodeGenerate.ShowCopyright;
         }
     }
 }

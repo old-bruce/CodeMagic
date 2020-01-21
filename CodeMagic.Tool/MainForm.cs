@@ -20,7 +20,7 @@ namespace CodeMagic.Tool
 
         private void btnEncrypt_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tbxSource.Text)) return;
+            if (string.IsNullOrEmpty(tbxSource.Text.Trim())) return;
             try
             {
                 tbxDest.Text = DESEncrypt.Encrypt(tbxSource.Text);
@@ -33,7 +33,7 @@ namespace CodeMagic.Tool
 
         private void btnDecrypt_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tbxSource.Text)) return;
+            if (string.IsNullOrEmpty(tbxSource.Text.Trim())) return;
             try
             {
                 tbxDest.Text = DESEncrypt.Decrypt(tbxSource.Text);

@@ -1,9 +1,4 @@
-﻿/**
- * Auto Create By Code Magic {DateTime}
- *
- * Code Magic GitHub https://github.com/old-bruce/CodeMagic
- */
-using System;
+﻿using System;
 using System.Collections.Generic;
 using {NameSpace}.Model;
 using {NameSpace}.DAL;
@@ -12,8 +7,6 @@ namespace {NameSpace}.BLL
 {
     public partial class {TableName}{BLLSuffix}
     {
-		#region Auto Create By Code Magic
-
 		private readonly {DAL} dal = new {DAL}();
 
 		public List<{Model}> GetAll()
@@ -97,7 +90,5 @@ namespace {NameSpace}.BLL
 		}
 
 {DeleteByAll}
-
-		#endregion
     }
 }

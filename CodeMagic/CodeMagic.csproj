@@ -72,6 +72,7 @@
     <Compile Include="BLL\AdminLTEListCreateBLL.cs" />
     <Compile Include="BLL\BaseCreateBLL.cs" />
     <Compile Include="BLL\BLLCreateBLL.cs" />
+    <Compile Include="BLL\ViewModelCreateBLL.cs" />
     <Compile Include="BLL\ControllerCreateBLL.cs" />
     <Compile Include="BLL\DALCreateBLL.cs" />
     <Compile Include="BLL\ModelCreateBLL.cs" />
@@ -390,6 +391,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\Controller.cs.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\Coryright.tpl" />
+    <None Include="Templates\ViewModel.cs.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\Vue\Default.vue.tpl">

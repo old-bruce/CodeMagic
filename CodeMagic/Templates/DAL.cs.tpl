@@ -1,9 +1,4 @@
-﻿/**
- * Auto Create By Code Magic {DateTime}
- *
- * Code Magic GitHub https://github.com/old-bruce/CodeMagic
- */
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -15,8 +10,6 @@ namespace {NameSpace}.DAL
 {
     public partial class {TableName}{DALSuffix}
     {
-		#region Auto Create By Code Magic
-
 		public List<{Model}> GetAll()
 		{
 			List<{Model}> result = new List<{Model}>();
@@ -177,7 +170,5 @@ namespace {NameSpace}.DAL
 
 			return model;
 		}
-
-		#endregion
     }
 }

@@ -138,6 +138,11 @@ namespace CodeMagic.Dialogs
             return new ControllerCreateBLL().GetControllerClassName(tableName);
         }
 
+        private string GetViewModelName(string tableName)
+        {
+            return new ViewModelCreateBLL().GetViewModelClassName(tableName);
+        }
+
         private string CreateModelCode(string tableName, DataTable dtColumns)
         {
             string file = Application.StartupPath + "\\Templates\\Model.cs.tpl";
@@ -223,6 +228,16 @@ namespace CodeMagic.Dialogs
                 dtColumns);
         }
 
+        private string CreateViewModelCode(string tableName, DataTable dtColumns)
+        {
+            string file = Application.StartupPath + "\\Templates\\ViewModel.cs.tpl";
+            return new ViewModelCreateBLL().GetCode(
+                file,
+                Program.CurrentDBInfo.CodeGenerate.NameSpaceName,
+                tableName,
+                dtColumns);
+        }
+
         private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             bgWorker.ReportProgress(0);
@@ -284,6 +299,9 @@ namespace CodeMagic.Dialogs
                 {
                     var file = controllerFolder + "/" + GetControllerName(tableName) + ".cs";
                     File.WriteAllText(file, CreateControllerCode(tableName, dtColumns), Encoding.UTF8);
+
+                    var viewModelFile = new DirectoryInfo(controllerFolder).Parent.FullName + "/Models/" + GetViewModelName(tableName) + ".cs";
+                    File.WriteAllText(viewModelFile, CreateViewModelCode(tableName, dtColumns), Encoding.UTF8);
                 }
 
                 if (createView)

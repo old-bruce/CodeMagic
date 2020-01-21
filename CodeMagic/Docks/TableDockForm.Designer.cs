@@ -55,6 +55,8 @@
             this.tecBLL = new ICSharpCode.TextEditor.TextEditorControlEx();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tecController = new ICSharpCode.TextEditor.TextEditorControlEx();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.teViewModel = new ICSharpCode.TextEditor.TextEditorControlEx();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -66,6 +68,7 @@
             this.tpDAL.SuspendLayout();
             this.tpBLL.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -113,13 +116,13 @@
             this.刷新RToolStripMenuItem,
             this.uI代码生成ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(180, 84);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(158, 56);
             // 
             // 刷新RToolStripMenuItem
             // 
             this.刷新RToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.Refresh;
             this.刷新RToolStripMenuItem.Name = "刷新RToolStripMenuItem";
-            this.刷新RToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.刷新RToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.刷新RToolStripMenuItem.Text = "刷新(&R)";
             this.刷新RToolStripMenuItem.Click += new System.EventHandler(this.刷新RToolStripMenuItem_Click);
             // 
@@ -130,7 +133,7 @@
             this.adminLTEToolStripMenuItem,
             this.vUEToolStripMenuItem});
             this.uI代码生成ToolStripMenuItem.Name = "uI代码生成ToolStripMenuItem";
-            this.uI代码生成ToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.uI代码生成ToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.uI代码生成ToolStripMenuItem.Text = "UI代码生成";
             // 
             // bootstrapToolStripMenuItem
@@ -141,7 +144,7 @@
             this.modifyToolStripMenuItem});
             this.bootstrapToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.Bootstrap;
             this.bootstrapToolStripMenuItem.Name = "bootstrapToolStripMenuItem";
-            this.bootstrapToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.bootstrapToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.bootstrapToolStripMenuItem.Text = "Bootstrap";
             // 
             // listToolStripMenuItem
@@ -177,7 +180,7 @@
             this.详情页ToolStripMenuItem});
             this.adminLTEToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.A;
             this.adminLTEToolStripMenuItem.Name = "adminLTEToolStripMenuItem";
-            this.adminLTEToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.adminLTEToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.adminLTEToolStripMenuItem.Text = "AdminLTE";
             this.adminLTEToolStripMenuItem.Visible = false;
             // 
@@ -215,14 +218,14 @@
             this.defaultvueToolStripMenuItem});
             this.vUEToolStripMenuItem.Image = global::CodeMagic.Properties.Resources.Vue16;
             this.vUEToolStripMenuItem.Name = "vUEToolStripMenuItem";
-            this.vUEToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.vUEToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.vUEToolStripMenuItem.Text = "VUE";
             this.vUEToolStripMenuItem.Visible = false;
             // 
             // defaultvueToolStripMenuItem
             // 
             this.defaultvueToolStripMenuItem.Name = "defaultvueToolStripMenuItem";
-            this.defaultvueToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.defaultvueToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
             this.defaultvueToolStripMenuItem.Text = "Default.vue";
             this.defaultvueToolStripMenuItem.Click += new System.EventHandler(this.defaultvueToolStripMenuItem_Click);
             // 
@@ -232,6 +235,7 @@
             this.tabControl1.Controls.Add(this.tpDAL);
             this.tabControl1.Controls.Add(this.tpBLL);
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(7, 6);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
@@ -332,6 +336,28 @@
             this.tecController.Size = new System.Drawing.Size(751, 417);
             this.tecController.TabIndex = 2;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.teViewModel);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(757, 423);
+            this.tabPage2.TabIndex = 5;
+            this.tabPage2.Text = "ViewModel";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // teViewModel
+            // 
+            this.teViewModel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.teViewModel.FoldingStrategy = "CSharp";
+            this.teViewModel.Font = new System.Drawing.Font("Courier New", 10F);
+            this.teViewModel.Location = new System.Drawing.Point(3, 3);
+            this.teViewModel.Margin = new System.Windows.Forms.Padding(4);
+            this.teViewModel.Name = "teViewModel";
+            this.teViewModel.Size = new System.Drawing.Size(751, 417);
+            this.teViewModel.TabIndex = 3;
+            // 
             // TableDockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -354,6 +380,7 @@
             this.tpDAL.ResumeLayout(false);
             this.tpBLL.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -385,5 +412,7 @@
         private System.Windows.Forms.ToolStripMenuItem listToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifyToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage2;
+        private ICSharpCode.TextEditor.TextEditorControlEx teViewModel;
     }
 }

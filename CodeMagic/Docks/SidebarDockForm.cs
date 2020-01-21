@@ -129,7 +129,6 @@ namespace CodeMagic.Docks
             CodeGenerateConfigDialogForm cgDialog = new CodeGenerateConfigDialogForm();
             if (cgDialog.ShowDialog() == DialogResult.OK)
             {
-                Program.CurrentDBInfo.CodeGenerate = cgDialog.CodeGenerateConfig;
                 CommonConfig.Save(Program.CommonConfig);
             }
         }
