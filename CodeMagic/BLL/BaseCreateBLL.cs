@@ -30,7 +30,7 @@ namespace CodeMagic.BLL
             {
                 return allowDBNULL ? "decimal?" : "decimal";
             }
-            if (dbtype.Contains("datetime"))
+            if (dbtype.Contains("datetime") || dbtype.Contains("date"))
             {
                 return allowDBNULL ? "DateTime?" : "DateTime";
             }

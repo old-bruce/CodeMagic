@@ -465,7 +465,7 @@ namespace CodeMagic.BLL
                 code += "\t\t\t\t" + "model." + columnName + " = decimal.Parse(row[\"" + columnName + "\"].ToString());\n";
                 code += "\t\t\t}";
             }
-            else if (dbtype.Contains("datetime"))
+            else if (dbtype.Contains("datetime") || dbtype.Contains("date"))
             {
                 code = "if (row[\"" + columnName + "\"] != null && row[\"" + columnName + "\"].ToString() != \"\")\n";
                 code += "\t\t\t{\n";
