@@ -474,7 +474,7 @@ namespace CodeMagic.BLL
             }
             else
             {
-                code = "if (row[\"" + columnName + "\"] != null && row[\"" + columnName + "\"].ToString() != \"\")\n";
+                code = "if (row[\"" + columnName + "\"] != null)\n";
                 code += "\t\t\t{\n";
                 code += "\t\t\t\t" + "model." + columnName + " = row[\"" + columnName + "\"].ToString();\n";
                 code += "\t\t\t}";
