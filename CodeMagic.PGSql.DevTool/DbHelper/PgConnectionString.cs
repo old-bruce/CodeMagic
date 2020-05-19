@@ -27,9 +27,6 @@ namespace CodeMagic.PGSql.DevTool.DbHelper
 
         public PgConnectionString()
         {
-            //this.Host = "localhost";
-            //this.Port = 5432;
-            //this.EnablePool = true;
         }
 
         public PgConnectionString(string host, string dbUser, string dbPassword, string dbName, bool enablePool = true)

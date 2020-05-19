@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\BaseGenerateBLL.cs" />
+    <Compile Include="BLL\BLLGenerateBLL.cs" />
     <Compile Include="BLL\DALGenerateBLL.cs" />
     <Compile Include="BLL\ModelGenerateBLL.cs" />
     <Compile Include="Config\PGSqlKeyword.cs" />

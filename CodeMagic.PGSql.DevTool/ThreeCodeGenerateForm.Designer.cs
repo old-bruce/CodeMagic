@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ThreeCodeGenerateForm));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.打开OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.保存SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BtnConnect = new System.Windows.Forms.Button();
             this.tbxDatabase = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,6 +62,7 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tecSqlQuery = new ICSharpCode.TextEditor.TextEditorControl();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsBtnRun = new System.Windows.Forms.ToolStripButton();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dgvQueryResult = new System.Windows.Forms.DataGridView();
@@ -73,12 +78,9 @@
             this.BtnRefresh = new System.Windows.Forms.Button();
             this.tbxNameSpace = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.保存SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.打开OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsBtnRun = new System.Windows.Forms.ToolStripButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelTop.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -100,8 +102,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueryResult)).BeginInit();
             this.tabPage6.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
@@ -122,15 +122,54 @@
             this.panelTop.Controls.Add(this.label1);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
+            this.panelTop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(984, 90);
+            this.panelTop.Size = new System.Drawing.Size(1312, 111);
             this.panelTop.TabIndex = 0;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.打开OToolStripMenuItem,
+            this.保存SToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(185, 52);
+            // 
+            // 打开OToolStripMenuItem
+            // 
+            this.打开OToolStripMenuItem.Name = "打开OToolStripMenuItem";
+            this.打开OToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.打开OToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+            this.打开OToolStripMenuItem.Text = "打开(&O)";
+            this.打开OToolStripMenuItem.Click += new System.EventHandler(this.打开OToolStripMenuItem_Click);
+            // 
+            // 保存SToolStripMenuItem
+            // 
+            this.保存SToolStripMenuItem.Name = "保存SToolStripMenuItem";
+            this.保存SToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.保存SToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+            this.保存SToolStripMenuItem.Text = "保存(&S)";
+            this.保存SToolStripMenuItem.Click += new System.EventHandler(this.保存SToolStripMenuItem_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = global::CodeMagic.PGSql.DevTool.Properties.Resources.postgresql_64px_541006_easyicon_net;
+            this.pictureBox1.Location = new System.Drawing.Point(1208, 17);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
             // 
             // BtnConnect
             // 
-            this.BtnConnect.Location = new System.Drawing.Point(572, 45);
+            this.BtnConnect.Location = new System.Drawing.Point(763, 55);
+            this.BtnConnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnConnect.Name = "BtnConnect";
-            this.BtnConnect.Size = new System.Drawing.Size(50, 26);
+            this.BtnConnect.Size = new System.Drawing.Size(67, 32);
             this.BtnConnect.TabIndex = 11;
             this.BtnConnect.Text = "Go!";
             this.BtnConnect.UseVisualStyleBackColor = true;
@@ -138,58 +177,65 @@
             // 
             // tbxDatabase
             // 
-            this.tbxDatabase.Location = new System.Drawing.Point(427, 48);
+            this.tbxDatabase.Location = new System.Drawing.Point(569, 59);
+            this.tbxDatabase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxDatabase.Name = "tbxDatabase";
-            this.tbxDatabase.Size = new System.Drawing.Size(120, 20);
+            this.tbxDatabase.Size = new System.Drawing.Size(159, 22);
             this.tbxDatabase.TabIndex = 10;
             this.tbxDatabase.Text = "idfm";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(378, 51);
+            this.label5.Location = new System.Drawing.Point(504, 63);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.Size = new System.Drawing.Size(50, 17);
             this.label5.TabIndex = 9;
             this.label5.Text = "数据库";
             // 
             // tbxPassword
             // 
-            this.tbxPassword.Location = new System.Drawing.Point(238, 48);
+            this.tbxPassword.Location = new System.Drawing.Point(317, 59);
+            this.tbxPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxPassword.Name = "tbxPassword";
-            this.tbxPassword.Size = new System.Drawing.Size(120, 20);
+            this.tbxPassword.Size = new System.Drawing.Size(159, 22);
             this.tbxPassword.TabIndex = 8;
             this.tbxPassword.Text = "jabil@123";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(201, 51);
+            this.label4.Location = new System.Drawing.Point(268, 63);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.Size = new System.Drawing.Size(36, 17);
             this.label4.TabIndex = 7;
             this.label4.Text = "密码";
             // 
             // tbxUser
             // 
-            this.tbxUser.Location = new System.Drawing.Point(60, 48);
+            this.tbxUser.Location = new System.Drawing.Point(80, 59);
+            this.tbxUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxUser.Name = "tbxUser";
-            this.tbxUser.Size = new System.Drawing.Size(120, 20);
+            this.tbxUser.Size = new System.Drawing.Size(159, 22);
             this.tbxUser.TabIndex = 6;
             this.tbxUser.Text = "idfm";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 51);
+            this.label3.Location = new System.Drawing.Point(31, 63);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.Size = new System.Drawing.Size(36, 17);
             this.label3.TabIndex = 5;
             this.label3.Text = "用户";
             // 
             // numPort
             // 
-            this.numPort.Location = new System.Drawing.Point(238, 20);
+            this.numPort.Location = new System.Drawing.Point(317, 25);
+            this.numPort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numPort.Maximum = new decimal(new int[] {
             65536,
             0,
@@ -201,7 +247,7 @@
             0,
             0});
             this.numPort.Name = "numPort";
-            this.numPort.Size = new System.Drawing.Size(120, 20);
+            this.numPort.Size = new System.Drawing.Size(160, 22);
             this.numPort.TabIndex = 4;
             this.numPort.Value = new decimal(new int[] {
             5438,
@@ -212,49 +258,55 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(201, 22);
+            this.label2.Location = new System.Drawing.Point(268, 27);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.Size = new System.Drawing.Size(36, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "端口";
             // 
             // tbxHost
             // 
-            this.tbxHost.Location = new System.Drawing.Point(60, 19);
+            this.tbxHost.Location = new System.Drawing.Point(80, 23);
+            this.tbxHost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxHost.Name = "tbxHost";
-            this.tbxHost.Size = new System.Drawing.Size(120, 20);
+            this.tbxHost.Size = new System.Drawing.Size(159, 22);
             this.tbxHost.TabIndex = 1;
             this.tbxHost.Text = "azapsewuxsql41";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 22);
+            this.label1.Location = new System.Drawing.Point(31, 27);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
+            this.label1.Size = new System.Drawing.Size(36, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "主机";
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 639);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 788);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(984, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1312, 26);
             this.statusStrip1.TabIndex = 14;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // lblStatus
             // 
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(33, 17);
+            this.lblStatus.Size = new System.Drawing.Size(41, 20);
             this.lblStatus.Text = "就绪";
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 90);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 111);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -265,8 +317,9 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Size = new System.Drawing.Size(984, 549);
-            this.splitContainer1.SplitterDistance = 250;
+            this.splitContainer1.Size = new System.Drawing.Size(1312, 677);
+            this.splitContainer1.SplitterDistance = 333;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 15;
             // 
             // tvTables
@@ -278,9 +331,10 @@
             this.tvTables.ImageList = this.imageList1;
             this.tvTables.ItemHeight = 22;
             this.tvTables.Location = new System.Drawing.Point(0, 0);
+            this.tvTables.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tvTables.Name = "tvTables";
             this.tvTables.SelectedImageIndex = 0;
-            this.tvTables.Size = new System.Drawing.Size(250, 549);
+            this.tvTables.Size = new System.Drawing.Size(333, 677);
             this.tvTables.TabIndex = 0;
             this.tvTables.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvTables_NodeMouseDoubleClick);
             // 
@@ -300,19 +354,21 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 80);
+            this.tabControl1.Location = new System.Drawing.Point(0, 98);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(730, 469);
+            this.tabControl1.Size = new System.Drawing.Size(974, 579);
             this.tabControl1.TabIndex = 17;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.tecModel);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(722, 443);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Size = new System.Drawing.Size(966, 550);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Model";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -321,18 +377,20 @@
             // 
             this.tecModel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tecModel.IsReadOnly = false;
-            this.tecModel.Location = new System.Drawing.Point(3, 3);
+            this.tecModel.Location = new System.Drawing.Point(4, 4);
+            this.tecModel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tecModel.Name = "tecModel";
-            this.tecModel.Size = new System.Drawing.Size(716, 437);
+            this.tecModel.Size = new System.Drawing.Size(958, 542);
             this.tecModel.TabIndex = 0;
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.tecDAL);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(722, 443);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Size = new System.Drawing.Size(966, 550);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DAL";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -341,18 +399,20 @@
             // 
             this.tecDAL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tecDAL.IsReadOnly = false;
-            this.tecDAL.Location = new System.Drawing.Point(3, 3);
+            this.tecDAL.Location = new System.Drawing.Point(4, 4);
+            this.tecDAL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tecDAL.Name = "tecDAL";
-            this.tecDAL.Size = new System.Drawing.Size(716, 437);
+            this.tecDAL.Size = new System.Drawing.Size(958, 542);
             this.tecDAL.TabIndex = 1;
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.tecBLL);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(722, 443);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Size = new System.Drawing.Size(966, 550);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "BLL";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -361,26 +421,29 @@
             // 
             this.tecBLL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tecBLL.IsReadOnly = false;
-            this.tecBLL.Location = new System.Drawing.Point(3, 3);
+            this.tecBLL.Location = new System.Drawing.Point(4, 4);
+            this.tecBLL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tecBLL.Name = "tecBLL";
-            this.tecBLL.Size = new System.Drawing.Size(716, 437);
+            this.tecBLL.Size = new System.Drawing.Size(958, 542);
             this.tecBLL.TabIndex = 2;
             // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.splitContainer2);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(722, 443);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage4.Size = new System.Drawing.Size(966, 550);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "查询";
+            this.tabPage4.Text = "单表查询";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Location = new System.Drawing.Point(4, 4);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -392,8 +455,9 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabControl2);
-            this.splitContainer2.Size = new System.Drawing.Size(716, 437);
-            this.splitContainer2.SplitterDistance = 90;
+            this.splitContainer2.Size = new System.Drawing.Size(958, 542);
+            this.splitContainer2.SplitterDistance = 111;
+            this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 0;
             // 
             // tecSqlQuery
@@ -401,9 +465,10 @@
             this.tecSqlQuery.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tecSqlQuery.ForeColor = System.Drawing.SystemColors.Control;
             this.tecSqlQuery.IsReadOnly = false;
-            this.tecSqlQuery.Location = new System.Drawing.Point(24, 0);
+            this.tecSqlQuery.Location = new System.Drawing.Point(30, 0);
+            this.tecSqlQuery.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tecSqlQuery.Name = "tecSqlQuery";
-            this.tecSqlQuery.Size = new System.Drawing.Size(692, 90);
+            this.tecSqlQuery.Size = new System.Drawing.Size(928, 111);
             this.tecSqlQuery.TabIndex = 3;
             this.tecSqlQuery.Text = "SELECT * FROM WHERE";
             // 
@@ -411,13 +476,24 @@
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Left;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsBtnRun});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(24, 90);
+            this.toolStrip1.Size = new System.Drawing.Size(30, 111);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsBtnRun
+            // 
+            this.tsBtnRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnRun.Image = global::CodeMagic.PGSql.DevTool.Properties.Resources.icon_run;
+            this.tsBtnRun.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnRun.Name = "tsBtnRun";
+            this.tsBtnRun.Size = new System.Drawing.Size(27, 24);
+            this.tsBtnRun.Text = "执行选中SQL";
+            this.tsBtnRun.Click += new System.EventHandler(this.tsBtnRun_Click);
             // 
             // tabControl2
             // 
@@ -425,18 +501,20 @@
             this.tabControl2.Controls.Add(this.tabPage6);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
+            this.tabControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(716, 343);
+            this.tabControl2.Size = new System.Drawing.Size(958, 426);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.dgvQueryResult);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(708, 317);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage5.Size = new System.Drawing.Size(950, 397);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "Result";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -447,19 +525,22 @@
             this.dgvQueryResult.AllowUserToDeleteRows = false;
             this.dgvQueryResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvQueryResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvQueryResult.Location = new System.Drawing.Point(3, 3);
+            this.dgvQueryResult.Location = new System.Drawing.Point(4, 4);
+            this.dgvQueryResult.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvQueryResult.Name = "dgvQueryResult";
             this.dgvQueryResult.ReadOnly = true;
-            this.dgvQueryResult.Size = new System.Drawing.Size(702, 311);
+            this.dgvQueryResult.RowHeadersWidth = 51;
+            this.dgvQueryResult.Size = new System.Drawing.Size(942, 389);
             this.dgvQueryResult.TabIndex = 1;
             // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.tecQueryCode);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Location = new System.Drawing.Point(4, 25);
+            this.tabPage6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(708, 317);
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage6.Size = new System.Drawing.Size(947, 393);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "Code";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -469,9 +550,10 @@
             this.tecQueryCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tecQueryCode.ForeColor = System.Drawing.SystemColors.Control;
             this.tecQueryCode.IsReadOnly = false;
-            this.tecQueryCode.Location = new System.Drawing.Point(3, 3);
+            this.tecQueryCode.Location = new System.Drawing.Point(4, 4);
+            this.tecQueryCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tecQueryCode.Name = "tecQueryCode";
-            this.tecQueryCode.Size = new System.Drawing.Size(702, 311);
+            this.tecQueryCode.Size = new System.Drawing.Size(939, 385);
             this.tecQueryCode.TabIndex = 4;
             // 
             // panel2
@@ -488,58 +570,65 @@
             this.panel2.Controls.Add(this.label7);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(730, 80);
+            this.panel2.Size = new System.Drawing.Size(974, 98);
             this.panel2.TabIndex = 0;
             // 
             // tbxBLL
             // 
-            this.tbxBLL.Location = new System.Drawing.Point(389, 44);
+            this.tbxBLL.Location = new System.Drawing.Point(519, 54);
+            this.tbxBLL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxBLL.Name = "tbxBLL";
-            this.tbxBLL.Size = new System.Drawing.Size(80, 20);
+            this.tbxBLL.Size = new System.Drawing.Size(105, 22);
             this.tbxBLL.TabIndex = 23;
             this.tbxBLL.Text = "BLL";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(328, 47);
+            this.label10.Location = new System.Drawing.Point(437, 58);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(53, 13);
+            this.label10.Size = new System.Drawing.Size(65, 17);
             this.label10.TabIndex = 22;
             this.label10.Text = "BLL 后缀";
             // 
             // tbxDAL
             // 
-            this.tbxDAL.Location = new System.Drawing.Point(235, 43);
+            this.tbxDAL.Location = new System.Drawing.Point(313, 53);
+            this.tbxDAL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxDAL.Name = "tbxDAL";
-            this.tbxDAL.Size = new System.Drawing.Size(80, 20);
+            this.tbxDAL.Size = new System.Drawing.Size(105, 22);
             this.tbxDAL.TabIndex = 21;
             this.tbxDAL.Text = "DAL";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(174, 47);
+            this.label9.Location = new System.Drawing.Point(232, 58);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(55, 13);
+            this.label9.Size = new System.Drawing.Size(67, 17);
             this.label9.TabIndex = 20;
             this.label9.Text = "DAL 后缀";
             // 
             // tbxModel
             // 
-            this.tbxModel.Location = new System.Drawing.Point(80, 43);
+            this.tbxModel.Location = new System.Drawing.Point(107, 53);
+            this.tbxModel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxModel.Name = "tbxModel";
-            this.tbxModel.Size = new System.Drawing.Size(80, 20);
+            this.tbxModel.Size = new System.Drawing.Size(105, 22);
             this.tbxModel.TabIndex = 19;
             this.tbxModel.Text = "Model";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 46);
+            this.label8.Location = new System.Drawing.Point(15, 57);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.Size = new System.Drawing.Size(78, 17);
             this.label8.TabIndex = 18;
             this.label8.Text = "Model 后缀";
             // 
@@ -547,9 +636,10 @@
             // 
             this.BtnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnRefresh.Enabled = false;
-            this.BtnRefresh.Location = new System.Drawing.Point(641, 17);
+            this.BtnRefresh.Location = new System.Drawing.Point(856, 21);
+            this.BtnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnRefresh.Name = "BtnRefresh";
-            this.BtnRefresh.Size = new System.Drawing.Size(75, 26);
+            this.BtnRefresh.Size = new System.Drawing.Size(100, 32);
             this.BtnRefresh.TabIndex = 17;
             this.BtnRefresh.Text = "刷新";
             this.BtnRefresh.UseVisualStyleBackColor = true;
@@ -557,80 +647,40 @@
             // 
             // tbxNameSpace
             // 
-            this.tbxNameSpace.Location = new System.Drawing.Point(80, 17);
+            this.tbxNameSpace.Location = new System.Drawing.Point(107, 21);
+            this.tbxNameSpace.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxNameSpace.Name = "tbxNameSpace";
-            this.tbxNameSpace.Size = new System.Drawing.Size(389, 20);
+            this.tbxNameSpace.Size = new System.Drawing.Size(517, 22);
             this.tbxNameSpace.TabIndex = 16;
             this.tbxNameSpace.Text = "Company.Project";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(19, 20);
+            this.label7.Location = new System.Drawing.Point(25, 25);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(55, 13);
+            this.label7.Size = new System.Drawing.Size(64, 17);
             this.label7.TabIndex = 15;
             this.label7.Text = "命名空间";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.打开OToolStripMenuItem,
-            this.保存SToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 48);
-            // 
-            // 保存SToolStripMenuItem
-            // 
-            this.保存SToolStripMenuItem.Name = "保存SToolStripMenuItem";
-            this.保存SToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.保存SToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.保存SToolStripMenuItem.Text = "保存(&S)";
-            this.保存SToolStripMenuItem.Click += new System.EventHandler(this.保存SToolStripMenuItem_Click);
-            // 
-            // 打开OToolStripMenuItem
-            // 
-            this.打开OToolStripMenuItem.Name = "打开OToolStripMenuItem";
-            this.打开OToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.打开OToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.打开OToolStripMenuItem.Text = "打开(&O)";
-            this.打开OToolStripMenuItem.Click += new System.EventHandler(this.打开OToolStripMenuItem_Click);
-            // 
-            // tsBtnRun
-            // 
-            this.tsBtnRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsBtnRun.Image = global::CodeMagic.PGSql.DevTool.Properties.Resources.icon_run;
-            this.tsBtnRun.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsBtnRun.Name = "tsBtnRun";
-            this.tsBtnRun.Size = new System.Drawing.Size(21, 20);
-            this.tsBtnRun.Text = "执行选中SQL";
-            this.tsBtnRun.Click += new System.EventHandler(this.tsBtnRun_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::CodeMagic.PGSql.DevTool.Properties.Resources.postgresql_64px_541006_easyicon_net;
-            this.pictureBox1.Location = new System.Drawing.Point(906, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
-            // 
             // ThreeCodeGenerateForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 661);
+            this.ClientSize = new System.Drawing.Size(1312, 814);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panelTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ThreeCodeGenerateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "三层代码生成器";
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -656,8 +706,6 @@
             this.tabPage6.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

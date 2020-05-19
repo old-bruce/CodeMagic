@@ -126,6 +126,10 @@ namespace CodeMagic.PGSql.DevTool
             tecDAL.Text = dal.GetCode(Application.StartupPath + "/Templates/DAL.cs.tpl",
                 nameSpace, dalSuffix, modelSuffix, table, columns);
 
+            BLL.BLLGenerateBLL bll = new BLL.BLLGenerateBLL();
+            tecBLL.Text = bll.GetCode(Application.StartupPath + "/Templates/BLL.cs.tpl",
+                nameSpace, bllSuffix, dalSuffix, modelSuffix, table, columns);
+
             tecSqlQuery.Text = string.Format("SELECT * FROM {0}.{1} WHERE {2}=0",
                 table.schemaname, table.tablename, columns[0].name);
         }
