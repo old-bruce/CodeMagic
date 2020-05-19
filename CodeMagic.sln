@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 14 for Windows Desktop
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMagic", "CodeMagic\CodeMagic.csproj", "{5CDC90BD-D50F-4676-8007-94DAD61872F8}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMagic.MySQL", "CodeMagic.MySQL\CodeMagic.MySQL.csproj", "{D87852F1-B954-4AAE-83AE-C285F834FFE4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMagic.Tool", "CodeMagic.Tool\CodeMagic.Tool.csproj", "{8C6A1FC3-DCA4-40CF-9BDE-C874F8FC85E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMagic.PGSql.DevTool", "CodeMagic.PGSql.DevTool\CodeMagic.PGSql.DevTool.csproj", "{84E678DA-D0B5-4085-BF0B-3D3DD8125A92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{8C6A1FC3-DCA4-40CF-9BDE-C874F8FC85E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C6A1FC3-DCA4-40CF-9BDE-C874F8FC85E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C6A1FC3-DCA4-40CF-9BDE-C874F8FC85E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84E678DA-D0B5-4085-BF0B-3D3DD8125A92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84E678DA-D0B5-4085-BF0B-3D3DD8125A92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84E678DA-D0B5-4085-BF0B-3D3DD8125A92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84E678DA-D0B5-4085-BF0B-3D3DD8125A92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
