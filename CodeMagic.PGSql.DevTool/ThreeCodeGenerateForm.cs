@@ -173,6 +173,7 @@ namespace CodeMagic.PGSql.DevTool
                         tecSqlQuery.Enabled = true;
                         tsBtnRun.Enabled = true;
                         dgvQueryResult.DataSource = result;
+                        CodeGenerateByQuery();
                     }));
                 });
                 lblStatus.Text = "正在查询...";
@@ -181,7 +182,7 @@ namespace CodeMagic.PGSql.DevTool
             }
             else
             {
-
+                //TODO: INSERT UPDATE DELETE
             }
         }
 
@@ -211,6 +212,27 @@ namespace CodeMagic.PGSql.DevTool
                 tbxPassword.Text = cs.DBPassword;
                 tbxDatabase.Text = cs.DBName;
             }
+        }
+
+        private void CodeGenerateByQuery()
+        {
+            if (tvTables.SelectedNode.Tag == null) return;
+            TableModel tableModel = tvTables.SelectedNode.Tag as TableModel;
+            if (tableModel == null) return;
+
+            // Load Table Columns
+            Task.Factory.StartNew(() =>
+            {
+                List<Model.ColumnModel> columns = dal.GetColumnModelList(tableModel.tablename);
+                this.Invoke(new Action(() =>
+                {
+                    lblStatus.Text = "就绪";
+                    string modelSuffix = tbxModel.Text.Trim();
+                    BLL.DALQueryGenerateBLL dalQuery = new BLL.DALQueryGenerateBLL();
+                    tecQueryCode.Text = dalQuery.GetCode(Application.StartupPath + "/Templates/DAL.Query.cs.tpl", modelSuffix, tableModel, columns, tecSqlQuery.Text);
+                }));
+            });
+            lblStatus.Text = "正在生成单表查询代码...";
         }
     }
 }

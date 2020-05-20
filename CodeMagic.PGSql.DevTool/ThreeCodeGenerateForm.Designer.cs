@@ -465,10 +465,10 @@
             this.tecSqlQuery.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tecSqlQuery.ForeColor = System.Drawing.SystemColors.Control;
             this.tecSqlQuery.IsReadOnly = false;
-            this.tecSqlQuery.Location = new System.Drawing.Point(30, 0);
+            this.tecSqlQuery.Location = new System.Drawing.Point(40, 0);
             this.tecSqlQuery.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tecSqlQuery.Name = "tecSqlQuery";
-            this.tecSqlQuery.Size = new System.Drawing.Size(928, 111);
+            this.tecSqlQuery.Size = new System.Drawing.Size(918, 111);
             this.tecSqlQuery.TabIndex = 3;
             this.tecSqlQuery.Text = "SELECT * FROM WHERE";
             // 
@@ -481,7 +481,7 @@
             this.tsBtnRun});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(30, 111);
+            this.toolStrip1.Size = new System.Drawing.Size(40, 111);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 

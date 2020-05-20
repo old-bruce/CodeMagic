@@ -90,6 +90,7 @@
     <Compile Include="BLL\BaseGenerateBLL.cs" />
     <Compile Include="BLL\BLLGenerateBLL.cs" />
     <Compile Include="BLL\DALGenerateBLL.cs" />
+    <Compile Include="BLL\DALQueryGenerateBLL.cs" />
     <Compile Include="BLL\ModelGenerateBLL.cs" />
     <Compile Include="Config\PGSqlKeyword.cs" />
     <Compile Include="DbHelper\PgConnectionString.cs" />
@@ -147,6 +148,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Templates\BLL.cs.tpl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\DAL.Query.cs.tpl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Templates\DAL.cs.tpl">

@@ -9,6 +9,11 @@ namespace {NameSpace}.BLL
     {
 		private readonly {DAL} _dal = new {DAL}();
 
+		public {TableName}{BLLSuffix}(string connectionString)
+        {
+            _dal = new {DAL}(connectionString);
+        }
+
 		public List<{Model}> GetAll()
 		{
 			return _dal.GetAll();
