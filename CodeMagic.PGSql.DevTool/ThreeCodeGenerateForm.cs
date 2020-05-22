@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using ICSharpCode.TextEditor.Actions;
 
 namespace CodeMagic.PGSql.DevTool
 {
@@ -93,9 +94,11 @@ namespace CodeMagic.PGSql.DevTool
                     GenerateCode((Model.TableModel)e.Node.Tag, columns);
                     e.Node.ExpandAll();
                     BtnRefresh.Enabled = true;
+                    tabControl1.Enabled = true;
                 }));
             });
             lblStatus.Text = "正在加载列...";
+            tabControl1.Enabled = false;
         }
 
         private void AddColumns(TreeNode tableNode, List<Model.ColumnModel> columns)
@@ -146,10 +149,12 @@ namespace CodeMagic.PGSql.DevTool
                     lblStatus.Text = "就绪";
                     GenerateCode((Model.TableModel)tvTables.SelectedNode.Tag, columns);
                     BtnRefresh.Enabled = true;
+                    tabControl1.Enabled = true;
                 }));
             });
             lblStatus.Text = "正在加载列...";
             BtnRefresh.Enabled = false;
+            tabControl1.Enabled = false;
         }
 
         private void tsBtnRun_Click(object sender, EventArgs e)

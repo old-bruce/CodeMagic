@@ -38,16 +38,18 @@
             // 
             this.cbxHost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxHost.FormattingEnabled = true;
-            this.cbxHost.Location = new System.Drawing.Point(27, 28);
+            this.cbxHost.Location = new System.Drawing.Point(36, 41);
+            this.cbxHost.Margin = new System.Windows.Forms.Padding(4);
             this.cbxHost.Name = "cbxHost";
-            this.cbxHost.Size = new System.Drawing.Size(220, 21);
+            this.cbxHost.Size = new System.Drawing.Size(556, 24);
             this.cbxHost.TabIndex = 0;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(91, 70);
+            this.btnOk.Location = new System.Drawing.Point(384, 89);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(4);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 26);
+            this.btnOk.Size = new System.Drawing.Size(100, 32);
             this.btnOk.TabIndex = 1;
             this.btnOk.Text = "确定(&O)";
             this.btnOk.UseVisualStyleBackColor = true;
@@ -56,9 +58,10 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(172, 70);
+            this.btnCancel.Location = new System.Drawing.Point(492, 89);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 26);
+            this.btnCancel.Size = new System.Drawing.Size(100, 32);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "取消(&C)";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -67,15 +70,16 @@
             // SelectFormDialog
             // 
             this.AcceptButton = this.btnOk;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(284, 121);
+            this.ClientSize = new System.Drawing.Size(622, 163);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.cbxHost);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SelectFormDialog";

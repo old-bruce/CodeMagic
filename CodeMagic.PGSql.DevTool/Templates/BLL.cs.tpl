@@ -7,7 +7,7 @@ namespace {NameSpace}.BLL
 {
     public partial class {TableName}{BLLSuffix}
     {
-		private readonly {DAL} _dal = new {DAL}();
+		private readonly {DAL} _dal;
 
 		public {TableName}{BLLSuffix}(string connectionString)
         {

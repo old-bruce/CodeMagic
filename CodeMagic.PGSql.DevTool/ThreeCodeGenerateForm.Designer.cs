@@ -122,7 +122,7 @@
             this.panelTop.Controls.Add(this.label1);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
-            this.panelTop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelTop.Margin = new System.Windows.Forms.Padding(4);
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1312, 111);
             this.panelTop.TabIndex = 0;
@@ -157,7 +157,7 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = global::CodeMagic.PGSql.DevTool.Properties.Resources.postgresql_64px_541006_easyicon_net;
             this.pictureBox1.Location = new System.Drawing.Point(1208, 17);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(64, 64);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -166,10 +166,10 @@
             // 
             // BtnConnect
             // 
-            this.BtnConnect.Location = new System.Drawing.Point(763, 55);
-            this.BtnConnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnConnect.Location = new System.Drawing.Point(758, 26);
+            this.BtnConnect.Margin = new System.Windows.Forms.Padding(4);
             this.BtnConnect.Name = "BtnConnect";
-            this.BtnConnect.Size = new System.Drawing.Size(67, 32);
+            this.BtnConnect.Size = new System.Drawing.Size(67, 55);
             this.BtnConnect.TabIndex = 11;
             this.BtnConnect.Text = "Go!";
             this.BtnConnect.UseVisualStyleBackColor = true;
@@ -178,11 +178,11 @@
             // tbxDatabase
             // 
             this.tbxDatabase.Location = new System.Drawing.Point(569, 59);
-            this.tbxDatabase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxDatabase.Margin = new System.Windows.Forms.Padding(4);
             this.tbxDatabase.Name = "tbxDatabase";
             this.tbxDatabase.Size = new System.Drawing.Size(159, 22);
             this.tbxDatabase.TabIndex = 10;
-            this.tbxDatabase.Text = "idfm";
+            this.tbxDatabase.Text = "postgres";
             // 
             // label5
             // 
@@ -197,11 +197,10 @@
             // tbxPassword
             // 
             this.tbxPassword.Location = new System.Drawing.Point(317, 59);
-            this.tbxPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxPassword.Margin = new System.Windows.Forms.Padding(4);
             this.tbxPassword.Name = "tbxPassword";
             this.tbxPassword.Size = new System.Drawing.Size(159, 22);
             this.tbxPassword.TabIndex = 8;
-            this.tbxPassword.Text = "jabil@123";
             // 
             // label4
             // 
@@ -216,11 +215,11 @@
             // tbxUser
             // 
             this.tbxUser.Location = new System.Drawing.Point(80, 59);
-            this.tbxUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxUser.Margin = new System.Windows.Forms.Padding(4);
             this.tbxUser.Name = "tbxUser";
             this.tbxUser.Size = new System.Drawing.Size(159, 22);
             this.tbxUser.TabIndex = 6;
-            this.tbxUser.Text = "idfm";
+            this.tbxUser.Text = "postgres";
             // 
             // label3
             // 
@@ -234,8 +233,8 @@
             // 
             // numPort
             // 
-            this.numPort.Location = new System.Drawing.Point(317, 25);
-            this.numPort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numPort.Location = new System.Drawing.Point(569, 23);
+            this.numPort.Margin = new System.Windows.Forms.Padding(4);
             this.numPort.Maximum = new decimal(new int[] {
             65536,
             0,
@@ -250,7 +249,7 @@
             this.numPort.Size = new System.Drawing.Size(160, 22);
             this.numPort.TabIndex = 4;
             this.numPort.Value = new decimal(new int[] {
-            5438,
+            5432,
             0,
             0,
             0});
@@ -258,7 +257,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(268, 27);
+            this.label2.Location = new System.Drawing.Point(520, 25);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 17);
@@ -268,11 +267,11 @@
             // tbxHost
             // 
             this.tbxHost.Location = new System.Drawing.Point(80, 23);
-            this.tbxHost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxHost.Margin = new System.Windows.Forms.Padding(4);
             this.tbxHost.Name = "tbxHost";
-            this.tbxHost.Size = new System.Drawing.Size(159, 22);
+            this.tbxHost.Size = new System.Drawing.Size(396, 22);
             this.tbxHost.TabIndex = 1;
-            this.tbxHost.Text = "azapsewuxsql41";
+            this.tbxHost.Text = "localhost";
             // 
             // label1
             // 
@@ -306,7 +305,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 111);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -331,7 +330,7 @@
             this.tvTables.ImageList = this.imageList1;
             this.tvTables.ItemHeight = 22;
             this.tvTables.Location = new System.Drawing.Point(0, 0);
-            this.tvTables.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tvTables.Margin = new System.Windows.Forms.Padding(4);
             this.tvTables.Name = "tvTables";
             this.tvTables.SelectedImageIndex = 0;
             this.tvTables.Size = new System.Drawing.Size(333, 677);
@@ -355,7 +354,7 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 98);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(974, 579);
@@ -365,9 +364,9 @@
             // 
             this.tabPage1.Controls.Add(this.tecModel);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(966, 550);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Model";
@@ -378,7 +377,7 @@
             this.tecModel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tecModel.IsReadOnly = false;
             this.tecModel.Location = new System.Drawing.Point(4, 4);
-            this.tecModel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tecModel.Margin = new System.Windows.Forms.Padding(4);
             this.tecModel.Name = "tecModel";
             this.tecModel.Size = new System.Drawing.Size(958, 542);
             this.tecModel.TabIndex = 0;
@@ -387,9 +386,9 @@
             // 
             this.tabPage2.Controls.Add(this.tecDAL);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(966, 550);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "DAL";
@@ -400,7 +399,7 @@
             this.tecDAL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tecDAL.IsReadOnly = false;
             this.tecDAL.Location = new System.Drawing.Point(4, 4);
-            this.tecDAL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tecDAL.Margin = new System.Windows.Forms.Padding(4);
             this.tecDAL.Name = "tecDAL";
             this.tecDAL.Size = new System.Drawing.Size(958, 542);
             this.tecDAL.TabIndex = 1;
@@ -409,9 +408,9 @@
             // 
             this.tabPage3.Controls.Add(this.tecBLL);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage3.Size = new System.Drawing.Size(966, 550);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "BLL";
@@ -422,7 +421,7 @@
             this.tecBLL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tecBLL.IsReadOnly = false;
             this.tecBLL.Location = new System.Drawing.Point(4, 4);
-            this.tecBLL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tecBLL.Margin = new System.Windows.Forms.Padding(4);
             this.tecBLL.Name = "tecBLL";
             this.tecBLL.Size = new System.Drawing.Size(958, 542);
             this.tecBLL.TabIndex = 2;
@@ -431,9 +430,9 @@
             // 
             this.tabPage4.Controls.Add(this.splitContainer2);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage4.Size = new System.Drawing.Size(966, 550);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "单表查询";
@@ -443,7 +442,7 @@
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(4, 4);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -465,10 +464,10 @@
             this.tecSqlQuery.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tecSqlQuery.ForeColor = System.Drawing.SystemColors.Control;
             this.tecSqlQuery.IsReadOnly = false;
-            this.tecSqlQuery.Location = new System.Drawing.Point(40, 0);
-            this.tecSqlQuery.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tecSqlQuery.Location = new System.Drawing.Point(30, 0);
+            this.tecSqlQuery.Margin = new System.Windows.Forms.Padding(4);
             this.tecSqlQuery.Name = "tecSqlQuery";
-            this.tecSqlQuery.Size = new System.Drawing.Size(918, 111);
+            this.tecSqlQuery.Size = new System.Drawing.Size(928, 111);
             this.tecSqlQuery.TabIndex = 3;
             this.tecSqlQuery.Text = "SELECT * FROM WHERE";
             // 
@@ -481,7 +480,7 @@
             this.tsBtnRun});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(40, 111);
+            this.toolStrip1.Size = new System.Drawing.Size(30, 111);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -501,7 +500,7 @@
             this.tabControl2.Controls.Add(this.tabPage6);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
-            this.tabControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl2.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
             this.tabControl2.Size = new System.Drawing.Size(958, 426);
@@ -511,9 +510,9 @@
             // 
             this.tabPage5.Controls.Add(this.dgvQueryResult);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage5.Size = new System.Drawing.Size(950, 397);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "Result";
@@ -526,7 +525,7 @@
             this.dgvQueryResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvQueryResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvQueryResult.Location = new System.Drawing.Point(4, 4);
-            this.dgvQueryResult.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvQueryResult.Margin = new System.Windows.Forms.Padding(4);
             this.dgvQueryResult.Name = "dgvQueryResult";
             this.dgvQueryResult.ReadOnly = true;
             this.dgvQueryResult.RowHeadersWidth = 51;
@@ -537,10 +536,10 @@
             // 
             this.tabPage6.Controls.Add(this.tecQueryCode);
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage6.Size = new System.Drawing.Size(947, 393);
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage6.Size = new System.Drawing.Size(950, 397);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "Code";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -551,9 +550,9 @@
             this.tecQueryCode.ForeColor = System.Drawing.SystemColors.Control;
             this.tecQueryCode.IsReadOnly = false;
             this.tecQueryCode.Location = new System.Drawing.Point(4, 4);
-            this.tecQueryCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tecQueryCode.Margin = new System.Windows.Forms.Padding(4);
             this.tecQueryCode.Name = "tecQueryCode";
-            this.tecQueryCode.Size = new System.Drawing.Size(939, 385);
+            this.tecQueryCode.Size = new System.Drawing.Size(942, 389);
             this.tecQueryCode.TabIndex = 4;
             // 
             // panel2
@@ -570,7 +569,7 @@
             this.panel2.Controls.Add(this.label7);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(974, 98);
             this.panel2.TabIndex = 0;
@@ -578,7 +577,7 @@
             // tbxBLL
             // 
             this.tbxBLL.Location = new System.Drawing.Point(519, 54);
-            this.tbxBLL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxBLL.Margin = new System.Windows.Forms.Padding(4);
             this.tbxBLL.Name = "tbxBLL";
             this.tbxBLL.Size = new System.Drawing.Size(105, 22);
             this.tbxBLL.TabIndex = 23;
@@ -597,7 +596,7 @@
             // tbxDAL
             // 
             this.tbxDAL.Location = new System.Drawing.Point(313, 53);
-            this.tbxDAL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxDAL.Margin = new System.Windows.Forms.Padding(4);
             this.tbxDAL.Name = "tbxDAL";
             this.tbxDAL.Size = new System.Drawing.Size(105, 22);
             this.tbxDAL.TabIndex = 21;
@@ -616,7 +615,7 @@
             // tbxModel
             // 
             this.tbxModel.Location = new System.Drawing.Point(107, 53);
-            this.tbxModel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxModel.Margin = new System.Windows.Forms.Padding(4);
             this.tbxModel.Name = "tbxModel";
             this.tbxModel.Size = new System.Drawing.Size(105, 22);
             this.tbxModel.TabIndex = 19;
@@ -637,7 +636,7 @@
             this.BtnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnRefresh.Enabled = false;
             this.BtnRefresh.Location = new System.Drawing.Point(856, 21);
-            this.BtnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.BtnRefresh.Name = "BtnRefresh";
             this.BtnRefresh.Size = new System.Drawing.Size(100, 32);
             this.BtnRefresh.TabIndex = 17;
@@ -648,7 +647,7 @@
             // tbxNameSpace
             // 
             this.tbxNameSpace.Location = new System.Drawing.Point(107, 21);
-            this.tbxNameSpace.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxNameSpace.Margin = new System.Windows.Forms.Padding(4);
             this.tbxNameSpace.Name = "tbxNameSpace";
             this.tbxNameSpace.Size = new System.Drawing.Size(517, 22);
             this.tbxNameSpace.TabIndex = 16;
@@ -673,7 +672,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panelTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThreeCodeGenerateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "三层代码生成器";
