@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SqlQueryDockForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControl();
+            this.textEditorControl1 = new ICSharpCode.TextEditor.TextEditorControlEx();
             this.tecSQL = new ICSharpCode.TextEditor.TextEditorControlEx();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.执行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -138,7 +138,7 @@
         private System.Windows.Forms.DataGridView dgvResult;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 执行ToolStripMenuItem;
-        private ICSharpCode.TextEditor.TextEditorControl textEditorControl1;
+        private ICSharpCode.TextEditor.TextEditorControlEx textEditorControl1;
         private ICSharpCode.TextEditor.TextEditorControlEx tecSQL;
     }
 }
