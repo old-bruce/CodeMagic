@@ -9,9 +9,9 @@ namespace {NameSpace}.BLL
     {
 		private readonly {DAL} _dal;
 
-		public {TableName}{BLLSuffix}(string connectionString)
+		public {TableName}{BLLSuffix}()
         {
-            _dal = new {DAL}(connectionString);
+            _dal = new {DAL}();
         }
 
 		public List<{Model}> GetAll()

@@ -5,6 +5,7 @@ using System.Text;
 using Npgsql;
 using NpgsqlTypes;
 using {NameSpace}.Model;
+using {NameSpace}.Common;
 
 namespace {NameSpace}.DAL
 {
@@ -12,9 +13,9 @@ namespace {NameSpace}.DAL
     {
 		private DbHelper.PSqlHelper _helper;
 
-        public {TableName}DAL(string connectionString)
+        public {TableName}DAL()
         {
-            _helper = new DbHelper.PSqlHelper(connectionString);
+            _helper = new DbHelper.PSqlHelper(Config.GetConnectionString());
         }
 
 		public List<{Model}> GetAll()
