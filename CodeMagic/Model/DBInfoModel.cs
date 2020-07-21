@@ -14,6 +14,8 @@ namespace CodeMagic.Model
         public string DBName { get; set; }
         public CodeGenerateConfigModel CodeGenerate { get; set; }
 
+        public string ServerNameDBName { get { return ServerName + "." + DBName; } }
+
         public DBInfoModel()
         {
             CodeGenerate = new CodeGenerateConfigModel();

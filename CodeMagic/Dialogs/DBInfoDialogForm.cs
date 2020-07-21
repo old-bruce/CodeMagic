@@ -22,9 +22,10 @@ namespace CodeMagic.Dialogs
         {
             get
             {
+                string[] host = cbxServerNames.Text.Split('.');
                 return new DBInfoModel()
                 {
-                    ServerName = cbxServerNames.Text,
+                    ServerName = host[0],
                     UserID = tbxUserID.Text.Trim(),
                     Password = tbxPassword.Text.Trim(),
                     DBName = tbxDBName.Text.Trim()
@@ -40,7 +41,7 @@ namespace CodeMagic.Dialogs
         private void DBInfoDialogForm_Load(object sender, EventArgs e)
         {
             cbxServerNames.DataSource = _config.DBInfoList;
-            cbxServerNames.DisplayMember = "ServerName";
+            cbxServerNames.DisplayMember = "ServerNameDBName";
             cbxServerNames.ValueMember = "ServerName";
         }
 
